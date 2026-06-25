@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow" />
+<title>Uma noite para nós — 27 de junho</title>
+<meta name="description" content="Onde passar a nossa noite especial em São Paulo — comparativo dos hotéis, vantagens e ranking de custo-benefício.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6EFE3; --paper-2:#F1E7D6; --surface:#FCF8F0; --card:#FFFFFF;
+    --ink:#2B2521; --ink-soft:#6E6256; --ink-faint:#9A8C7C;
+    --wine:#7C2B3B; --wine-deep:#5E1F2D; --gold:#A77C3C; --gold-soft:#C7A267;
+    --line:#E5D8C4; --line-soft:#EFE6D6;
+    --good:#3E6B4F; --warn:#9A5B2A;
+    --shadow:0 1px 2px rgba(43,37,33,.04), 0 12px 32px -12px rgba(43,37,33,.18);
+    --shadow-lg:0 2px 6px rgba(43,37,33,.06), 0 28px 60px -24px rgba(94,31,45,.28);
+    --r:18px; --r-sm:12px;
+    --maxw:1140px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif; font-size:17px; line-height:1.65;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  h1,h2,h3,.serif{font-family:"Fraunces",Georgia,serif; font-weight:500; line-height:1.12; letter-spacing:-.01em}
+  a{color:inherit}
+  img{max-width:100%; display:block}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  .eyebrow{font-size:12.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:600}
+  .muted{color:var(--ink-soft)}
+
+  /* ---------- TOP NAV ---------- */
+  .nav{position:sticky; top:0; z-index:50; background:rgba(246,239,227,.86);
+    backdrop-filter:saturate(140%) blur(10px); border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex; align-items:center; justify-content:space-between; height:62px; gap:16px}
+  .nav .brand{font-family:"Fraunces",serif; font-size:18px; letter-spacing:-.01em; display:flex; align-items:center; gap:10px}
+  .nav .brand .dot{width:9px; height:9px; border-radius:50%; background:var(--wine); box-shadow:0 0 0 4px rgba(124,43,59,.12)}
+  .nav nav{display:flex; gap:6px}
+  .nav nav a{font-size:14px; color:var(--ink-soft); text-decoration:none; padding:8px 12px; border-radius:999px; transition:background .2s,color .2s; cursor:pointer}
+  .nav nav a:hover,.nav nav a:focus-visible{background:#fff; color:var(--ink)}
+  .nav nav a:focus-visible{outline:2px solid var(--wine); outline-offset:2px}
+  @media(max-width:720px){ .nav nav{display:none} }
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative; overflow:hidden; background:
+      radial-gradient(120% 100% at 80% -10%, rgba(167,124,60,.22), transparent 55%),
+      radial-gradient(120% 120% at 0% 110%, rgba(124,43,59,.55), transparent 55%),
+      linear-gradient(160deg,#3a1721 0%, #5E1F2D 45%, #7C2B3B 100%);
+    color:#F6EAD7}
+  .hero::after{content:""; position:absolute; inset:0; opacity:.5; mix-blend-mode:overlay; pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E")}
+  .hero .wrap{position:relative; z-index:1; padding:88px 24px 96px; text-align:center}
+  .hero .eyebrow{color:var(--gold-soft)}
+  .hero h1{font-size:clamp(40px,8vw,76px); margin:18px auto 0; max-width:14ch; font-weight:500}
+  .hero h1 em{font-style:italic; color:var(--gold-soft)}
+  .hero .lede{max-width:52ch; margin:22px auto 0; font-size:clamp(16px,2.4vw,19px); color:#EAD7BF; line-height:1.6}
+  .hero .since{margin-top:30px; display:inline-flex; align-items:center; gap:12px; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:#E7CFA6}
+  .hero .since .ln{width:34px; height:1px; background:rgba(231,207,166,.5)}
+  .hero .cue{margin-top:46px; display:inline-flex; flex-direction:column; align-items:center; gap:8px; color:#E7CFA6; font-size:12px; letter-spacing:.18em; text-transform:uppercase}
+  .hero .cue svg{animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+  @media(prefers-reduced-motion:reduce){.hero .cue svg{animation:none}}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:74px 0}
+  .sec-head{max-width:64ch}
+  .sec-head h2{font-size:clamp(28px,4.4vw,42px); margin:12px 0 0}
+  .sec-head p{margin:14px 0 0; color:var(--ink-soft); font-size:17px}
+
+  /* ---------- CRITERIA ---------- */
+  #criterios{background:linear-gradient(180deg,var(--paper) 0%, var(--paper-2) 100%)}
+  .crit-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:34px}
+  .crit{background:var(--surface); border:1px solid var(--line); border-radius:var(--r-sm); padding:20px 20px 18px; box-shadow:var(--shadow)}
+  .crit .ic{width:38px; height:38px; border-radius:10px; display:grid; place-items:center; background:rgba(124,43,59,.08); color:var(--wine); margin-bottom:12px}
+  .crit h3{font-size:18px; margin:0 0 4px}
+  .crit p{margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.5}
+  .crit.star .ic{background:rgba(167,124,60,.14); color:var(--gold)}
+  .crit.star{border-color:var(--gold-soft)}
+  .crit .tag{display:inline-block; margin-top:10px; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); font-weight:700}
+
+  /* ---------- RANKING ---------- */
+  .rank-list{margin-top:36px; display:flex; flex-direction:column; gap:12px}
+  .rk{display:grid; grid-template-columns:54px 1fr auto; align-items:center; gap:18px;
+     background:var(--card); border:1px solid var(--line); border-radius:var(--r-sm); padding:16px 20px; box-shadow:var(--shadow);
+     transition:transform .25s ease, box-shadow .25s ease}
+  .rk:hover{transform:translateY(-2px); box-shadow:var(--shadow-lg)}
+  .rk .pos{font-family:"Fraunces",serif; font-size:30px; color:var(--ink-faint); text-align:center; font-weight:500; font-variant-numeric:tabular-nums}
+  .rk.top3 .pos{color:var(--wine)}
+  .rk .mid h3{margin:0; font-size:19px; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap}
+  .rk .mid h3 .price{font-family:"Inter",sans-serif; font-size:13px; font-weight:600; color:var(--ink-soft); letter-spacing:0}
+  .rk .mid p{margin:3px 0 0; font-size:14.5px; color:var(--ink-soft)}
+  .rk .score{min-width:128px; text-align:right}
+  .rk .score .n{font-family:"Fraunces",serif; font-size:22px; color:var(--ink); font-variant-numeric:tabular-nums}
+  .rk .score .n small{font-size:13px; color:var(--ink-faint)}
+  .rk .bar{margin-top:7px; height:6px; border-radius:999px; background:var(--line-soft); overflow:hidden}
+  .rk .bar i{display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,var(--gold) 0%, var(--wine) 100%)}
+  .rk .badge{display:inline-block; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#fff; background:var(--wine); padding:3px 8px; border-radius:999px; vertical-align:middle}
+  @media(max-width:620px){
+    .rk{grid-template-columns:40px 1fr; gap:12px 14px; padding:14px 16px}
+    .rk .score{grid-column:1/-1; text-align:left; min-width:0; display:flex; align-items:center; gap:12px}
+    .rk .score .bar{flex:1; margin-top:0}
+    .rk .pos{font-size:24px}
+  }
+
+  /* ---------- HOTEL CARDS ---------- */
+  .tier-label{display:flex; align-items:center; gap:14px; margin:54px 0 22px}
+  .tier-label:first-of-type{margin-top:38px}
+  .tier-label h3{font-size:14px; letter-spacing:.18em; text-transform:uppercase; color:var(--wine); margin:0; white-space:nowrap; font-family:"Inter",sans-serif; font-weight:700}
+  .tier-label .ln{flex:1; height:1px; background:var(--line)}
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:24px}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; transition:transform .3s ease, box-shadow .3s ease}
+  .card:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg)}
+  .media{position:relative; aspect-ratio:16/10; overflow:hidden; background:#3a1721}
+  .media img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease}
+  .card:hover .media img{transform:scale(1.05)}
+  /* plate background (shows when no photo / photo fails) */
+  .media.p1{background:linear-gradient(150deg,#5E1F2D,#7C2B3B 70%,#9a4254)}
+  .media.p2{background:linear-gradient(150deg,#6b2733,#8a5a2c 95%)}
+  .media.p3{background:linear-gradient(150deg,#3a2a3f,#7C2B3B 90%)}
+  .media.p4{background:linear-gradient(150deg,#4a2a23,#A77C3C 110%)}
+  .media .scrim{position:absolute; inset:0; background:linear-gradient(180deg,rgba(30,12,17,.05) 0%, rgba(30,12,17,.12) 45%, rgba(30,12,17,.72) 100%)}
+  .media .cap{position:absolute; left:18px; right:18px; bottom:14px; z-index:2; color:#F6EAD7}
+  .media .cap .reg{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-soft); font-weight:600}
+  .media .cap .nm{font-family:"Fraunces",serif; font-size:24px; line-height:1.1; margin-top:2px; color:#FCF6EA}
+  .media .rkpill{position:absolute; top:12px; left:12px; z-index:2; background:rgba(252,246,234,.92); color:var(--wine);
+    font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:5px 10px; border-radius:999px; box-shadow:var(--shadow)}
+  .media .illus{position:absolute; top:12px; right:12px; z-index:2; background:rgba(30,12,17,.42); color:#F0E2CC;
+    font-size:10px; letter-spacing:.08em; text-transform:uppercase; padding:4px 8px; border-radius:999px; backdrop-filter:blur(2px)}
+  .card .body{padding:18px 20px 20px; display:flex; flex-direction:column; flex:1}
+  .price-row{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:14px}
+  .price-row .main{font-family:"Fraunces",serif; font-size:26px; color:var(--ink); font-variant-numeric:tabular-nums}
+  .price-row .alt{font-size:13px; color:var(--ink-soft)}
+  .price-row .per{font-size:12px; color:var(--ink-faint); letter-spacing:.02em}
+  .chips{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:16px}
+  .chip{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; padding:5px 10px; border-radius:999px; border:1px solid var(--line); background:var(--surface); color:var(--ink-soft); white-space:nowrap}
+  .chip svg{width:14px; height:14px; flex:none}
+  .chip.yes{color:var(--good); border-color:rgba(62,107,79,.3); background:rgba(62,107,79,.07)}
+  .chip.no{color:var(--ink-faint); background:transparent}
+  .chip.no svg{opacity:.6}
+  .chip.hi{color:var(--wine); border-color:rgba(124,43,59,.3); background:rgba(124,43,59,.07); font-weight:600}
+  .pros{list-style:none; margin:0 0 14px; padding:0; display:flex; flex-direction:column; gap:7px}
+  .pros li{position:relative; padding-left:22px; font-size:14.5px; color:var(--ink); line-height:1.45}
+  .pros li svg{position:absolute; left:0; top:3px; width:15px; height:15px; color:var(--gold)}
+  .note{font-size:13.5px; color:var(--warn); background:rgba(154,91,42,.08); border:1px solid rgba(154,91,42,.2);
+    border-radius:10px; padding:9px 12px; margin:0 0 16px; display:flex; gap:8px; align-items:flex-start}
+  .note svg{width:15px; height:15px; flex:none; margin-top:2px}
+  .actions{margin-top:auto; display:flex; gap:10px}
+  .btn{flex:1; display:inline-flex; align-items:center; justify-content:center; gap:7px; text-decoration:none; cursor:pointer;
+    font-size:14px; font-weight:600; padding:11px 14px; border-radius:10px; transition:transform .15s, background .2s, border-color .2s; border:1px solid transparent}
+  .btn svg{width:15px; height:15px}
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible{outline:2px solid var(--wine); outline-offset:2px}
+  .btn-primary{background:var(--wine); color:#fff}
+  .btn-primary:hover{background:var(--wine-deep)}
+  .btn-ghost{background:transparent; color:var(--wine); border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--wine); background:rgba(124,43,59,.05)}
+
+  /* ---------- DEEP DIVE (3 favoritos) ---------- */
+  #favoritos{background:linear-gradient(180deg,var(--paper-2) 0%, var(--paper) 100%)}
+  .deep{margin-top:36px}
+  .dr{display:grid; grid-template-columns:minmax(0,42%) 1fr; background:var(--card); border:1px solid var(--line);
+    border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow); margin-bottom:26px; transition:box-shadow .3s ease}
+  .dr:hover{box-shadow:var(--shadow-lg)}
+  .dr .ph{position:relative; min-height:300px; background:linear-gradient(150deg,#5E1F2D,#7C2B3B)}
+  .dr .ph img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+  .dr .ph .tag{position:absolute; top:14px; left:14px; z-index:2; background:rgba(252,246,234,.93); color:var(--wine);
+    font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:5px 10px; border-radius:999px; box-shadow:var(--shadow)}
+  .dr .ct{padding:28px 30px 30px}
+  .dr .ct .reg{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); font-weight:600}
+  .dr .ct h3{font-size:30px; margin:5px 0 0}
+  .dr .ct .sub{color:var(--ink-soft); font-size:15px; margin:7px 0 0; line-height:1.5}
+  .rates{margin:20px 0 0; display:flex; flex-direction:column; gap:10px}
+  .rate{border:1px solid var(--line); border-radius:12px; padding:13px 16px; background:var(--surface)}
+  .rate .top{display:flex; align-items:baseline; justify-content:space-between; gap:12px}
+  .rate .top .nm{font-family:"Fraunces",serif; font-size:16px; line-height:1.2}
+  .rate .top .pr{font-family:"Fraunces",serif; font-size:21px; color:var(--wine); font-variant-numeric:tabular-nums; white-space:nowrap}
+  .rate .inc{margin:9px 0 0; display:flex; flex-wrap:wrap; gap:6px}
+  .rate .inc span{font-size:12px; color:var(--ink-soft); background:#fff; border:1px solid var(--line); border-radius:999px; padding:3px 9px}
+  .rate.best{border-color:var(--gold-soft); background:rgba(167,124,60,.07)}
+  .rate.best .top .nm::after{content:"experiência completa"; display:inline-block; margin-left:8px; font-family:"Inter",sans-serif;
+    font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:var(--gold); padding:2px 7px; border-radius:999px; vertical-align:middle}
+  .rooms{margin:20px 0 0}
+  .rooms .lbl{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); font-weight:700; margin-bottom:7px}
+  .rooms ul{margin:0; padding-left:18px; color:var(--ink); line-height:1.55; font-size:14.5px}
+  .rooms li{margin:4px 0}
+  .facts{margin:20px 0 0; border-top:1px solid var(--line-soft); padding-top:15px; display:flex; flex-direction:column; gap:11px}
+  .facts .f{display:grid; grid-template-columns:148px 1fr; gap:12px; font-size:14.5px}
+  .facts .f .k{display:flex; align-items:center; gap:7px; color:var(--ink-faint); font-size:11px; letter-spacing:.07em; text-transform:uppercase; font-weight:700; padding-top:1px}
+  .facts .f .k svg{width:15px; height:15px; color:var(--gold)}
+  .facts .f .v{color:var(--ink); line-height:1.45}
+  .facts .f .v .em{color:var(--wine); font-weight:600}
+  @media(max-width:520px){ .facts .f{grid-template-columns:1fr; gap:2px} }
+  .diff{margin:20px 0 0; font-size:14.5px; color:var(--ink); background:rgba(124,43,59,.05); border-left:3px solid var(--wine); padding:11px 15px; border-radius:0 10px 10px 0; line-height:1.55}
+  @media(max-width:760px){ .dr{grid-template-columns:1fr} .dr .ph{min-height:210px} .dr .ct{padding:22px 22px 24px} }
+
+  /* ---------- ROTEIRO DA NOITE (timeline) ---------- */
+  .tl{margin-top:30px}
+  .tl .it{display:grid; grid-template-columns:96px 1fr; gap:18px; padding:0 0 24px}
+  .tl .it .tm{font-family:"Fraunces",serif; font-size:18px; color:var(--wine); text-align:right; padding-top:1px; font-variant-numeric:tabular-nums}
+  .tl .it .ct{position:relative; padding-left:26px; border-left:2px solid var(--line)}
+  .tl .it:last-child{padding-bottom:0}
+  .tl .it:last-child .ct{border-left-color:transparent}
+  .tl .it .ct::before{content:""; position:absolute; left:-8px; top:4px; width:13px; height:13px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px var(--paper-2)}
+  .tl .it h4{margin:0; font-size:17px; font-family:"Fraunces",serif; font-weight:600}
+  .tl .it p{margin:5px 0 0; font-size:14.5px; color:var(--ink-soft); line-height:1.5}
+  .tl .it .tip{display:inline-block; margin-top:8px; font-size:12px; color:var(--wine); background:rgba(124,43,59,.06); border:1px solid rgba(124,43,59,.22); border-radius:8px; padding:4px 10px}
+  .before{margin-top:14px}
+  @media(max-width:560px){ .tl .it{grid-template-columns:62px 1fr; gap:12px} .tl .it .tm{font-size:15px} }
+
+  /* ---------- RESERVA CONFIRMADA ---------- */
+  #reserva{background:linear-gradient(180deg,var(--paper) 0%, var(--paper-2) 100%)}
+  .conf{margin-top:30px; background:var(--card); border:1px solid var(--gold-soft); border-radius:var(--r); box-shadow:var(--shadow-lg); overflow:hidden}
+  .conf .top{display:flex; align-items:center; gap:16px; padding:24px 28px; background:linear-gradient(120deg,#5E1F2D,#7C2B3B); color:#F6EAD7}
+  .conf .top .ck{width:46px; height:46px; border-radius:50%; background:rgba(246,234,215,.16); display:grid; place-items:center; border:1px solid rgba(246,234,215,.45); flex:none}
+  .conf .top .ck svg{width:24px; height:24px}
+  .conf .top h3{margin:0; font-family:"Fraunces",serif; font-size:23px; color:#FCF6EA; font-weight:500}
+  .conf .top p{margin:3px 0 0; font-size:13px; color:#E7CFA6}
+  .conf .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1px; background:var(--line)}
+  .conf .cell{background:var(--card); padding:17px 22px}
+  .conf .cell .k{font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); font-weight:700; margin-bottom:5px}
+  .conf .cell .v{font-size:14.5px; color:var(--ink); line-height:1.45}
+  .conf .cell .v b{font-family:"Fraunces",serif; font-weight:600}
+  .conf .chips-in{display:flex; flex-wrap:wrap; gap:8px; padding:18px 28px 22px; background:var(--card); border-top:1px solid var(--line-soft)}
+  .conf .chips-in span{font-size:12.5px; color:var(--good); background:rgba(62,107,79,.08); border:1px solid rgba(62,107,79,.28); border-radius:999px; padding:5px 11px; font-weight:500}
+
+  /* ---------- RENAISSANCE SPOTLIGHT ---------- */
+  #renaissance{background:linear-gradient(180deg,var(--paper) 0%, var(--paper-2) 100%); position:relative}
+  #renaissance::before{content:""; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--gold),var(--wine))}
+  .rsp-hero{position:relative; border-radius:var(--r); overflow:hidden; margin-top:32px; min-height:360px; background:linear-gradient(150deg,#5E1F2D,#7C2B3B); box-shadow:var(--shadow-lg)}
+  .rsp-hero img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+  .rsp-hero .ov{position:absolute; inset:0; background:linear-gradient(180deg,rgba(30,12,17,.12) 0%, rgba(30,12,17,.5) 55%, rgba(30,12,17,.82) 100%)}
+  .rsp-hero .in{position:absolute; left:0; right:0; bottom:0; padding:32px 34px; z-index:2; color:#F6EAD7}
+  .rsp-hero .rib{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--wine); background:var(--gold-soft); padding:5px 11px; border-radius:999px}
+  .rsp-hero h3{font-family:"Fraunces",serif; font-size:clamp(30px,5.5vw,46px); margin:14px 0 0; font-weight:500; color:#FCF6EA}
+  .rsp-hero .meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+  .rsp-hero .meta span{font-size:12.5px; background:rgba(252,246,234,.15); border:1px solid rgba(252,246,234,.28); color:#F6EAD7; padding:4px 11px; border-radius:999px; backdrop-filter:blur(2px)}
+  .rsp-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:20px; margin-top:22px}
+  .rsp-card{background:var(--card); border:1px solid var(--line); border-radius:var(--r-sm); padding:22px 24px; box-shadow:var(--shadow)}
+  .rsp-card.wide{grid-column:1/-1}
+  .rsp-card h4{font-family:"Fraunces",serif; font-size:20px; margin:0 0 13px; display:flex; align-items:center; gap:9px}
+  .rsp-card h4 svg{width:18px; height:18px; color:var(--gold); flex:none}
+  .rsp-card ul{margin:0; padding-left:18px; line-height:1.55; font-size:14.5px; color:var(--ink)}
+  .rsp-card li{margin:5px 0}
+  .rsp-card li b{font-weight:600}
+  .rsp-card p{margin:0; font-size:14.5px; color:var(--ink); line-height:1.55}
+  .rsp-card .em{color:var(--wine); font-weight:600}
+  .rsp-cta{margin-top:22px; display:flex; gap:12px; flex-wrap:wrap}
+  @media(max-width:560px){ .rsp-hero .in{padding:24px 22px} }
+
+  /* ---------- TABLE ---------- */
+  #comparar{background:linear-gradient(180deg,var(--paper-2) 0%, var(--paper) 100%)}
+  .tbl-scroll{margin-top:34px; overflow-x:auto; border:1px solid var(--line); border-radius:var(--r); background:var(--card); box-shadow:var(--shadow)}
+  table{border-collapse:collapse; width:100%; min-width:720px; font-size:14.5px}
+  thead th{font-family:"Inter",sans-serif; font-weight:600; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft);
+    text-align:left; padding:14px 16px; border-bottom:2px solid var(--line); background:var(--surface); position:sticky; top:0}
+  tbody td{padding:13px 16px; border-bottom:1px solid var(--line-soft); vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:rgba(167,124,60,.05)}
+  td .h{font-weight:600; color:var(--ink); font-family:"Fraunces",serif; font-size:16px}
+  td .b{font-size:12.5px; color:var(--ink-faint)}
+  td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
+  .yn{display:inline-flex; align-items:center; gap:6px; font-size:13px}
+  .yn.y{color:var(--good); font-weight:600}
+  .yn.n{color:var(--ink-faint)}
+  .yn svg{width:15px; height:15px}
+  .rowtop td{background:rgba(124,43,59,.04)}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:linear-gradient(160deg,#3a1721,#5E1F2D); color:#EAD7BF; padding:60px 0 70px}
+  footer h2{color:#FCF6EA; font-size:clamp(24px,3.6vw,34px); margin:0; max-width:18ch}
+  footer p{max-width:58ch; color:#E0C9AE; margin:16px 0 0; font-size:15.5px}
+  footer .fine{margin-top:34px; padding-top:24px; border-top:1px solid rgba(231,207,166,.22); font-size:13px; color:#CBB293; max-width:70ch}
+  footer .sig{margin-top:18px; font-family:"Fraunces",serif; font-style:italic; font-size:18px; color:var(--gold-soft)}
+
+  /* reveal */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1; transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1; transform:none; transition:none}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <span class="brand"><span class="dot" aria-hidden="true"></span>Uma noite para nós</span>
+    <nav aria-label="Seções">
+      <a href="#reserva">Reserva</a>
+      <a href="#roteiro">Roteiro</a>
+      <a href="#criterios">Como escolhi</a>
+      <a href="#ranking">Ranking</a>
+      <a href="#renaissance">Renaissance</a>
+      <a href="#favoritos">Em detalhe</a>
+      <a href="#hoteis">Os hotéis</a>
+      <a href="#comparar">Comparar</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow">27 de junho · 18 anos juntos</span>
+    <h1>Onde passar a <em>nossa</em> noite</h1>
+    <p class="lede">Uma escapada de uma noite por São Paulo para celebrar a data. Reuni as opções que a Isa separou, comparei o que cada uma entrega e montei um ranking de custo-benefício — pensando no nosso roteiro: chegar no fim da tarde, jantar a dois e uma manhã sem pressa.</p>
+    <div class="since"><span class="ln" aria-hidden="true"></span>desde 27 . 06 . 2008<span class="ln" aria-hidden="true"></span></div>
+    <div class="cue" aria-hidden="true">
+      <span>nossa reserva</span>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+    </div>
+  </div>
+</div>
+
+<!-- RESERVA CONFIRMADA -->
+<section id="reserva">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Está decidido</span>
+      <h2>Reserva confirmada</h2>
+      <p>Fechamos a noite no <strong>Renaissance São Paulo</strong> — com jantar e café da manhã inclusos. Aqui ficam os detalhes da reserva; logo abaixo, tudo o que comparamos até chegar nele.</p>
+    </div>
+
+    <div class="conf reveal">
+      <div class="top">
+        <span class="ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <div>
+          <h3>Renaissance São Paulo · 27 de junho</h3>
+          <p>Reserva garantida via Hotels.com · nota 9.2/10 "Maravilhosa"</p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="cell"><div class="k">Check-in</div><div class="v"><b>Sáb, 27/06</b> · a partir das 15h00</div></div>
+        <div class="cell"><div class="k">Check-out</div><div class="v"><b>Dom, 28/06</b> · até 12h00</div></div>
+        <div class="cell"><div class="k">Quarto</div><div class="v"><b>1 cama King</b> · não-fumante</div></div>
+        <div class="cell"><div class="k">Hóspedes</div><div class="v">Felipe Lanzoni Pontes · 2 adultos</div></div>
+        <div class="cell"><div class="k">Endereço</div><div class="v">Alameda Santos, 2233 — Cerqueira César (ao lado da Paulista)</div></div>
+        <div class="cell"><div class="k">Itinerário</div><div class="v">72075921783769</div></div>
+        <div class="cell"><div class="k">Total</div><div class="v"><b>R$ 2.064,53</b> · pago (resta R$ 8,19 de ISS no hotel)</div></div>
+        <div class="cell"><div class="k">Cancelamento grátis até</div><div class="v">25/06, 23h59</div></div>
+      </div>
+      <div class="chips-in">
+        <span>Jantar incluído</span><span>Café da manhã incluído</span><span>Estacionamento grátis</span><span>Internet grátis</span>
+      </div>
+    </div>
+
+    <p class="muted reveal">O <strong>jantar incluído</strong> é no Terraço Jardins, o restaurante premiado do hotel — perfeito para a comemoração. Quando quiserem, eu monto o roteiro da noite: horário do jantar, um spa a dois e a sequência dos 18 anos.</p>
+  </div>
+</section>
+
+<!-- ROTEIRO DA NOITE -->
+<section id="roteiro">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">O plano da noite</span>
+      <h2>Roteiro dos 18 anos</h2>
+      <p>Uma sugestão de ritmo para a noite e a manhã seguinte, aproveitando o que o Renaissance já oferece — sem pressa, do jeito de vocês. Ajusta-se como quiserem.</p>
+    </div>
+
+    <div class="tl reveal">
+      <div class="it"><div class="tm">Tarde</div><div class="ct"><h4>Tarde com os amigos (Ca &amp; Fi)</h4><p>O dia é deles — vocês seguem para o hotel só no fim da tarde, sem correria.</p></div></div>
+      <div class="it"><div class="tm">~18h00</div><div class="ct"><h4>Check-in no Renaissance</h4><p>Chegada e instalação no quarto (1 cama King). Um brinde de boas-vindas e respirar do dia.</p></div></div>
+      <div class="it"><div class="tm">18h30</div><div class="ct"><h4>Banheira &amp; descanso</h4><p>Aproveitar a banheira sem pressa e se arrumar com calma para o jantar.</p></div></div>
+      <div class="it"><div class="tm">20h00</div><div class="ct"><h4>Jantar no Terraço Jardins</h4><p>O jantar já está incluído na reserva — no restaurante premiado do hotel (rooftop, cozinha paulista do Chef Raul Vieira). Aberto no sábado das 19h às 23h.</p><span class="tip">Reservar a mesa para as 20h — sábado costuma lotar</span></div></div>
+      <div class="it"><div class="tm">22h00</div><div class="ct"><h4>Um brinde (opcional)</h4><p>Drink no Living Lounge Bar &amp; Sushi ou só curtir o quarto. A noite é de vocês.</p></div></div>
+      <div class="it"><div class="tm">até 10h30</div><div class="ct"><h4>Café da manhã, sem pressa</h4><p>Servido no Terraço Jardins (térreo) e incluído na diária. Se quiserem, dá para encaixar uma <b>massagem a dois</b> no The Spa antes da saída.</p><span class="tip">Spa de manhã: agendar na recepção</span></div></div>
+      <div class="it"><div class="tm">12h00</div><div class="ct"><h4>Check-out</h4><p>Saída até meio-dia e volta pra casa à tarde — exatamente como vocês queriam.</p></div></div>
+    </div>
+
+    <div class="rsp-card before reveal">
+      <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Antes da noite — duas reservas a fazer</h4>
+      <ul>
+        <li><b>Mesa no Terraço Jardins</b> — (11) 3069-2233 · WhatsApp (11) 97607-6586.</li>
+        <li><b>Spa a dois</b> — agendar o horário direto com a recepção do hotel.</li>
+        <li>Dica do mordomo: avisar que é <b>aniversário de relacionamento</b> — hotéis costumam preparar um mimo.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CRITÉRIOS -->
+<section id="criterios">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Como avaliei</span>
+      <h2>O que realmente importa nessa noite</h2>
+      <p>Com a piscina fora da lista de prioridades, o peso vai para o que faz a noite ser especial: <strong>clima romântico, banheira para relaxar a dois e um bom jantar</strong> — com um spa ou massagem a dois como bônus. Café da manhã, todos têm.</p>
+    </div>
+    <div class="crit-grid">
+      <div class="crit star reveal">
+        <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.5-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5C19 15.5 12 20 12 20z"/></svg></div>
+        <h3>Clima romântico</h3>
+        <p>O que torna a noite especial: aconchego, boutique ou 5★, um cantinho só de vocês.</p>
+        <span class="tag">Agora o nº1</span>
+      </div>
+      <div class="crit reveal">
+        <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M6 12V6a2 2 0 0 1 2-2c1 0 1.5.5 2 1"/><path d="M5 19l-1 2M20 19l1 2"/></svg></div>
+        <h3>Banheira</h3>
+        <p>Para relaxar a dois — toque romântico que separa o "dormir fora" de uma noite especial.</p>
+      </div>
+      <div class="crit reveal">
+        <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3v2M11 3v2"/></svg></div>
+        <h3>Café & jantar</h3>
+        <p>Café da manhã caprichado e, de preferência, um bom restaurante no próprio hotel.</p>
+      </div>
+      <div class="crit reveal">
+        <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/><path d="M5 16l.7 1.8L7.5 18.5l-1.8.7L5 21l-.7-1.8L2.5 18.5l1.8-.7z"/></svg></div>
+        <h3>Spa & massagem</h3>
+        <p>Uma massagem ou day-spa a dois para coroar a comemoração.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RANKING -->
+<section id="ranking">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Veredito</span>
+      <h2>Ranking de custo-benefício</h2>
+      <p>Nota de 0 a 10 cruzando clima romântico, banheira, jantar, spa e o quanto cada um entrega pelo que custa. Sem a piscina na conta, sobem os hotéis fortes em jantar e aconchego.</p>
+    </div>
+    <div class="rank-list">
+
+      <div class="rk top3 reveal">
+        <div class="pos">1</div>
+        <div class="mid"><h3>Heritage <span class="badge">Melhor custo-benefício</span> <span class="price">R$ 725</span></h3>
+          <p>Banheira, spa com sauna e café elogiado a 500 m da Paulista — por uma fração do preço, sobra muito para um jantar especial.</p></div>
+        <div class="score"><span class="n">9.4<small>/10</small></span><div class="bar"><i style="width:94%"></i></div></div>
+      </div>
+
+      <div class="rk top3 reveal">
+        <div class="pos">2</div>
+        <div class="mid"><h3>Renaissance <span class="badge">Jantar incluso</span> <span class="price">R$ 1.900 c/ jantar</span></h3>
+          <p>O jantar no Terraço Jardins — melhor restaurante de hotel da América Latina — já vem na tarifa, com banheira e spa, nos Jardins.</p></div>
+        <div class="score"><span class="n">9.2<small>/10</small></span><div class="bar"><i style="width:92%"></i></div></div>
+      </div>
+
+      <div class="rk top3 reveal">
+        <div class="pos">3</div>
+        <div class="mid"><h3>L'Hotel PortoBay <span class="badge">Mais romântico</span> <span class="price">R$ 1.900</span></h3>
+          <p>Boutique 5★ intimista nos Jardins, banheira, spa e jantar com piano no Trebbiano — a noite toda sem sair do hotel.</p></div>
+        <div class="score"><span class="n">8.9<small>/10</small></span><div class="bar"><i style="width:89%"></i></div></div>
+      </div>
+
+      <div class="rk reveal">
+        <div class="pos">4</div>
+        <div class="mid"><h3>Blue Tree Faria Lima <span class="price">R$ 1.300</span></h3>
+          <p>Ótimo valor no Itaim, com banheira e o Buddha Spa dentro do hotel (tem day-spa a dois com preço transparente).</p></div>
+        <div class="score"><span class="n">8.5<small>/10</small></span><div class="bar"><i style="width:85%"></i></div></div>
+      </div>
+
+      <div class="rk reveal">
+        <div class="pos">5</div>
+        <div class="mid"><h3>George V Alto de Pinheiros <span class="price">R$ 1.600</span></h3>
+          <p>Suíte ampla de apart-hotel com banheira — bastante espaço para a noite a dois.</p></div>
+        <div class="score"><span class="n">7.6<small>/10</small></span><div class="bar"><i style="width:76%"></i></div></div>
+      </div>
+
+      <div class="rk reveal">
+        <div class="pos">6</div>
+        <div class="mid"><h3>Grand Hyatt <span class="price">R$ 2.100</span></h3>
+          <p>Luxo polido com vista da ponte estaiada, banheira e pacote romance — porém mais salgado.</p></div>
+        <div class="score"><span class="n">7.4<small>/10</small></span><div class="bar"><i style="width:74%"></i></div></div>
+      </div>
+
+      <div class="rk reveal">
+        <div class="pos">7</div>
+        <div class="mid"><h3>Hilton Morumbi <span class="price">R$ 2.200</span></h3>
+          <p>Praticamente o gêmeo do Hyatt e na mesma região — um degrau acima no preço.</p></div>
+        <div class="score"><span class="n">7.0<small>/10</small></span><div class="bar"><i style="width:70%"></i></div></div>
+      </div>
+
+      <div class="rk reveal">
+        <div class="pos">8</div>
+        <div class="mid"><h3>Unique <span class="price">R$ 2.700</span></h3>
+          <p>O ícone de design da cidade, frente ao Ibirapuera — mas sem banheira e o mais caro da lista.</p></div>
+        <div class="score"><span class="n">6.3<small>/10</small></span><div class="bar"><i style="width:63%"></i></div></div>
+      </div>
+
+      <div class="rk reveal">
+        <div class="pos">9</div>
+        <div class="mid"><h3>The Westin <span class="price">R$ 1.800</span></h3>
+          <p>Bonito e em andar alto, mas sem banheira para relaxar a dois.</p></div>
+        <div class="score"><span class="n">6.2<small>/10</small></span><div class="bar"><i style="width:62%"></i></div></div>
+      </div>
+
+      <div class="rk reveal">
+        <div class="pos">10</div>
+        <div class="mid"><h3>Qoya, Curio by Hilton <span class="price">R$ 1.900</span></h3>
+          <p>Charmoso e na Paulista, mas sem banheira — o item que mais conta agora.</p></div>
+        <div class="score"><span class="n">6.0<small>/10</small></span><div class="bar"><i style="width:60%"></i></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RENAISSANCE SPOTLIGHT -->
+<section id="renaissance">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">A escolha que está ganhando vocês</span>
+      <h2>Renaissance São Paulo, por inteiro</h2>
+      <p>Tudo o que ele oferece num lugar só: quartos, tarifas, espaços, o jantar premiado, o café da manhã e o spa. É o nº 2 do ranking, mas o que melhor junta <strong>jantar de primeira + clima + spa</strong> num pacote redondo, nos Jardins, do lado da Paulista.</p>
+    </div>
+
+    <div class="rsp-hero reveal">
+      <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/643528051.jpg?k=2ff06bb4525cd7f94264dc0c9cabab880a644296c97764b7c302f93ab9d06bf6&o=" alt="Renaissance São Paulo Hotel" loading="lazy" onerror="this.style.display='none'">
+      <div class="ov"></div>
+      <div class="in">
+        <span class="rib">Reserva confirmada</span>
+        <h3>Renaissance São Paulo</h3>
+        <div class="meta"><span>5 estrelas</span><span>Jardins · ao lado da Paulista</span><span>444 quartos</span><span>Marriott Bonvoy</span></div>
+      </div>
+    </div>
+
+    <div class="rsp-grid">
+
+      <!-- TARIFAS -->
+      <div class="rsp-card reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18v10H3z"/><circle cx="12" cy="12" r="2.5"/></svg>Tarifas</h4>
+        <div class="rates">
+          <div class="rate"><div class="top"><span class="nm">Quarto Deluxe · só com café</span><span class="pr">R$ 1.500</span></div>
+            <div class="inc"><span>Café da manhã</span><span>Banheira</span></div></div>
+          <div class="rate best"><div class="top"><span class="nm">Quarto Deluxe · café + jantar</span><span class="pr">R$ 1.900</span></div>
+            <div class="inc"><span>Café da manhã</span><span>Jantar no Terraço Jardins</span><span>Banheira</span></div></div>
+        </div>
+        <p style="margin-top:14px"><span class="em">A de R$ 1.900 é a indicada</span> — já inclui o jantar no restaurante premiado do hotel, então a noite toda resolve num valor só.</p>
+      </div>
+
+      <!-- QUARTOS -->
+      <div class="rsp-card reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"/><path d="M3 18h18M6 10V7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3"/></svg>Quartos & suítes</h4>
+        <ul>
+          <li><b>Deluxe</b> (a da tarifa) — ~30 m², banheiro de mármore, frigobar, mesa de trabalho. São 339 deles.</li>
+          <li><b>Club</b> — nos andares altos, com acesso ao <span class="em">Club Lounge (23º andar)</span>: café privativo e happy hour de seg a sáb, com vista panorâmica.</li>
+          <li><b>Suítes</b> — mais espaço e banheira de hidromassagem; a Presidencial tem 309 m².</li>
+        </ul>
+      </div>
+
+      <!-- JANTAR -->
+      <div class="rsp-card reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3v8a3 3 0 0 0 6 0V3M8 3v18M16 3c-1.5 1-2 3-2 6s.5 4 2 4v8"/></svg>Jantar — Terraço Jardins</h4>
+        <p><span class="em">Melhor restaurante de hotel da América Latina (2024)</span>, do Chef Raul Vieira — cozinha paulista, de raiz caiçara e caipira, no rooftop. Jantar de ter a sáb, 19h–23h.</p>
+        <ul style="margin-top:10px">
+          <li>À la carte: entradas ~R$ 56–92, principais ~R$ 84–94, drinks autorais R$ 40–45.</li>
+          <li>Na tarifa de <span class="em">R$ 1.900 o jantar já está incluso</span>.</li>
+        </ul>
+      </div>
+
+      <!-- SPA -->
+      <div class="rsp-card reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/><path d="M5 16l.7 1.8L7.5 18.5l-1.8.7L5 21l-.7-1.8L2.5 18.5l1.8-.7z"/></svg>The Spa at Renaissance</h4>
+        <p>460 m², <span class="em">10 salas de massagem</span>, área de relaxamento com jacuzzi, sauna seca e a vapor. Mais de 30 tratamentos (aromaterapia, shiatsu, pedras quentes, drenagem...).</p>
+        <ul style="margin-top:10px">
+          <li><b>Day Spa a dois</b> ("Escape" / "Refúgio Botânico"): ritual + massagem 50 min + tratamento facial 50 min.</li>
+          <li>Pacotes a partir de <span class="em">~R$ 240/pessoa</span>; o "Escape" a partir de ~R$ 490/pessoa.</li>
+        </ul>
+      </div>
+
+      <!-- ESPAÇOS -->
+      <div class="rsp-card reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>Espaços & lazer</h4>
+        <ul>
+          <li><b>Renaissance Fitness</b> — academia 24h de ~250 m², das maiores de hotel da América Latina.</li>
+          <li><b>Piscina externa aquecida</b> (8h–20h), com jacuzzi, sauna e sala de vapor.</li>
+          <li><b>Living Lounge Bar & Sushi</b> — drinks e culinária japonesa no térreo.</li>
+        </ul>
+      </div>
+
+      <!-- CAFÉ + BENEFÍCIOS -->
+      <div class="rsp-card reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3v2M11 3v2"/></svg>Café da manhã & benefícios</h4>
+        <ul>
+          <li><b>Café da manhã</b> servido no Terraço Jardins (térreo, em ilhas), incluso na diária.</li>
+          <li>Hóspedes <b>Club</b> podem optar pelo Club Lounge (23º), com vista panorâmica e mais sossego.</li>
+          <li>Localização nos <b>Jardins</b>, ao lado da Av. Paulista; programa Marriott Bonvoy.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="rsp-cta reveal">
+      <a class="btn btn-ghost" href="https://www.marriott.com/pt-br/hotels/saobr-renaissance-sao-paulo-hotel/" target="_blank" rel="noopener">Ver na Marriott</a>
+      <a class="btn btn-primary" href="https://www.booking.com/hotel/br/renaissance-sao-paulo.pt-br.html?checkin=2026-06-27&checkout=2026-06-28&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Reservar a noite
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- OS 3 FAVORITOS, POR DENTRO -->
+<section id="favoritos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Três opções, por dentro</span>
+      <h2>O que muda entre eles</h2>
+      <p>As tarifas, o que está incluso, as categorias de quarto, os horários de entrada e saída e o jantar de cada hotel — para escolher sabendo exatamente o que vem. Os três têm <strong>banheira, café da manhã e spa</strong>; a diferença está no preço, no tamanho e no clima de cada casa.</p>
+    </div>
+    <div class="deep">
+
+      <!-- HERITAGE -->
+      <article class="dr reveal">
+        <div class="ph"><span class="tag">Nº 1 · custo-benefício</span>
+          <img src="https://hotelheritage.com.br/wp-content/uploads/2023/05/Hotel-Heritage-em-Sao-Paulo-3.webp" alt="Hotel Heritage São Paulo" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ct">
+          <div class="reg">Consolação · 500 m da Paulista · 4 estrelas</div>
+          <h3>Heritage</h3>
+          <p class="sub">O mais econômico e central. Por dormir aqui sobra muito para um jantarzão fora — e ainda assim você tem piscina coberta, banheira e sauna.</p>
+          <div class="rates">
+            <div class="rate best"><div class="top"><span class="nm">Quarto Premium (cama king)</span><span class="pr">R$ 725</span></div>
+              <div class="inc"><span>Café da manhã</span><span>Banheira</span><span>Piscina coberta · sauna · hidro</span></div></div>
+          </div>
+          <div class="rooms"><div class="lbl">Categorias da casa</div>
+            <ul>
+              <li><b>Standard (twin)</b> — a de entrada, com camas de solteiro.</li>
+              <li><b>Premium (king + banheira)</b> — a da tarifa acima: mais ampla e com banheira.</li>
+              <li><b>Suíte Presidencial</b> — o topo, bem mais espaçosa.</li>
+            </ul></div>
+          <div class="facts">
+            <div class="f"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Entrada / Saída</span><span class="v">Check-in <span class="em">14h</span> · check-out <span class="em">12h</span> · late checkout sob consulta</span></div>
+            <div class="f"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/></svg>Quartos c/ banheira</span><span class="v">Premium (o da tarifa) e Suíte Presidencial. A Standard (twin) não tem.</span></div>
+            <div class="f"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16"/></svg>Jantar</span><span class="v">Restaurante <span class="em">Perlage</span> (internacional), no hotel, + room service. Preço do jantar à la carte sob consulta.</span></div>
+            <div class="f"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/><path d="M5 16l.7 1.8L7.5 18.5l-1.8.7L5 21l-.7-1.8L2.5 18.5l1.8-.7z"/></svg>Spa / massagem</span><span class="v">Sala de massagem (mediante agendamento), sauna, jacuzzi e sala térmica no andar wellness. Preços sob consulta.</span></div>
+          </div>
+          <div class="diff"><strong>Um preço só (R$ 725), já com café.</strong> O café da manhã é muito elogiado (café Starbucks, frutas, pães, ovos, sucos), servido das 6h30 às 10h. Piscina climatizada coberta até 23h, com hidromassagem e sauna.</div>
+        </div>
+      </article>
+
+      <!-- BLUE TREE -->
+      <article class="dr reveal">
+        <div class="ph"><span class="tag">Nº 2 · custo-benefício</span>
+          <img src="https://lirp.cdn-website.com/fb21f8a1/dms3rep/multi/opt/Blue+Tree+Premium+Faria+Lima+-+Piscina4-1920w.jpg" alt="Piscina do Blue Tree Premium Faria Lima" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ct">
+          <div class="reg">Itaim · Faria Lima · 4 estrelas</div>
+          <h3>Blue Tree Faria Lima</h3>
+          <p class="sub">O único com <strong>late checkout no pacote</strong> — feito para o "voltar só à tarde". Piscina aquecida no rooftop, com vista da cidade.</p>
+          <div class="rates">
+            <div class="rate"><div class="top"><span class="nm">Suíte Premiere (king)</span><span class="pr">R$ 1.300</span></div>
+              <div class="inc"><span>Café da manhã</span><span>Banheira</span><span>Piscina coberta</span></div></div>
+            <div class="rate"><div class="top"><span class="nm">Suíte Premiere (king)</span><span class="pr">R$ 2.500</span></div>
+              <div class="inc"><span>Café da manhã</span><span>Mimos de boas-vindas</span><span>Late checkout</span><span>Banheira</span></div></div>
+          </div>
+          <div class="rooms"><div class="lbl">Categorias da casa</div>
+            <ul>
+              <li><b>Superior</b> → <b>Luxo</b> → <b>Luxo Premier</b> — sobem em tamanho, andar e vista.</li>
+              <li><b>Suíte (Premiere)</b> — a escolhida: cama king, com itens diferenciados (enxoval premium, roupão e chinelos).</li>
+            </ul></div>
+          <div class="facts">
+            <div class="f"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Entrada / Saída</span><span class="v">Check-in <span class="em">14h</span> · check-out <span class="em">12h</span></span></div>
+            <div class="f"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/></svg>Quartos c/ banheira</span><span class="v">Nas suítes — a Suíte Premiere escolhida tem banheira.</span></div>
+            <div class="f"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16"/></svg>Jantar</span><span class="v">Restaurante <span class="em">Noah Gastronomia</span> (contemporânea) + room service 24h. Menu de 3 tempos a partir de <span class="em">~R$ 98/pessoa</span>; à la carte acima disso.</span></div>
+            <div class="f"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/><path d="M5 16l.7 1.8L7.5 18.5l-1.8.7L5 21l-.7-1.8L2.5 18.5l1.8-.7z"/></svg>Spa / massagem</span><span class="v"><span class="em">Buddha Spa</span> dentro do hotel: massagem relaxante <span class="em">~R$ 188</span> (60 min), Brazilian Massage a partir de <span class="em">R$ 255</span>, hidromassagem + banho de imersão <span class="em">R$ 328</span> — e há opção <span class="em">Mini Day Spa a dois</span>.</span></div>
+          </div>
+          <div class="diff"><strong>Mesma suíte nas duas tarifas.</strong> Como o late checkout não é mais necessário, a de <strong>R$ 1.300</strong> é a indicada; a de R$ 2.500 só compensa se quiserem os mimos de boas-vindas.</div>
+        </div>
+      </article>
+
+      <!-- PORTOBAY -->
+      <article class="dr reveal">
+        <div class="ph"><span class="tag">Nº 3 · mais romântico</span>
+          <img src="https://images.trvl-media.com/lodging/1000000/40000/34900/34877/741c169b.jpg" alt="L'Hotel PortoBay São Paulo" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="ct">
+          <div class="reg">Jardins · boutique 5 estrelas · Art Déco</div>
+          <h3>L'Hotel PortoBay</h3>
+          <p class="sub">O mais romântico dos três e o único <strong>5 estrelas</strong>: boutique intimista de apenas 84 quartos, com restaurante próprio "feito para casais".</p>
+          <div class="rates">
+            <div class="rate best"><div class="top"><span class="nm">Quarto Duplo Executivo (king)</span><span class="pr">R$ 1.900</span></div>
+              <div class="inc"><span>Café da manhã</span><span>Banheira</span><span>Piscina coberta</span></div></div>
+          </div>
+          <div class="rooms"><div class="lbl">Categorias da casa</div>
+            <ul>
+              <li><b>Classic / Superior</b> — as de entrada do boutique.</li>
+              <li><b>Executivo (king ou twin)</b> — a escolhida: ~27 m², alguns com varanda (+23 m²); enxoval de algodão egípcio 400 fios.</li>
+              <li><b>Junior Suite / Deluxe</b> e <b>Suíte L'Hotel</b> — a suíte top tem dois ambientes (sala + quarto king).</li>
+            </ul></div>
+          <div class="facts">
+            <div class="f"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Entrada / Saída</span><span class="v">Check-in a partir das <span class="em">14h</span> · check-out <span class="em">12h</span> (confirmar na reserva)</span></div>
+            <div class="f"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/></svg>Quartos c/ banheira</span><span class="v">Quarto Executivo (o da tarifa) e categorias superiores.</span></div>
+            <div class="f"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16"/></svg>Jantar</span><span class="v"><span class="em">Trebbiano Ristorante</span> (mediterrâneo), 19h–22h, com piano ao vivo. Pacote jantar romântico <span class="em">R$ 359/casal</span> (c/ Chandon) ou <span class="em">R$ 439/casal</span> (c/ Veuve Clicquot) — à la carte + piano, bebidas à parte.</span></div>
+            <div class="f"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/><path d="M5 16l.7 1.8L7.5 18.5l-1.8.7L5 21l-.7-1.8L2.5 18.5l1.8-.7z"/></svg>Spa / massagem</span><span class="v">Spa wellness com massagens (inclusive pedra quente), reflexologia, esfoliação corporal e sauna. Preços sob consulta (5★).</span></div>
+          </div>
+          <div class="diff"><strong>Categoria acima dos outros dois (5★ boutique).</strong> Mimos da casa: roupão, amenities L'Occitane au Brésil e Havaianas personalizadas no quarto. O Trebbiano fica no próprio hotel — jantar romântico sem precisar sair.</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOTÉIS -->
+<section id="hoteis">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">As opções, uma a uma</span>
+      <h2>Os dez hotéis</h2>
+      <p>Cada um com suas vantagens, preço, o que tem (e o que não tem) e os links para ver o hotel e reservar. Onde não consegui a foto oficial, deixei uma capa elegante — é só me avisar que troco por uma imagem real.</p>
+    </div>
+
+    <!-- TIER 1 -->
+    <div class="tier-label reveal"><h3>Meus favoritos para a ocasião</h3><span class="ln"></span></div>
+    <div class="cards">
+
+      <!-- HERITAGE (foto real) -->
+      <article class="card reveal">
+        <div class="media p1">
+          <span class="rkpill">Nº 1 · custo-benefício</span>
+          <img src="https://hotelheritage.com.br/wp-content/uploads/2023/05/Hotel-Heritage-em-Sao-Paulo-3.webp" alt="Hotel Heritage São Paulo" loading="lazy" onerror="this.style.display='none'">
+          <div class="scrim"></div>
+          <div class="cap"><div class="reg">Consolação · 500 m da Paulista</div><div class="nm">Heritage</div></div>
+        </div>
+        <div class="body">
+          <div class="price-row"><span class="main">R$ 725</span><span class="per">/ noite, c/ café</span></div>
+          <div class="chips">
+            <span class="chip hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 16c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M2 20c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/></svg>Piscina coberta</span>
+            <span class="chip yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/></svg>Banheira</span>
+            <span class="chip yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16"/></svg>Restaurante</span>
+          </div>
+          <ul class="pros">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Piscina climatizada coberta (até 23h), com hidromassagem e sauna.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Sobra orçamento para um jantarzão fora, em plena Consolação/Paulista.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Prédio charmoso, clima despojado e central.</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-ghost" href="https://hotelheritage.com.br/" target="_blank" rel="noopener">Ver hotel</a>
+            <a class="btn btn-primary" href="https://book.omnibees.com/hotelresults?c=2825&q=5099&currencyId=16&lang=pt-BR&NRooms=1&version=4&CheckIn=27062026&CheckOut=28062026&ad=2" target="_blank" rel="noopener">Reservar
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- BLUE TREE (foto real - piscina) -->
+      <article class="card reveal">
+        <div class="media p2">
+          <span class="rkpill">Nº 2 · custo-benefício</span>
+          <img src="https://lirp.cdn-website.com/fb21f8a1/dms3rep/multi/opt/Blue+Tree+Premium+Faria+Lima+-+Piscina4-1920w.jpg" alt="Piscina do Blue Tree Premium Faria Lima" loading="lazy" onerror="this.style.display='none'">
+          <div class="scrim"></div>
+          <div class="cap"><div class="reg">Itaim · Faria Lima</div><div class="nm">Blue Tree Faria Lima</div></div>
+        </div>
+        <div class="body">
+          <div class="price-row"><span class="main">R$ 1.300</span><span class="alt">ou R$ 2.500 c/ mimos + late checkout</span></div>
+          <div class="chips">
+            <span class="chip hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 16c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M2 20c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/></svg>Piscina coberta</span>
+            <span class="chip yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/></svg>Banheira</span>
+            <span class="chip hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Late checkout</span>
+          </div>
+          <ul class="pros">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Piscina aquecida no rooftop, com vista 360° da cidade.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Restaurante Noah no hotel e localização ótima no Itaim.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Tarifa R$ 2.500 já entrega exatamente a noite com saída à tarde.</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-ghost" href="https://www.bluetree.com.br/hotel/blue-tree-premium-faria-lima" target="_blank" rel="noopener">Ver hotel</a>
+            <a class="btn btn-primary" href="https://book.omnibees.com/hotelresults?q=1043&lang=pt-BR&currencyId=16&version=4&CheckIn=27062026&CheckOut=28062026&ad=2" target="_blank" rel="noopener">Reservar
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PORTO BAY (plate) -->
+      <article class="card reveal">
+        <div class="media p3">
+          <span class="rkpill">Nº 3 · mais romântico</span>
+          <img src="https://images.trvl-media.com/lodging/1000000/40000/34900/34877/741c169b.jpg" alt="Piscina coberta aquecida do L'Hotel PortoBay, com parede de jardim vertical" loading="lazy" onerror="this.style.display='none'">
+          <div class="scrim"></div>
+          <div class="cap"><div class="reg">Jardins · boutique</div><div class="nm">L'Hotel PortoBay</div></div>
+        </div>
+        <div class="body">
+          <div class="price-row"><span class="main">R$ 1.900</span><span class="per">/ noite, c/ café</span></div>
+          <div class="chips">
+            <span class="chip hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 16c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M2 20c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/></svg>Piscina coberta</span>
+            <span class="chip yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/></svg>Banheira</span>
+            <span class="chip yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16"/></svg>Restaurante</span>
+          </div>
+          <ul class="pros">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Hotel boutique intimista, clima de casal, no coração dos Jardins.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Piscina coberta aquecida na cobertura e restaurante Trebbiano (mediterrâneo).</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Cercado de ótimos restaurantes para um jantar a pé.</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-ghost" href="https://www.portobay.com/pt/hoteis/hoteis-sao-paulo/l-hotel-portobay-sao-paulo/" target="_blank" rel="noopener">Ver hotel</a>
+            <a class="btn btn-primary" href="https://www.booking.com/hotel/br/porto-bay-lhotel.pt-br.html?checkin=2026-06-27&checkout=2026-06-28&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Reservar
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- TIER 2 -->
+    <div class="tier-label reveal"><h3>Vale considerar</h3><span class="ln"></span></div>
+    <div class="cards">
+
+      <!-- GRAND HYATT -->
+      <article class="card reveal">
+        <div class="media p4">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/818335889.jpg?k=dd015170685bbbf8518b85676345cbf5dff7eaa3add4253387af72bff2f88b79&o=" alt="Grand Hyatt São Paulo" loading="lazy" onerror="this.style.display='none'">
+          <div class="scrim"></div>
+          <div class="cap"><div class="reg">Brooklin · vista da ponte estaiada</div><div class="nm">Grand Hyatt</div></div>
+        </div>
+        <div class="body">
+          <div class="price-row"><span class="main">R$ 2.100</span><span class="per">/ noite, c/ café</span></div>
+          <div class="chips">
+            <span class="chip hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 16c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M2 20c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/></svg>Piscina coberta</span>
+            <span class="chip yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/></svg>Banheira</span>
+            <span class="chip yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16"/></svg>Restaurante</span>
+          </div>
+          <ul class="pros">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Quarto king com vista da ponte estaiada e piscina interna aquecida.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Tem pacote romance (espumante, banheira preparada, late checkout) — vale perguntar.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Restaurantes Cittadino (italiano) e Kinu (japonês) no hotel.</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-ghost" href="https://www.hyatt.com/grand-hyatt/en-US/saogh-grand-hyatt-sao-paulo" target="_blank" rel="noopener">Ver hotel</a>
+            <a class="btn btn-primary" href="https://www.booking.com/hotel/br/grand-hyatt-sao-paulo.pt-br.html?checkin=2026-06-27&checkout=2026-06-28&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Reservar
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- RENAISSANCE -->
+      <article class="card reveal">
+        <div class="media p1">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/643528051.jpg?k=2ff06bb4525cd7f94264dc0c9cabab880a644296c97764b7c302f93ab9d06bf6&o=" alt="Renaissance São Paulo Hotel" loading="lazy" onerror="this.style.display='none'">
+          <div class="scrim"></div>
+          <div class="cap"><div class="reg">Jardins · ao lado da Paulista</div><div class="nm">Renaissance</div></div>
+        </div>
+        <div class="body">
+          <div class="price-row"><span class="main">R$ 1.500</span><span class="alt">ou R$ 1.900 com jantar</span></div>
+          <div class="chips">
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 16c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M2 20c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/></svg>Piscina descoberta</span>
+            <span class="chip yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/></svg>Banheira</span>
+            <span class="chip hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16"/></svg>Jantar premiado</span>
+          </div>
+          <ul class="pros">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Terraço Jardins: melhor restaurante de hotel da América Latina (2024).</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Tarifa com jantar transforma a noite num evento gastronômico sem sair.</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-ghost" href="https://www.restauranteterracojardins.com.br/" target="_blank" rel="noopener">Ver restaurante</a>
+            <a class="btn btn-primary" href="https://www.booking.com/hotel/br/renaissance-sao-paulo.pt-br.html?checkin=2026-06-27&checkout=2026-06-28&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Reservar
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- HILTON -->
+      <article class="card reveal">
+        <div class="media p2">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4ivPmYClB7V1h9N8t3qvlttPvSNW85TIdsamyvXJu739_TS_92m2y8q8&s=10" alt="Hilton São Paulo Morumbi" loading="lazy" onerror="this.style.display='none'">
+          <div class="scrim"></div>
+          <div class="cap"><div class="reg">Morumbi · vista da ponte</div><div class="nm">Hilton Morumbi</div></div>
+        </div>
+        <div class="body">
+          <div class="price-row"><span class="main">R$ 2.200</span><span class="per">/ noite, c/ café</span></div>
+          <div class="chips">
+            <span class="chip hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 16c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M2 20c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/></svg>Piscina coberta</span>
+            <span class="chip yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/></svg>Banheira</span>
+            <span class="chip yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16"/></svg>Restaurante</span>
+          </div>
+          <ul class="pros">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Quarto king com bridge view, piscina coberta e banheira.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Mesma vibe e região do Hyatt — escolha pelo melhor preço do dia.</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-ghost" href="https://www.hilton.com/en/hotels/saomohh-hilton-sao-paulo-morumbi/" target="_blank" rel="noopener">Ver hotel</a>
+            <a class="btn btn-primary" href="https://www.hoteis.com/ho205120/hilton-sao-paulo-morumbi-sao-paulo-brasil/?chkin=2026-06-27&chkout=2026-06-28&rm1=a2" target="_blank" rel="noopener">Reservar
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- TIER 3 -->
+    <div class="tier-label reveal"><h3>Completam a lista</h3><span class="ln"></span></div>
+    <div class="cards">
+
+      <!-- GEORGE V -->
+      <article class="card reveal">
+        <div class="media p4">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max500/740481761.jpg?k=500985ca8a322b741b3726afc8065b61e6b2f00a82ebd99eb8b038e95c804573&o=" alt="George V Alto de Pinheiros" loading="lazy" onerror="this.style.display='none'">
+          <div class="scrim"></div>
+          <div class="cap"><div class="reg">Alto de Pinheiros · apart-hotel</div><div class="nm">George V</div></div>
+        </div>
+        <div class="body">
+          <div class="price-row"><span class="main">R$ 1.600</span><span class="per">/ noite, c/ café</span></div>
+          <div class="chips">
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 16c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M2 20c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/></svg>Piscina descoberta</span>
+            <span class="chip yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/></svg>Banheira</span>
+            <span class="chip yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16"/></svg>Restaurante</span>
+          </div>
+          <ul class="pros">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Suíte super luxo bem espaçosa — formato apart-hotel, ótimo para esticar o dia.</li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-ghost" href="https://www.george-v.com.br/" target="_blank" rel="noopener">Ver hotel</a>
+            <a class="btn btn-primary" href="https://www.booking.com/hotel/br/george-v-alto-de-pinheiros.pt-br.html?checkin=2026-06-27&checkout=2026-06-28&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Reservar
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- UNIQUE -->
+      <article class="card reveal">
+        <div class="media p3">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/734495812.jpg?k=4ebda7badf699ba60ca0e8121abd212ae1217046838f127b70f9c51af90df093&o=" alt="Hotel Unique São Paulo" loading="lazy" onerror="this.style.display='none'">
+          <div class="scrim"></div>
+          <div class="cap"><div class="reg">Jardim Paulista · frente ao Ibirapuera</div><div class="nm">Unique</div></div>
+        </div>
+        <div class="body">
+          <div class="price-row"><span class="main">R$ 2.700</span><span class="per">/ noite, c/ café</span></div>
+          <div class="chips">
+            <span class="chip hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 16c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M2 20c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/></svg>Piscina coberta</span>
+            <span class="chip no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M3 3l18 18"/></svg>Sem banheira</span>
+            <span class="chip yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16"/></svg>Skye Bar</span>
+          </div>
+          <ul class="pros">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>O hotel-ícone de design de São Paulo, com o famoso rooftop Skye.</li>
+          </ul>
+          <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.6L2 18a2 2 0 0 0 1.7 3h16.6A2 2 0 0 0 22 18L13.7 3.6a2 2 0 0 0-3.4 0z"/></svg><span>Sem banheira e o mais caro da lista — mais "uau visual" do que ninho de casal.</span></div>
+          <div class="actions">
+            <a class="btn btn-ghost" href="https://www.hotelunique.com.br/" target="_blank" rel="noopener">Ver hotel</a>
+            <a class="btn btn-primary" href="https://www.booking.com/hotel/br/unique.pt-br.html?checkin=2026-06-27&checkout=2026-06-28&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Reservar
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- WESTIN -->
+      <article class="card reveal">
+        <div class="media p2">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/768991819.jpg?k=b43baad2704d64e9f91cebf70f5e87759ccdfae172a05e3a3a319821dbebd5a6&o=" alt="The Westin São Paulo" loading="lazy" onerror="this.style.display='none'">
+          <div class="scrim"></div>
+          <div class="cap"><div class="reg">São Paulo · andar alto</div><div class="nm">The Westin</div></div>
+        </div>
+        <div class="body">
+          <div class="price-row"><span class="main">R$ 1.800</span><span class="per">/ noite, c/ café</span></div>
+          <div class="chips">
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 16c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M2 20c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/></svg>Piscina descoberta</span>
+            <span class="chip no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M3 3l18 18"/></svg>Sem banheira</span>
+            <span class="chip yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16"/></svg>Restaurante</span>
+          </div>
+          <ul class="pros">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Quarto premium em andar superior, bonito e bem servido.</li>
+          </ul>
+          <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.6L2 18a2 2 0 0 0 1.7 3h16.6A2 2 0 0 0 22 18L13.7 3.6a2 2 0 0 0-3.4 0z"/></svg><span>Sem banheira — o item que mais conta agora para a noite a dois.</span></div>
+          <div class="actions">
+            <a class="btn btn-ghost" href="https://www.booking.com/hotel/br/the-westin-sao-paulo.pt-br.html?checkin=2026-06-27&checkout=2026-06-28&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Ver hotel</a>
+            <a class="btn btn-primary" href="https://www.booking.com/hotel/br/the-westin-sao-paulo.pt-br.html?checkin=2026-06-27&checkout=2026-06-28&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Reservar
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- QOYA -->
+      <article class="card reveal">
+        <div class="media p1">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/825668174.jpg?k=e320e7bb1319109bde6f6fab54280d5020852ac4c966fe1057d5079fc885f12e&o=" alt="Qoya São Paulo Curio Collection by Hilton" loading="lazy" onerror="this.style.display='none'">
+          <div class="scrim"></div>
+          <div class="cap"><div class="reg">Paulista · Curio by Hilton</div><div class="nm">Qoya</div></div>
+        </div>
+        <div class="body">
+          <div class="price-row"><span class="main">R$ 1.900</span><span class="per">/ noite, c/ café</span></div>
+          <div class="chips">
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 16c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M2 20c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/></svg>Piscina descoberta</span>
+            <span class="chip no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M3 3l18 18"/></svg>Sem banheira</span>
+            <span class="chip yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16"/></svg>Restaurante</span>
+          </div>
+          <ul class="pros">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Hotel charmoso da coleção Curio, da Hilton, com boa gastronomia.</li>
+          </ul>
+          <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.6L2 18a2 2 0 0 0 1.7 3h16.6A2 2 0 0 0 22 18L13.7 3.6a2 2 0 0 0-3.4 0z"/></svg><span>Sem banheira — o item que mais pesa agora.</span></div>
+          <div class="actions">
+            <a class="btn btn-ghost" href="https://www.booking.com/hotel/br/qoya-sao-paulo-curio-collection-by-hilton.pt-br.html?checkin=2026-06-27&checkout=2026-06-28&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Ver hotel</a>
+            <a class="btn btn-primary" href="https://www.booking.com/hotel/br/qoya-sao-paulo-curio-collection-by-hilton.pt-br.html?checkin=2026-06-27&checkout=2026-06-28&group_adults=2&no_rooms=1" target="_blank" rel="noopener">Reservar
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMPARAR -->
+<section id="comparar">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Lado a lado</span>
+      <h2>Tudo numa olhada</h2>
+      <p>Os dez hotéis, ordenados pelo ranking. Toque em "Reservar" no cartão para abrir a reserva da data (27 → 28 de junho).</p>
+    </div>
+    <div class="tbl-scroll reveal">
+      <table>
+        <thead>
+          <tr><th>Hotel</th><th>Preço</th><th>Piscina</th><th>Banheira</th><th>Jantar no hotel</th><th>Nota</th></tr>
+        </thead>
+        <tbody>
+          <tr class="rowtop"><td><span class="h">Heritage</span><br><span class="b">Consolação</span></td><td class="num">R$ 725</td><td><span class="yn y">Coberta</span></td><td><span class="yn y">Sim</span></td><td><span class="yn y">Sim</span></td><td class="num">9.4</td></tr>
+          <tr class="rowtop"><td><span class="h">Renaissance</span><br><span class="b">Jardins</span></td><td class="num">R$ 1.500–1.900</td><td><span class="yn n">Descoberta</span></td><td><span class="yn y">Sim</span></td><td><span class="yn y">Premiado</span></td><td class="num">9.2</td></tr>
+          <tr class="rowtop"><td><span class="h">L'Hotel PortoBay</span><br><span class="b">Jardins</span></td><td class="num">R$ 1.900</td><td><span class="yn y">Coberta</span></td><td><span class="yn y">Sim</span></td><td><span class="yn y">Sim</span></td><td class="num">8.9</td></tr>
+          <tr><td><span class="h">Blue Tree Faria Lima</span><br><span class="b">Itaim</span></td><td class="num">R$ 1.300</td><td><span class="yn y">Coberta</span></td><td><span class="yn y">Sim</span></td><td><span class="yn y">Sim</span></td><td class="num">8.5</td></tr>
+          <tr><td><span class="h">George V</span><br><span class="b">Alto de Pinheiros</span></td><td class="num">R$ 1.600</td><td><span class="yn n">Descoberta</span></td><td><span class="yn y">Sim</span></td><td><span class="yn y">Sim</span></td><td class="num">7.6</td></tr>
+          <tr><td><span class="h">Grand Hyatt</span><br><span class="b">Brooklin</span></td><td class="num">R$ 2.100</td><td><span class="yn y">Coberta</span></td><td><span class="yn y">Sim</span></td><td><span class="yn y">Sim</span></td><td class="num">7.4</td></tr>
+          <tr><td><span class="h">Hilton Morumbi</span><br><span class="b">Morumbi</span></td><td class="num">R$ 2.200</td><td><span class="yn y">Coberta</span></td><td><span class="yn y">Sim</span></td><td><span class="yn y">Sim</span></td><td class="num">7.0</td></tr>
+          <tr><td><span class="h">Unique</span><br><span class="b">Jardim Paulista</span></td><td class="num">R$ 2.700</td><td><span class="yn y">Coberta</span></td><td><span class="yn n">Não</span></td><td><span class="yn y">Skye Bar</span></td><td class="num">6.3</td></tr>
+          <tr><td><span class="h">The Westin</span><br><span class="b">São Paulo</span></td><td class="num">R$ 1.800</td><td><span class="yn n">Descoberta</span></td><td><span class="yn n">Não</span></td><td><span class="yn y">Sim</span></td><td class="num">6.2</td></tr>
+          <tr><td><span class="h">Qoya</span><br><span class="b">Paulista</span></td><td class="num">R$ 1.900</td><td><span class="yn n">Descoberta</span></td><td><span class="yn n">Não</span></td><td><span class="yn y">Sim</span></td><td class="num">6.0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2>Quando bater o martelo, eu cuido do resto.</h2>
+    <p>Escolhido o hotel, monto o roteiro da noite — horário de chegada, sugestão de jantar, a sequência da comemoração — e a gente confirma tudo na fonte antes de reservar.</p>
+    <div class="sig">Com carinho, seu mordomo.</div>
+    <p class="fine">Preços e disponibilidade são estimativas levantadas em pesquisa para a noite de 27 → 28 de junho de 2026 (casal) — confirmar no momento da reserva. Late checkout, quando não incluso no pacote, costuma ser sob consulta. As capas marcadas como "imagem ilustrativa" não são fotos dos quartos reais.</p>
+  </div>
+</footer>
+
+<script>
+  // reveal on scroll
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      els.forEach(function(e){e.classList.add('in')}); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    },{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(e){io.observe(e)});
+  })();
+</script>
+</body>
+</html>
