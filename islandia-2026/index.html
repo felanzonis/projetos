@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow" />
+<title>Islândia · Lanza & Isabella · set 2026</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1a16;        /* quase-preto quente */
+    --paper:#f6f2ea;      /* off-white quente */
+    --paper2:#efe9df;     /* seção alternada */
+    --muted:#6f6a60;      /* texto secundário */
+    --line:#e0d8ca;       /* linhas finas */
+    --accent:#356b5a;     /* acento principal: verde-glaciar */
+    --accent2:#b4623a;    /* acento quente, usado só em destaques pontuais */
+    --inkbg:#14130f;      /* fundo escuro (faixa aurora) */
+    --shadow:0 18px 50px rgba(28,26,22,.16);
+    --fallback:linear-gradient(155deg,#cfd6cf,#b7bcae 60%,#9aa090);
+    --fallback-dark:linear-gradient(160deg,#1a2230,#10151f 60%,#0a0d14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Inter",system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 28px}
+  h1,h2,h3,h4,.serif{font-family:"Fraunces",Georgia,serif;font-weight:400;letter-spacing:-.01em;line-height:1.05}
+  .kick{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  a{color:inherit}
+  img{display:block;max-width:100%}
+  section{scroll-margin-top:74px}
+
+  /* ---------- NAV (menu fixo + scrollspy) ---------- */
+  nav.bar{position:sticky;top:0;z-index:200;background:rgba(246,242,234,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav.bar .row{max-width:1140px;margin:0 auto;padding:13px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  nav .brand{font-family:"Fraunces",serif;font-size:18px;display:flex;align-items:center;gap:9px;white-space:nowrap}
+  nav .brand .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  nav .links{display:flex;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  nav .links a{font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;padding:7px 13px;border-radius:999px;white-space:nowrap;transition:.18s}
+  nav .links a:hover{color:var(--ink);background:rgba(53,107,90,.08)}
+  nav .links a.active{color:var(--accent);background:rgba(53,107,90,.12);font-weight:600}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;height:90vh;min-height:560px;display:flex;align-items:flex-end;
+    background:var(--fallback);background-size:cover;background-position:center;
+    background-image:linear-gradient(180deg,rgba(20,18,14,.15) 0%,rgba(20,18,14,0) 28%,rgba(20,18,14,.62) 100%),var(--fallback);}
+  .hero.has-img{background-image:linear-gradient(180deg,rgba(20,18,14,.18) 0%,rgba(20,18,14,0) 26%,rgba(20,18,14,.7) 100%),url('imagens/hero.jpg');}
+  .hero .inner{position:relative;color:#fff;padding:0 28px 56px;max-width:1140px;margin:0 auto;width:100%}
+  .hero h1{font-size:clamp(60px,14vw,158px);font-weight:300;line-height:.92;text-shadow:0 2px 30px rgba(0,0,0,.25)}
+  .hero .sub{font-size:clamp(15px,2.3vw,20px);margin-top:14px;max-width:48ch;opacity:.94}
+  .hero .facts{display:flex;flex-wrap:wrap;gap:30px;margin-top:28px}
+  .hero .facts b{font-family:"Fraunces",serif;font-size:25px;font-weight:500;display:block;line-height:1}
+  .hero .facts span{opacity:.82;text-transform:uppercase;letter-spacing:.16em;font-size:11px}
+
+  /* ---------- SECTIONS ---------- */
+  section.pad{padding:92px 0}
+  .alt{background:var(--paper2)}
+  .lead{max-width:780px}
+  .lead .kick{margin-bottom:18px}
+  .lead h2{font-size:clamp(30px,5vw,52px);font-weight:300}
+  .lead p{font-size:18px;color:var(--muted);margin-top:20px;max-width:64ch}
+  .shead{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:40px;flex-wrap:wrap}
+  .shead h2{font-size:clamp(26px,4vw,40px);font-weight:300}
+  .shead .kick{align-self:center}
+
+  .rhythm{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:50px}
+  .rhythm div{background:var(--paper);padding:26px 24px}
+  .rhythm b{font-family:"Fraunces",serif;font-size:34px;font-weight:400;display:block;color:var(--accent)}
+  .rhythm p{font-size:13.5px;color:var(--muted);margin-top:8px}
+
+  /* ---------- AURORA (faixa escura, contraste) ---------- */
+  .aurora{position:relative;color:#f3f1ec;background:var(--fallback-dark);background-size:cover;background-position:center;
+    background-image:linear-gradient(120deg,rgba(10,12,18,.82) 0%,rgba(10,12,18,.35) 60%,rgba(10,12,18,.1) 100%),var(--fallback-dark);}
+  .aurora.has-img{background-image:linear-gradient(120deg,rgba(8,10,16,.84) 0%,rgba(8,10,16,.42) 58%,rgba(8,10,16,.12) 100%),url('imagens/aurora.jpg');}
+  .aurora .wrap{padding:104px 28px}
+  .aurora .box{max-width:540px}
+  .aurora .kick{color:#7fd9bf}
+  .aurora h2{font-size:clamp(30px,5vw,52px);font-weight:300;margin:16px 0 18px;color:#fff}
+  .aurora p{font-size:17px;color:#d8d4cc;max-width:52ch}
+  .aurora .mini{display:flex;gap:30px;margin-top:30px;flex-wrap:wrap}
+  .aurora .mini b{font-family:"Fraunces",serif;font-size:22px;color:#fff;display:block}
+  .aurora .mini span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#a7c4ba;opacity:.85}
+
+  /* ---------- BENTO ---------- */
+  .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:16px}
+  .ph{position:relative;border-radius:10px;overflow:hidden;background:var(--fallback);background-size:cover;background-position:center;color:#fff;display:flex;align-items:flex-end;cursor:pointer;box-shadow:var(--shadow);isolation:isolate;border:0;width:100%;font-family:inherit;text-align:left}
+  .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,14,0) 38%,rgba(20,18,14,.72));z-index:-1;transition:.4s}
+  .ph .cap{padding:18px 20px;width:100%}
+  .ph .cap .r{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;opacity:.88;font-weight:600}
+  .ph .cap h4{font-family:"Fraunces",serif;font-size:22px;font-weight:500;margin-top:3px;line-height:1.1;color:#fff}
+  .ph .bgimg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform .6s ease}
+  .ph:hover::after{background:linear-gradient(180deg,rgba(20,18,14,.08) 18%,rgba(20,18,14,.82))}
+  .ph:hover .bgimg{transform:scale(1.06)}
+  .b-wide{grid-column:span 2}.b-tall{grid-row:span 2}.b-big{grid-column:span 2;grid-row:span 2}
+
+  /* ---------- TIMELINE (dia a dia) ---------- */
+  .days{border-top:1px solid var(--line)}
+  .day{display:grid;grid-template-columns:84px 1fr;gap:28px;padding:24px 0;border-bottom:1px solid var(--line);align-items:start}
+  .day .n{font-family:"Fraunces",serif;font-size:38px;font-weight:300;line-height:1}
+  .day .n small{display:block;font-family:"Inter";font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);margin-top:6px;font-weight:700}
+  .day h3{font-size:21px;font-weight:500;margin-bottom:7px}
+  .day .reg{color:var(--accent);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin-bottom:9px;font-family:"Inter"}
+  .day p{color:var(--muted);font-size:15px;max-width:66ch}
+  .day p b{color:var(--ink);font-weight:600}
+  .day .tag{display:inline-block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 11px;margin:11px 7px 0 0}
+  .day .tag.bed{color:var(--accent);border-color:rgba(53,107,90,.35)}
+  .day .tag.pause{color:var(--accent2);border-color:rgba(180,98,58,.4);font-weight:600}
+
+  /* ---------- LUGARES ---------- */
+  .reg-block{margin-bottom:42px}
+  .reg-block > .rh{font-family:"Inter";font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);font-weight:700;padding-bottom:12px;border-bottom:2px solid var(--accent);margin-bottom:22px;display:inline-flex;align-items:center;gap:10px}
+  .plist{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px 36px}
+  .pl h4{font-family:"Fraunces",serif;font-size:19px;font-weight:500;margin-bottom:4px}
+  .pl p{font-size:13.5px;color:var(--muted);margin-bottom:9px}
+  .pl .lk{display:inline-flex;gap:14px;font-size:12px;flex-wrap:wrap}
+  .pl .lk a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px;transition:.15s;font-weight:500}
+  .pl .lk a:hover{border-color:var(--accent)}
+
+  /* ---------- TABS (genérico) ---------- */
+  .tabs .tabnav{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:30px}
+  .tabs .tabnav button{font-family:"Inter";font-size:13.5px;font-weight:600;color:var(--muted);background:none;border:0;cursor:pointer;padding:12px 16px;border-bottom:2px solid transparent;margin-bottom:-1px;transition:.18s}
+  .tabs .tabnav button:hover{color:var(--ink)}
+  .tabs .tabnav button.active{color:var(--accent);border-color:var(--accent)}
+  .tabpane{display:none;animation:fade .35s ease}
+  .tabpane.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* ---------- ONDE DORMIR ---------- */
+  .stay{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+  .stay .pic{height:340px;border-radius:12px;background:var(--fallback);background-size:cover;background-position:center;box-shadow:var(--shadow)}
+  .stay h3{font-size:26px;font-weight:400;margin-bottom:4px}
+  .stay .meta{color:var(--accent);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:18px}
+  .stay ul{list-style:none}
+  .stay li{padding:12px 0;border-bottom:1px solid var(--line)}
+  .stay li:last-child{border:0}
+  .stay li b{font-family:"Fraunces",serif;font-size:17px;font-weight:500}
+  .stay li .star{color:var(--accent2);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-left:8px}
+  .stay li p{font-size:13px;color:var(--muted);margin-top:3px}
+  .stay li .pr{font-size:12px;color:var(--ink);font-weight:600;margin-top:4px}
+
+  /* ---------- PRÁTICO (info + accordion) ---------- */
+  .ginfo{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
+  .ginfo h4{font-family:"Fraunces",serif;font-size:19px;font-weight:500;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--accent)}
+  .ginfo ul{list-style:none}
+  .ginfo li{font-size:14px;color:var(--muted);padding:7px 0;display:flex;gap:9px}
+  .ginfo li::before{content:"";flex:0 0 6px;height:6px;border-radius:50%;background:var(--accent);margin-top:9px}
+  .ginfo li b{color:var(--ink);font-weight:600}
+  .legs{list-style:none;max-width:560px}
+  .legs li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .legs li span:first-child{font-weight:500}
+  .legs li span:last-child{color:var(--muted);white-space:nowrap}
+
+  .acc{max-width:760px}
+  .acc-item{border-bottom:1px solid var(--line)}
+  .acc-head{width:100%;text-align:left;background:none;border:0;cursor:pointer;font-family:"Fraunces",serif;font-size:19px;font-weight:500;color:var(--ink);padding:18px 0;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .acc-head .ico{flex:0 0 22px;height:22px;position:relative;transition:.3s}
+  .acc-head .ico::before,.acc-head .ico::after{content:"";position:absolute;background:var(--accent);border-radius:2px}
+  .acc-head .ico::before{top:10px;left:2px;right:2px;height:2px}
+  .acc-head .ico::after{left:10px;top:2px;bottom:2px;width:2px;transition:.3s}
+  .acc-item.open .acc-head .ico::after{transform:scaleY(0)}
+  .acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .acc-body .in{padding:2px 0 22px;color:var(--muted);font-size:14.5px}
+  .acc-body ul{list-style:none}
+  .acc-body li{padding:5px 0 5px 20px;position:relative}
+  .acc-body li::before{content:"";position:absolute;left:0;top:13px;width:7px;height:7px;border:1.5px solid var(--accent);border-radius:2px}
+  .acc-body li b{color:var(--ink)}
+
+  /* ---------- MAPA ---------- */
+  #map{height:520px;border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow);background:#e8e2d6}
+  .wlog{margin-top:28px;border:1px solid var(--line);border-radius:12px;padding:22px;background:var(--paper)}
+  .wlog h3{font-family:"Fraunces",serif;font-size:20px;font-weight:500;margin-bottom:6px}
+  .wlog p{font-size:14px;color:var(--muted);margin-bottom:16px}
+  .wlog iframe{width:100%;height:520px;border:0;border-radius:8px}
+  .wlog a{color:var(--accent)}
+
+  .note{font-size:14px;color:var(--muted);border-left:3px solid var(--accent2);padding:8px 0 8px 18px;margin-top:30px;max-width:72ch}
+  .note b{color:var(--ink)}
+
+  /* ---------- LIGHTBOX ---------- */
+  .lb{position:fixed;inset:0;z-index:500;background:rgba(12,11,9,.92);display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
+  .lb.on{display:flex}
+  .lb img{max-width:94vw;max-height:84vh;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .lb .cap{position:absolute;bottom:26px;left:0;right:0;text-align:center;color:#f3f1ec;font-family:"Fraunces",serif;font-size:20px}
+  .lb .x{position:absolute;top:22px;right:28px;color:#fff;font-size:30px;cursor:pointer;opacity:.8;line-height:1}
+
+  footer{padding:64px 0 72px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+  footer .serif{font-size:24px;color:var(--ink);font-weight:400;margin-bottom:10px}
+
+  @media (max-width:820px){
+    section.pad{padding:62px 0}
+    .bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px}
+    .b-big{grid-column:span 2;grid-row:span 1}.b-tall{grid-row:span 1}
+    .stay{grid-template-columns:1fr;gap:22px}.stay .pic{height:240px}
+    .day{grid-template-columns:58px 1fr;gap:16px}.day .n{font-size:28px}
+    .aurora .wrap{padding:72px 28px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="bar"><div class="row">
+  <div class="brand"><span class="dot"></span>Islândia · Alfred</div>
+  <div class="links">
+    <a href="#hero">Início</a>
+    <a href="#ritmo">Ritmo</a>
+    <a href="#aurora">Aurora</a>
+    <a href="#destaques">Destaques</a>
+    <a href="#dias">Dia a dia</a>
+    <a href="#lugares">Lugares</a>
+    <a href="#dormir">Onde dormir</a>
+    <a href="#pratico">Prático</a>
+    <a href="#valores">Passeios</a>
+    <a href="#mapa">Mapa</a>
+  </div>
+</div></nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="hero">
+  <div class="inner">
+    <div class="kick" style="color:#fff;opacity:.85">A volta completa · ring road · caçando a aurora</div>
+    <h1>Islândia</h1>
+    <p class="sub">Lanza &amp; Isabella dão a volta na ilha — fiordes, geleiras e as noites mais escuras do ano, à espera da aurora boreal.</p>
+    <div class="facts">
+      <div><b>7–21 set</b><span>2026 · lua nova ~10/09</span></div>
+      <div><b>1.500 km</b><span>de volta</span></div>
+      <div><b>6</b><span>regiões</span></div>
+      <div><b>12</b><span>noites</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== RITMO ===== -->
+<section class="pad" id="ritmo"><div class="wrap">
+  <div class="lead">
+    <div class="kick">O ritmo da viagem</div>
+    <h2>A volta inteira, sem virar maratona.</h2>
+    <p>O sonho da Isa é conhecer a ilha toda — então corremos um pouco mais, com uma noite só nos lugares pequenos e remotos. Mas a cada quatro dias há uma <b style="color:var(--ink)">pausa de duas noites</b> numa cidade maior pra recarregar. Geografia agrupada, um carro-chefe por dia, e tempo livre pra perambular.</p>
+  </div>
+  <div class="rhythm">
+    <div><b>2–3</b><p>passeios por dia — sem maratona</p></div>
+    <div><b>4 em 4</b><p>dias, uma pausa de 2 noites na mesma base</p></div>
+    <div><b>6</b><p>bases pela ilha, sentido horário</p></div>
+    <div><b>~5–6h</b><p>de céu escuro por noite pra aurora</p></div>
+  </div>
+</div></section>
+
+<!-- ===== AURORA (faixa escura) ===== -->
+<section class="aurora" id="aurora"><div class="wrap"><div class="box">
+  <div class="kick">O objetivo nº 1</div>
+  <h2>Caçando a aurora boreal</h2>
+  <p>A viagem foi cravada na <b style="color:#fff">lua nova de 10–11 de setembro</b> — o céu mais escuro do mês, justo quando estamos no Norte, Leste e Sudeste, longe das luzes da cidade. É o melhor cenário possível pra ver as luzes dançarem.</p>
+  <div class="mini">
+    <div><b>10/09</b><span>lua nova · céu escuro</span></div>
+    <div><b>Dias 3–9</b><span>melhores noites</span></div>
+    <div><b>vedur.is</b><span>previsão de aurora</span></div>
+  </div>
+</div></div></section>
+
+<!-- ===== DESTAQUES (bento) ===== -->
+<section class="pad alt" id="destaques"><div class="wrap">
+  <div class="shead"><h2>Os cartões-postais</h2><div class="kick">clique para ampliar</div></div>
+  <div class="bento">
+    <button class="ph b-big" data-img="kirkjufell" data-cap="Kirkjufell"><span class="bgimg" style="background-image:url('imagens/kirkjufell.jpg')"></span><span class="cap"><span class="r">Oeste · Snæfellsnes</span><h4>Kirkjufell</h4></span></button>
+    <button class="ph b-wide" data-img="jokulsarlon" data-cap="Jökulsárlón"><span class="bgimg" style="background-image:url('imagens/jokulsarlon.jpg')"></span><span class="cap"><span class="r">Sudeste</span><h4>Jökulsárlón</h4></span></button>
+    <button class="ph" data-img="diamond-beach" data-cap="Diamond Beach"><span class="bgimg" style="background-image:url('imagens/diamond-beach.jpg')"></span><span class="cap"><span class="r">Sudeste</span><h4>Diamond Beach</h4></span></button>
+    <button class="ph" data-img="godafoss" data-cap="Goðafoss"><span class="bgimg" style="background-image:url('imagens/godafoss.jpg')"></span><span class="cap"><span class="r">Norte</span><h4>Goðafoss</h4></span></button>
+    <button class="ph" data-img="myvatn" data-cap="Mývatn"><span class="bgimg" style="background-image:url('imagens/myvatn.jpg')"></span><span class="cap"><span class="r">Norte</span><h4>Mývatn</h4></span></button>
+    <button class="ph b-wide" data-img="reynisfjara" data-cap="Reynisfjara"><span class="bgimg" style="background-image:url('imagens/reynisfjara.jpg')"></span><span class="cap"><span class="r">Sul · Vík</span><h4>Reynisfjara</h4></span></button>
+    <button class="ph" data-img="stokksnes" data-cap="Stokksnes / Vestrahorn"><span class="bgimg" style="background-image:url('imagens/stokksnes.jpg')"></span><span class="cap"><span class="r">Sudeste</span><h4>Stokksnes</h4></span></button>
+    <button class="ph" data-img="seydisfjordur" data-cap="Seyðisfjörður"><span class="bgimg" style="background-image:url('imagens/seydisfjordur.jpg')"></span><span class="cap"><span class="r">Leste</span><h4>Seyðisfjörður</h4></span></button>
+    <button class="ph" data-img="seljalandsfoss" data-cap="Seljalandsfoss"><span class="bgimg" style="background-image:url('imagens/seljalandsfoss.jpg')"></span><span class="cap"><span class="r">Sul</span><h4>Seljalandsfoss</h4></span></button>
+    <button class="ph" data-img="gullfoss" data-cap="Gullfoss"><span class="bgimg" style="background-image:url('imagens/gullfoss.jpg')"></span><span class="cap"><span class="r">Círculo Dourado</span><h4>Gullfoss</h4></span></button>
+    <button class="ph b-wide" data-img="blue-lagoon" data-cap="Blue Lagoon"><span class="bgimg" style="background-image:url('imagens/blue-lagoon.jpg')"></span><span class="cap"><span class="r">Reykjavík</span><h4>Blue Lagoon</h4></span></button>
+  </div>
+  <p class="note"><b>Atenção em Reynisfjara:</b> as ondas "sneaker" são perigosas — respeite a distância da água.</p>
+</div></section>
+
+<!-- ===== DIA A DIA ===== -->
+<section class="pad" id="dias"><div class="wrap">
+  <div class="shead"><h2>A volta, dia a dia</h2><div class="kick">13 dias · sentido horário</div></div>
+  <div class="days">
+    <div class="day"><div class="n">01<small>Pausa</small></div><div><div class="reg">Reykjavík</div><h3>Chegada &amp; Blue Lagoon</h3><p>Pouso em <b>Keflavík</b> e a <b>Blue Lagoon</b> ali ao lado pra desamassar do voo. Check-in em Reykjavík.</p><span class="tag pause">pausa</span><span class="tag bed">dorme · Reykjavík</span><span class="tag">leve</span></div></div>
+    <div class="day"><div class="n">02<small>Pausa</small></div><div><div class="reg">Círculo Dourado</div><h3>Þingvellir, Geysir &amp; Gullfoss</h3><p>A falha tectônica de <b>Þingvellir</b>, o gêiser <b>Strokkur</b>, a poderosa <b>Gullfoss</b> e a azul <b>Brúarárfoss</b>. Fim de tarde no <b>Sky Lagoon</b>.</p><span class="tag pause">pausa</span><span class="tag bed">dorme · Reykjavík</span><span class="tag">médio</span></div></div>
+    <div class="day"><div class="n">03</div><div><div class="reg">Oeste · Snæfellsnes</div><h3>A península</h3><p>A caminho, <b>Hraunfossar</b> e a cratera <b>Grábrók</b>. Na península: <b>Kirkjufell</b>, <b>Arnarstapi</b>, <b>Búðir</b> e a praia <b>Djúpalónssandur</b>.</p><span class="tag bed">dorme · Grundarfjörður</span><span class="tag">aurora</span></div></div>
+    <div class="day"><div class="n">04<small>Pausa</small></div><div><div class="reg">Travessia ao Norte</div><h3>Dia de estrada → Akureyri</h3><p>O trecho mais longo (~4h). Paradas conforme o pique; chegada na <b>capital do norte</b> e jantar tranquilo.</p><span class="tag pause">pausa</span><span class="tag bed">dorme · Akureyri</span><span class="tag">aurora</span></div></div>
+    <div class="day"><div class="n">05<small>Pausa</small></div><div><div class="reg">Norte · Mývatn</div><h3>Goðafoss &amp; Mývatn</h3><p>A <b>cachoeira dos deuses</b>, o lago vulcânico <b>Mývatn</b>, as fumarolas de <b>Hverir</b> e a lava de <b>Dimmuborgir</b>.</p><span class="tag pause">pausa</span><span class="tag bed">dorme · Akureyri</span><span class="tag">médio</span></div></div>
+    <div class="day"><div class="n">06</div><div><div class="reg">Leste</div><h3>Fiordes &amp; Stuðlagil</h3><p>A caminho, o cânion <b>Stuðlagil</b>. A ruazinha arco-íris de <b>Seyðisfjörður</b> e o termal flutuante <b>Vök Baths</b>.</p><span class="tag bed">dorme · Egilsstaðir</span><span class="tag">aurora</span></div></div>
+    <div class="day"><div class="n">07<small>Pausa</small></div><div><div class="reg">Sudeste · Höfn</div><h3>Fiordes do Leste → Stokksnes</h3><p>Estrada cênica pelos fiordes. Ao chegar, <b>Stokksnes / Vestrahorn</b> espelhada na areia preta.</p><span class="tag pause">pausa</span><span class="tag bed">dorme · Höfn</span><span class="tag">aurora</span></div></div>
+    <div class="day"><div class="n">08<small>Pausa</small></div><div><div class="reg">Sudeste</div><h3>Jökulsárlón — o ápice</h3><p>A laguna glacial <b>Jökulsárlón</b> + <b>Diamond Beach</b>. À tarde, <b>Skaftafell</b> e a cachoeira <b>Svartifoss</b>.</p><span class="tag pause">pausa</span><span class="tag bed">dorme · Höfn</span><span class="tag">médio</span></div></div>
+    <div class="day"><div class="n">09<small>Pausa</small></div><div><div class="reg">Sul · Vík</div><h3>Cânion &amp; praia negra</h3><p>O cânion <b>Fjaðrárgljúfur</b> a caminho. <b>Reynisfjara</b> e <b>Dyrhólaey</b> — atenção às ondas sneaker.</p><span class="tag pause">pausa</span><span class="tag bed">dorme · Vík</span><span class="tag">aurora</span></div></div>
+    <div class="day"><div class="n">10<small>Pausa</small></div><div><div class="reg">Sul</div><h3>Cachoeiras &amp; geleira</h3><p><b>Skógafoss</b> e <b>Seljalandsfoss</b> (por trás d'água). Caminhada guiada na geleira <b>Sólheimajökull</b> ou a <b>Katla Ice Cave</b>.</p><span class="tag pause">pausa</span><span class="tag bed">dorme · Vík</span><span class="tag">médio</span></div></div>
+    <div class="day"><div class="n">11</div><div><div class="reg">Reykjavík</div><h3>Volta sem pressa</h3><p>Retorno à capital; tarde livre e compras na <b>Laugavegur</b>.</p><span class="tag bed">dorme · Reykjavík</span><span class="tag">leve</span></div></div>
+    <div class="day"><div class="n">12</div><div><div class="reg">Reykjavík</div><h3>Último dia livre</h3><p>Museu, café, últimas compras. À noite, o <b>jantar de despedida</b>.</p><span class="tag bed">dorme · Reykjavík</span><span class="tag">leve</span></div></div>
+    <div class="day"><div class="n">13</div><div><div class="reg">Keflavík</div><h3>Voo de volta</h3><p>Devolver o carro em Keflavík e embarcar.</p><span class="tag">voo</span></div></div>
+  </div>
+</div></section>
+
+<!-- ===== LUGARES ===== -->
+<section class="pad alt" id="lugares"><div class="wrap">
+  <div class="shead"><h2>Cada parada, com link</h2><div class="kick">site oficial · reserva · mapa</div></div>
+
+  <div class="reg-block"><div class="rh">Reykjavík &amp; Círculo Dourado</div><div class="plist">
+    <div class="pl"><h4>Blue Lagoon</h4><p>Spa geotermal azul-leitoso ao lado do aeroporto. Entrada por horário.</p><div class="lk"><a href="https://www.bluelagoon.com/" target="_blank">Site</a><a href="https://www.bluelagoon.com/book" target="_blank">Reservar</a><a href="https://www.google.com/maps/search/?api=1&query=63.8804,-22.4495" target="_blank">Mapa</a></div></div>
+    <div class="pl"><h4>Sky Lagoon</h4><p>Termal urbano com borda infinita pro mar.</p><div class="lk"><a href="https://www.skylagoon.com/" target="_blank">Site</a><a href="https://www.google.com/maps/search/?api=1&query=64.1175,-21.9744" target="_blank">Mapa</a></div></div>
+    <div class="pl"><h4>Þingvellir</h4><p>Parque na falha tectônica — 1ª parada do Círculo Dourado.</p><div class="lk"><a href="https://www.thingvellir.is/" target="_blank">Site</a><a href="https://www.google.com/maps/search/?api=1&query=64.2559,-21.1295" target="_blank">Mapa</a></div></div>
+    <div class="pl"><h4>Geysir, Gullfoss &amp; Brúarárfoss</h4><p>O gêiser Strokkur, a poderosa Gullfoss e a cachoeira azul.</p><div class="lk"><a href="https://geysircenter.is/" target="_blank">Geysir</a><a href="https://www.google.com/maps/search/?api=1&query=64.3271,-20.1199" target="_blank">Gullfoss</a></div></div>
+  </div></div>
+
+  <div class="reg-block"><div class="rh">Oeste · Snæfellsnes</div><div class="plist">
+    <div class="pl"><h4>Kirkjufell</h4><p>A montanha mais fotografada da ilha, com a cachoeira ao lado.</p><div class="lk"><a href="https://www.west.is/" target="_blank">Região</a><a href="https://www.google.com/maps/search/?api=1&query=64.9416,-23.3074" target="_blank">Mapa</a></div></div>
+    <div class="pl"><h4>Arnarstapi, Búðir &amp; Djúpalónssandur</h4><p>Vilarejo de pescadores, a igrejinha preta e a praia de seixos negros.</p><div class="lk"><a href="https://www.google.com/maps/search/?api=1&query=64.7697,-23.6259" target="_blank">Mapa</a></div></div>
+    <div class="pl"><h4>Hraunfossar &amp; Grábrók</h4><p>Cachoeiras que brotam da lava e uma cratera fácil de subir.</p><div class="lk"><a href="https://www.google.com/maps/search/?api=1&query=64.7026,-20.9786" target="_blank">Mapa</a></div></div>
+  </div></div>
+
+  <div class="reg-block"><div class="rh">Norte · Akureyri &amp; Mývatn</div><div class="plist">
+    <div class="pl"><h4>Akureyri</h4><p>A "capital do norte" — base para o lago Mývatn.</p><div class="lk"><a href="https://www.visitakureyri.is/en" target="_blank">Site</a><a href="https://www.google.com/maps/search/?api=1&query=65.6885,-18.1262" target="_blank">Mapa</a></div></div>
+    <div class="pl"><h4>Goðafoss</h4><p>A "cachoeira dos deuses", larga e curva.</p><div class="lk"><a href="https://www.google.com/maps/search/?api=1&query=65.6829,-17.5503" target="_blank">Mapa</a></div></div>
+    <div class="pl"><h4>Mývatn · Hverir · Dimmuborgir</h4><p>Lago vulcânico, fumarolas e formações de lava.</p><div class="lk"><a href="https://www.google.com/maps/search/?api=1&query=65.6039,-16.9963" target="_blank">Mapa</a></div></div>
+  </div></div>
+
+  <div class="reg-block"><div class="rh">Leste &amp; Sudeste</div><div class="plist">
+    <div class="pl"><h4>Seyðisfjörður</h4><p>Vila de fiorde com a ruazinha arco-íris e a igreja azul.</p><div class="lk"><a href="https://www.east.is/en" target="_blank">Site</a><a href="https://www.google.com/maps/search/?api=1&query=65.2627,-14.0083" target="_blank">Mapa</a></div></div>
+    <div class="pl"><h4>Stuðlagil &amp; Vök Baths</h4><p>Cânion de colunas de basalto e termal flutuante.</p><div class="lk"><a href="https://www.vokbaths.is/" target="_blank">Vök</a><a href="https://www.google.com/maps/search/?api=1&query=65.1453,-15.8480" target="_blank">Mapa</a></div></div>
+    <div class="pl"><h4>Stokksnes / Vestrahorn</h4><p>A montanha espelhada na areia preta — dos visuais mais dramáticos.</p><div class="lk"><a href="https://www.google.com/maps/search/?api=1&query=64.2470,-14.9970" target="_blank">Mapa</a></div></div>
+    <div class="pl"><h4>Jökulsárlón &amp; Diamond Beach</h4><p>Laguna glacial com icebergs e a praia onde o gelo brilha.</p><div class="lk"><a href="https://icelagoon.is/" target="_blank">Barco</a><a href="https://www.google.com/maps/search/?api=1&query=64.0784,-16.2306" target="_blank">Mapa</a></div></div>
+    <div class="pl"><h4>Skaftafell &amp; Svartifoss</h4><p>Reserva no Vatnajökull e a cachoeira de colunas hexagonais.</p><div class="lk"><a href="https://www.vatnajokulsthjodgardur.is/en" target="_blank">Parque</a><a href="https://www.google.com/maps/search/?api=1&query=64.0166,-16.9666" target="_blank">Mapa</a></div></div>
+  </div></div>
+
+  <div class="reg-block"><div class="rh">Sul · Vík</div><div class="plist">
+    <div class="pl"><h4>Reynisfjara &amp; Dyrhólaey</h4><p>Praia negra de basalto e o promontório. Atenção às ondas sneaker.</p><div class="lk"><a href="https://safetravel.is/" target="_blank">Segurança</a><a href="https://www.google.com/maps/search/?api=1&query=63.4034,-19.0448" target="_blank">Mapa</a></div></div>
+    <div class="pl"><h4>Skógafoss &amp; Seljalandsfoss</h4><p>Duas cachoeiras-cartão-postal; numa dá pra caminhar por trás.</p><div class="lk"><a href="https://www.google.com/maps/search/?api=1&query=63.5320,-19.5114" target="_blank">Skógafoss</a><a href="https://www.google.com/maps/search/?api=1&query=63.6156,-19.9886" target="_blank">Seljalandsfoss</a></div></div>
+    <div class="pl"><h4>Sólheimajökull &amp; Katla Ice Cave</h4><p>Caminhada guiada na geleira ou a caverna de gelo, o ano todo.</p><div class="lk"><a href="https://www.guidetoiceland.is/book-trips-holiday/glacier-hiking" target="_blank">Passeio</a><a href="https://www.google.com/maps/search/?api=1&query=63.5300,-19.3686" target="_blank">Mapa</a></div></div>
+  </div></div>
+</div></section>
+
+<!-- ===== ONDE DORMIR (tabs) ===== -->
+<section class="pad" id="dormir"><div class="wrap">
+  <div class="shead"><h2>Onde dormir</h2><div class="kick">6 bases · guesthouse com cozinha</div></div>
+  <div class="tabs" id="stayTabs">
+    <div class="tabnav">
+      <button class="active" data-tab="s-rek">Reykjavík</button>
+      <button data-tab="s-sna">Snæfellsnes</button>
+      <button data-tab="s-aku">Akureyri</button>
+      <button data-tab="s-est">Leste</button>
+      <button data-tab="s-hof">Höfn</button>
+      <button data-tab="s-vik">Vík</button>
+    </div>
+
+    <div class="tabpane active" id="s-rek"><div class="stay">
+      <div class="pic" style="background-image:url('imagens/reykjavik.jpg')"></div>
+      <div><h3>Reykjavík</h3><div class="meta">4 noites · centro (Miðborg), andável</div><ul>
+        <li><b>Reykjavik Residence Apartment Hotel</b><span class="star">favorita</span><p>Apto com cozinha, ótimo pra estadia longa.</p><div class="pr">~US$ 150–300/noite</div></li>
+        <li><b>Eric the Red Guesthouse</b><p>Aconchegante, estacionamento grátis.</p></li>
+        <li><b>Refurinn Guesthouse</b><p>Cozinha compartilhada, econômica.</p></li>
+      </ul></div>
+    </div></div>
+
+    <div class="tabpane" id="s-sna"><div class="stay">
+      <div class="pic" style="background-image:url('imagens/kirkjufell.jpg')"></div>
+      <div><h3>Snæfellsnes</h3><div class="meta">1 noite · Grundarfjörður</div><ul>
+        <li><b>Kirkjufell Hotel</b><span class="star">favorita</span><p>À beira-mar, Kirkjufell a 2 km.</p><div class="pr">~US$ 130–220/noite</div></li>
+        <li><b>Grund í Grundarfirði</b><p>Guesthouse charmosa no centro da vila.</p></li>
+        <li><b>Hotel Egilsen (Stykkishólmur)</b><p>Boutique histórico, alternativa na outra ponta.</p></li>
+      </ul></div>
+    </div></div>
+
+    <div class="tabpane" id="s-aku"><div class="stay">
+      <div class="pic" style="background-image:url('imagens/akureyri.jpg')"></div>
+      <div><h3>Akureyri</h3><div class="meta">2 noites · capital do norte</div><ul>
+        <li><b>Centrum Hotel</b><span class="star">favorita</span><p>Studios com cozinha, no centro.</p><div class="pr">~US$ 130–250/noite</div></li>
+        <li><b>Hótel Kea</b><p>4 estrelas, ao lado da igreja.</p></li>
+        <li><b>Sulur Guesthouse</b><p>Central e econômica, com jardim.</p></li>
+      </ul></div>
+    </div></div>
+
+    <div class="tabpane" id="s-est"><div class="stay">
+      <div class="pic" style="background-image:url('imagens/seydisfjordur.jpg')"></div>
+      <div><h3>Leste · Egilsstaðir</h3><div class="meta">1 noite</div><ul>
+        <li><b>Hótel Eyvindará</b><span class="star">favorita</span><p>Em meio a um bosque, perto do centro.</p><div class="pr">~US$ 130–220/noite</div></li>
+        <li><b>Lake Hotel Gistihúsið</b><p>Spa e piscina à beira do lago.</p></li>
+        <li><b>Seyðisfjörður Guesthouse</b><p>Alternativa pra dormir no fiorde.</p></li>
+      </ul></div>
+    </div></div>
+
+    <div class="tabpane" id="s-hof"><div class="stay">
+      <div class="pic" style="background-image:url('imagens/jokulsarlon.jpg')"></div>
+      <div><h3>Höfn · Sudeste</h3><div class="meta">2 noites</div><ul>
+        <li><b>Brunnhóll Country Guesthouse</b><span class="star">favorita</span><p>Entre Höfn e Jökulsárlón, com vista glacial.</p><div class="pr">~US$ 130–250/noite</div></li>
+        <li><b>Hótel Höfn</b><p>No centro da vila, prático.</p></li>
+        <li><b>Nýpugarðar Guesthouse</b><p>Numa fazenda de ovelhas, charmosa.</p></li>
+      </ul></div>
+    </div></div>
+
+    <div class="tabpane" id="s-vik"><div class="stay">
+      <div class="pic" style="background-image:url('imagens/vik.jpg')"></div>
+      <div><h3>Vík · Sul</h3><div class="meta">2 noites</div><ul>
+        <li><b>Hotel Vík í Mýrdal</b><span class="star">favorita</span><p>Aptos com cozinha e vista dos Reynisdrangar.</p><div class="pr">~US$ 130–250/noite</div></li>
+        <li><b>Sólheimahjáleiga Guesthouse</b><p>Fazenda com cozinha grande, ~24 km de Vík.</p></li>
+      </ul></div>
+    </div></div>
+  </div>
+  <p class="note">Padrão: <b>cozinha sempre que der</b> (comer fora é caríssimo), <b>localização &gt; diária</b>, e <b>reembolsável</b> enquanto o plano muda. Reservar cedo as noites únicas (Snæfellsnes e Leste têm poucas opções). Diárias são estimativa — confirmar no Booking.</p>
+</div></section>
+
+<!-- ===== PRÁTICO (tabs + accordion) ===== -->
+<section class="pad alt" id="pratico"><div class="wrap">
+  <div class="shead"><h2>O lado prático</h2><div class="kick">voo · carro · seguro · mala</div></div>
+  <div class="tabs" id="practTabs">
+    <div class="tabnav">
+      <button class="active" data-tab="p-voo">Voo</button>
+      <button data-tab="p-carro">Carro</button>
+      <button data-tab="p-seguro">Seguro</button>
+      <button data-tab="p-mala">Mala &amp; casa</button>
+    </div>
+
+    <div class="tabpane active" id="p-voo">
+      <div class="ginfo">
+        <div><h4>O plano</h4><ul>
+          <li><b>Air France + Icelandair</b> via Paris (CDG), <b>bilhete único</b>.</li>
+          <li>Ida GRU→CDG (noturno) + <b>5h20</b> de conexão → KEF.</li>
+          <li><b>Bagagem despachada inclusa</b>; comprar direto no site da cia.</li>
+        </ul></div>
+        <div><h4>Por que essa</h4><ul>
+          <li><b>1 conexão só</b> (≤8h), <b>sem passar pelos EUA</b>.</li>
+          <li>Bilhete único = <b>mala protegida</b> na conexão, sem self-connect.</li>
+          <li>Comprar <b>direto no site da cia</b> (remarcação mais fácil).</li>
+          <li>Modificável, não reembolsável.</li>
+        </ul></div>
+        <div><h4>Bom saber</h4><ul>
+          <li>Datas ancoradas na <b>lua nova (~10/09)</b> pra aurora.</li>
+          <li>Levar <b>PID</b> (Detran) além da CNH pra dirigir.</li>
+          <li>Reservar o carro cedo — setembro é disputado.</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="tabpane" id="p-carro">
+      <div class="ginfo">
+        <div><h4>O carro</h4><ul>
+          <li><b>Compacto</b> basta em setembro (Route 1 asfaltada).</li>
+          <li>Ring road ~<b>1.500 km</b>; combustível caro, pagar no cartão (<b>PIN 4 dígitos</b>).</li>
+          <li>Estimativa <b>~R$ 8.000</b> — carro + seguro completo + combustível (13 dias).</li>
+        </ul></div>
+        <div><h4>Seguros essenciais</h4><ul>
+          <li><b>Gravel (GP)</b> + <b>Sand &amp; Ash (SAAP):</b> cascalho, vento e areia.</li>
+          <li>Pacote <b>Zero Excess / Full</b> já junta tudo (~US$ 90–100/dia com o carro).</li>
+          <li>Não precisa de cobertura de F-road (não vamos ao Interior).</li>
+        </ul></div>
+        <div><h4>Locadoras</h4><ul>
+          <li><b>Blue Car Rental</b> e <b>Lava</b> — bom custo p/ ring road, transfer grátis.</li>
+          <li>Desconto p/ aluguel &gt;5 dias; reservar cedo (set esgota), <b>reembolsável</b>.</li>
+          <li>Alt.: Lotus (Platinum), Europcar (Premium).</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="tabpane" id="p-seguro">
+      <div class="ginfo">
+        <div><h4>Obrigatório (Schengen)</h4><ul>
+          <li>Cobertura médica mínima de <b>€30.000</b>.</li>
+          <li>Válida em todo o Schengen (Islândia é Schengen).</li>
+          <li>Cobre emergência, hospitalização e <b>repatriação</b>.</li>
+          <li>Levar o <b>comprovante</b> (a fronteira pode pedir).</li>
+        </ul></div>
+        <div><h4>Recomendado acima do mínimo</h4><ul>
+          <li>Despesas médicas mais altas (saúde lá é cara).</li>
+          <li>Bagagem extraviada e cancelamento.</li>
+          <li>Conferir cobertura da <b>geleira guiada</b>.</li>
+        </ul></div>
+        <div><h4>Onde contratar</h4><ul>
+          <li>AXA Schengen, World Nomads, Europ Assistance.</li>
+          <li>Nacionais: Assist Card, GTA, Affinity.</li>
+          <li>O cartão pode incluir — <b>ler a apólice</b> (e o valor).</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="tabpane" id="p-mala">
+      <div class="acc">
+        <div class="acc-item open"><button class="acc-head">Roupa — sistema de 3 camadas<span class="ico"></span></button><div class="acc-body"><div class="in"><ul>
+          <li><b>Base:</b> 2–3 camadas em merino/sintético (nunca algodão).</li>
+          <li><b>Meio:</b> fleece ou casaco isolante removível.</li>
+          <li><b>Externa:</b> casaco impermeável <b>e</b> corta-vento + calça impermeável (cachoeiras molham).</li>
+          <li><b>Bota de trekking impermeável</b> + meias de lã; gorro, luvas, buff.</li>
+          <li>Roupa de banho + toalha (lagoas termais) e uma camada bem quente pra esperar a aurora.</li>
+        </ul></div></div></div>
+        <div class="acc-item"><button class="acc-head">Documentos &amp; dinheiro<span class="ico"></span></button><div class="acc-body"><div class="in"><ul>
+          <li>Passaporte, <b>seguro</b> (comprovante), <b>PID</b> + CNH.</li>
+          <li>Reservas impressas + no Drive.</li>
+          <li>Avisar o banco; cartão com PIN; pouca coroa em espécie (quase tudo no cartão).</li>
+        </ul></div></div></div>
+        <div class="acc-item"><button class="acc-head">Eletrônicos &amp; extras<span class="ico"></span></button><div class="acc-body"><div class="in"><ul>
+          <li>Adaptador europeu (tipo F), power bank, carregador de carro.</li>
+          <li>eSIM/chip, Google Maps offline da rota.</li>
+          <li>Câmera + tripé pra aurora; garrafa de água (a da torneira é ótima).</li>
+        </ul></div></div></div>
+        <div class="acc-item"><button class="acc-head">Casa resolvida<span class="ico"></span></button><div class="acc-body"><div class="in"><ul>
+          <li>Avisar a <b>governanta</b> da ausência (13 dias).</li>
+          <li>Luz/água/gás, correspondência, plantas, lixo.</li>
+        </ul></div></div></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===== PASSEIOS & VALORES ===== -->
+<section class="pad" id="valores"><div class="wrap">
+  <div class="shead"><h2>Passeios</h2><div class="kick">valores estimados · casal</div></div>
+
+  <div class="ginfo" style="margin-bottom:12px">
+    <div><h4>Termais (escolher)</h4>
+      <ul class="legs" style="max-width:none">
+        <li><span>Blue Lagoon · Comfort</span><span>~R$ 960</span></li>
+        <li><span>Sky Lagoon · Pure</span><span>~R$ 790</span></li>
+        <li><span>Vök Baths · Leste</span><span>~R$ 615</span></li>
+        <li><span>Mývatn / Earth Lagoon · Norte*</span><span>~R$ 630</span></li>
+      </ul>
+    </div>
+    <div><h4>Aventura na geleira</h4>
+      <ul class="legs" style="max-width:none">
+        <li><span>Sólheimajökull · caminhada guiada</span><span>~R$ 1.120</span></li>
+        <li><span>Katla Ice Cave · opcional (caro)</span><span>~R$ 1.900</span></li>
+      </ul>
+      <p style="font-size:13px;color:var(--muted);margin-top:10px">Escolher uma das duas; a geleira guiada já entrega a experiência.</p>
+    </div>
+    <div><h4>De graça — o melhor da ilha</h4><ul>
+      <li>Cachoeiras: Gullfoss, Skógafoss, Seljalandsfoss, Goðafoss</li>
+      <li>Jökulsárlón, Diamond Beach, Reynisfjara, Kirkjufell, Stokksnes</li>
+      <li>Þingvellir, Dimmuborgir, Hverir, fiordes e viewpoints</li>
+    </ul></div>
+  </div>
+  <p class="note">*Mývatn fecha p/ reforma até ~jun–jul/2026 — <b>confirmar reabertura</b> antes de setembro. Termais têm <b>preço dinâmico</b>: confirmar no site oficial. Conjunto sugerido (~R$ 5.000): Blue Lagoon + Sky Lagoon + geleira guiada + 1–2 termais.</p>
+
+  <p class="note">Boa parte das atrações-ícone da Islândia é <b>gratuita</b> (cachoeiras, praias de areia negra, lagunas glaciais, viewpoints). O gasto de passeio concentra-se nos <b>termais</b> e na <b>geleira guiada</b> — e cozinhar na hospedagem segura bem o resto.</p>
+</div></section>
+
+<!-- ===== MAPA ===== -->
+<section class="pad" id="mapa"><div class="wrap">
+  <div class="shead"><h2>A volta no mapa</h2><div class="kick">precisa de internet</div></div>
+  <div id="map"></div>
+  <div class="wlog">
+    <h3>As marcações da Isa</h3>
+    <p>As ~50 paradas que a Isabella já mapeou no Wanderlog. Se não carregar, abra direto: <a href="https://wanderlog.com/view/nucmjvoeca/viagem-para-iceland/shared" target="_blank">abrir no Wanderlog ↗</a></p>
+    <iframe src="https://wanderlog.com/view/nucmjvoeca/viagem-para-iceland/shared" title="Wanderlog — Islândia da Isabella" loading="lazy"></iframe>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="serif">Islândia · 2026</div>
+  Roteiro vivo — muda conforme reservas e clima. Valores e horários são estimativas; confirmar na fonte.<br>
+  Preparado pelo Alfred para Lanza &amp; Isabella.
+</div></footer>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lb" id="lb"><span class="x">&times;</span><img id="lbimg" src="" alt=""><div class="cap" id="lbcap"></div></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  // ativa fotos só se existirem (sem quadro quebrado)
+  ['hero','aurora'].forEach(function(id){
+    var el=document.getElementById(id), img=new Image();
+    img.onload=function(){el.classList.add('has-img')};
+    img.src='imagens/'+(id==='hero'?'hero':'aurora')+'.jpg';
+  });
+
+  // smooth scroll + scrollspy
+  var navlinks=[].slice.call(document.querySelectorAll('nav .links a'));
+  var secs=navlinks.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  function spy(){
+    var y=window.scrollY+90, cur=secs.length-1;
+    for(var i=0;i<secs.length;i++){ if(secs[i] && secs[i].offsetTop>y){ cur=i-1; break; } }
+    if(cur<0)cur=0;
+    navlinks.forEach(function(a,i){a.classList.toggle('active',i===cur)});
+  }
+  window.addEventListener('scroll',spy,{passive:true}); spy();
+
+  // tabs (genérico)
+  document.querySelectorAll('.tabs').forEach(function(box){
+    var btns=box.querySelectorAll('.tabnav button'), panes=box.querySelectorAll('.tabpane');
+    btns.forEach(function(b){ b.addEventListener('click',function(){
+      btns.forEach(function(x){x.classList.remove('active')}); b.classList.add('active');
+      var id=b.getAttribute('data-tab');
+      panes.forEach(function(p){p.classList.toggle('active',p.id===id)});
+    }); });
+  });
+
+  // accordion
+  document.querySelectorAll('.acc-head').forEach(function(h){
+    h.addEventListener('click',function(){
+      var item=h.parentElement, body=h.nextElementSibling, open=item.classList.contains('open');
+      if(open){ body.style.maxHeight=null; item.classList.remove('open'); }
+      else { item.classList.add('open'); body.style.maxHeight=body.scrollHeight+'px'; }
+    });
+  });
+  // abre o 1º accordion
+  var first=document.querySelector('.acc-item.open .acc-body'); if(first){first.style.maxHeight=first.scrollHeight+'px';}
+
+  // lightbox
+  var lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg'), lbcap=document.getElementById('lbcap');
+  document.querySelectorAll('.ph').forEach(function(b){
+    b.addEventListener('click',function(){
+      lbimg.src='imagens/'+b.getAttribute('data-img')+'.jpg';
+      lbcap.textContent=b.getAttribute('data-cap'); lb.classList.add('on');
+    });
+  });
+  lb.addEventListener('click',function(){lb.classList.remove('on');lbimg.src='';});
+
+  // mapa (Leaflet, tiles claros), monta quando entra na tela
+  var POINTS=[
+    [63.8804,-22.4495,'Blue Lagoon'],[64.1466,-21.9426,'Reykjavík'],[64.2559,-21.1295,'Þingvellir'],
+    [64.3271,-20.1199,'Gullfoss'],[64.9416,-23.3074,'Kirkjufell'],[64.7517,-23.9036,'Djúpalónssandur'],
+    [64.7026,-20.9786,'Hraunfossar'],[65.6885,-18.1262,'Akureyri'],[65.6829,-17.5503,'Goðafoss'],
+    [65.6039,-16.9963,'Mývatn'],[65.2627,-14.0083,'Seyðisfjörður'],[65.1453,-15.8480,'Stuðlagil'],
+    [64.2470,-14.9970,'Stokksnes'],[64.0784,-16.2306,'Jökulsárlón'],[64.0166,-16.9666,'Skaftafell'],
+    [63.7715,-18.1716,'Fjaðrárgljúfur'],[63.4034,-19.0448,'Reynisfjara'],[63.5320,-19.5114,'Skógafoss'],
+    [63.6156,-19.9886,'Seljalandsfoss'],[63.9850,-22.6056,'Aeroporto KEF']
+  ];
+  var built=false;
+  function buildMap(){
+    if(built||typeof L==='undefined')return; built=true;
+    var map=L.map('map',{scrollWheelZoom:false}).setView([64.9,-18.7],6);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap, © CARTO',maxZoom:19}).addTo(map);
+    var b=[];
+    POINTS.forEach(function(p){
+      L.circleMarker([p[0],p[1]],{radius:6,color:'#356b5a',fillColor:'#356b5a',fillOpacity:.9,weight:2}).addTo(map)
+        .bindPopup('<b>'+p[2]+'</b><br><a href="https://www.google.com/maps/search/?api=1&query='+p[0]+','+p[1]+'" target="_blank">Google Maps ↗</a>');
+      b.push([p[0],p[1]]);
+    });
+    map.fitBounds(b,{padding:[36,36]});
+    setTimeout(function(){map.invalidateSize()},150);
+  }
+  var mapEl=document.getElementById('map');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){buildMap();o.disconnect();}})}).observe(mapEl);
+  } else { window.addEventListener('load',buildMap); }
+</script>
+</body>
+</html>
