@@ -44,7 +44,7 @@
   nav .links a.active{color:var(--accent);background:rgba(53,107,90,.12);font-weight:600}
 
   /* ---------- HERO ---------- */
-  .hero{position:relative;height:90vh;min-height:560px;display:flex;align-items:flex-end;
+  .hero{position:relative;min-height:560px;min-height:88svh;display:flex;align-items:flex-end;
     background:var(--fallback);background-size:cover;background-position:center;
     background-image:linear-gradient(180deg,rgba(20,18,14,.15) 0%,rgba(20,18,14,0) 28%,rgba(20,18,14,.62) 100%),var(--fallback);}
   .hero.has-img{background-image:linear-gradient(180deg,rgba(20,18,14,.18) 0%,rgba(20,18,14,0) 26%,rgba(20,18,14,.7) 100%),url('imagens/hero.jpg');}
@@ -109,21 +109,25 @@
   .day .tag.bed{color:var(--accent);border-color:rgba(53,107,90,.35)}
   .day .tag.pause{color:var(--accent2);border-color:rgba(180,98,58,.4);font-weight:600}
   .day .sched{list-style:none;margin:8px 0 4px}
-  .day .sched li{display:flex;gap:13px;padding:5px 0;font-size:14.5px;color:var(--muted);align-items:baseline;max-width:70ch;border-bottom:1px dashed rgba(224,216,202,.6)}
+  .day .sched li{position:relative;padding:6px 0 6px 68px;font-size:14.5px;color:var(--muted);max-width:74ch;border-bottom:1px dashed rgba(224,216,202,.6);line-height:1.5}
   .day .sched li:last-child{border-bottom:0}
-  .day .sched li .t{flex:0 0 60px;font-family:"Fraunces",serif;font-weight:600;color:var(--accent);font-size:13.5px}
+  .day .sched li .t{position:absolute;left:0;top:6px;width:58px;font-family:"Fraunces",serif;font-weight:600;color:var(--accent);font-size:13.5px}
   .day .sched li .t.free{color:var(--muted);opacity:.6}
   .day .sched li b{color:var(--ink);font-weight:600}
 
   /* ---------- LUGARES ---------- */
   .reg-block{margin-bottom:42px}
   .reg-block > .rh{font-family:"Inter";font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);font-weight:700;padding-bottom:12px;border-bottom:2px solid var(--accent);margin-bottom:22px;display:inline-flex;align-items:center;gap:10px}
-  .plist{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px 36px}
-  .pl h4{font-family:"Fraunces",serif;font-size:19px;font-weight:500;margin-bottom:4px}
-  .pl p{font-size:13.5px;color:var(--muted);margin-bottom:9px}
-  .pl .lk{display:inline-flex;gap:14px;font-size:12px;flex-wrap:wrap}
-  .pl .lk a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px;transition:.15s;font-weight:500}
-  .pl .lk a:hover{border-color:var(--accent)}
+  .reg-banner{position:relative;height:170px;border-radius:12px;overflow:hidden;background-size:cover;background-position:center;display:flex;align-items:flex-end;margin-bottom:22px;box-shadow:var(--shadow)}
+  .reg-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,14,0) 40%,rgba(20,18,14,.72))}
+  .reg-banner span{position:relative;z-index:1;color:#fff;font-family:"Fraunces",serif;font-size:23px;font-weight:600;padding:18px 22px;letter-spacing:-.01em}
+  .plist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:16px}
+  .pl{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;display:flex;flex-direction:column}
+  .pl h4{font-family:"Fraunces",serif;font-size:19px;font-weight:600;margin-bottom:5px}
+  .pl p{font-size:13.5px;color:var(--muted);margin-bottom:14px;flex:1}
+  .pl .lk{display:flex;gap:8px;flex-wrap:wrap}
+  .pl .lk a{font-size:12px;font-weight:600;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:5px 13px;transition:.15s;background:var(--paper)}
+  .pl .lk a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 
   /* ---------- TABS (genérico) ---------- */
   .tabs .tabnav{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:30px}
@@ -148,12 +152,16 @@
   .stay li .pr{font-size:12px;color:var(--ink);font-weight:600;margin-top:4px}
 
   /* ---------- PRÁTICO (info + accordion) ---------- */
-  .ginfo{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
-  .ginfo h4{font-family:"Fraunces",serif;font-size:19px;font-weight:500;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--accent)}
+  .ginfo{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px;align-items:start}
+  .ginfo > div{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:20px 22px 10px}
+  .ginfo h4{font-family:"Fraunces",serif;font-size:18px;font-weight:600;margin-bottom:4px;padding-bottom:12px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+  .ginfo h4::before{content:"";flex:0 0 4px;height:20px;border-radius:3px;background:var(--accent)}
   .ginfo ul{list-style:none}
-  .ginfo li{font-size:14px;color:var(--muted);padding:7px 0;display:flex;gap:9px}
-  .ginfo li::before{content:"";flex:0 0 6px;height:6px;border-radius:50%;background:var(--accent);margin-top:9px}
+  .ginfo ul:not(.legs) li{font-size:14px;color:var(--muted);padding:11px 0 11px 18px;position:relative;border-bottom:1px dashed var(--line);line-height:1.55}
+  .ginfo ul:not(.legs) li:last-child{border-bottom:0}
+  .ginfo ul:not(.legs) li::before{content:"";position:absolute;left:0;top:19px;width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.7}
   .ginfo li b{color:var(--ink);font-weight:600}
+  .ginfo .legs{max-width:none}
   .legs{list-style:none;max-width:560px}
   .legs li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:15px}
   .legs li span:first-child{font-weight:500}
@@ -200,8 +208,11 @@
     .bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px}
     .b-big{grid-column:span 2;grid-row:span 1}.b-tall{grid-row:span 1}
     .stay{grid-template-columns:1fr;gap:22px}.stay .pic{height:240px}
-    .day{grid-template-columns:58px 1fr;gap:16px}.day .n{font-size:28px}
-    .aurora .wrap{padding:72px 28px}
+    .day{grid-template-columns:52px 1fr;gap:14px}.day .n{font-size:28px}
+    .wrap{padding:0 18px}
+    nav.bar .row{padding:12px 18px}
+    .aurora .wrap{padding:72px 18px}
+    .ginfo,.plist{gap:14px}
   }
 </style>
 </head>
@@ -214,7 +225,6 @@
     <a href="#hero">Início</a>
     <a href="#ritmo">Ritmo</a>
     <a href="#aurora">Aurora</a>
-    <a href="#destaques">Destaques</a>
     <a href="#dias">Dia a dia</a>
     <a href="#lugares">Lugares</a>
     <a href="#dormir">Onde dormir</a>
@@ -231,10 +241,10 @@
     <h1>Islândia</h1>
     <p class="sub">Lanza &amp; Isabella dão a volta na ilha — fiordes, geleiras e as noites mais escuras do ano, à espera da aurora boreal.</p>
     <div class="facts">
-      <div><b>7–21 set</b><span>2026 · lua nova ~10/09</span></div>
+      <div><b>7–22 set</b><span>2026 · lua nova ~10/09</span></div>
       <div><b>1.500 km</b><span>de volta</span></div>
       <div><b>6</b><span>regiões</span></div>
-      <div><b>13</b><span>noites na ilha</span></div>
+      <div><b>12</b><span>noites na ilha</span></div>
     </div>
   </div>
 </header>
@@ -242,7 +252,6 @@
 <!-- ===== RITMO ===== -->
 <section class="pad" id="ritmo"><div class="wrap">
   <div class="lead">
-    <div class="kick">O ritmo da viagem</div>
     <h2>A volta inteira, sem virar maratona.</h2>
     <p>O sonho da Isa é conhecer a ilha toda — então corremos um pouco mais, com uma noite só nos lugares pequenos e remotos. Mas a cada quatro dias há uma <b style="color:var(--ink)">pausa de duas noites</b> numa cidade maior pra recarregar. Geografia agrupada, um carro-chefe por dia, e tempo livre pra perambular.</p>
   </div>
@@ -256,8 +265,7 @@
 
 <!-- ===== AURORA (faixa escura) ===== -->
 <section class="aurora" id="aurora"><div class="wrap"><div class="box">
-  <div class="kick">O objetivo nº 1</div>
-  <h2>Caçando a aurora boreal</h2>
+  <h2>🌌 Caçando a aurora boreal</h2>
   <p>A viagem foi cravada na <b style="color:#fff">lua nova de 10–11 de setembro</b> — o céu mais escuro do mês, justo quando estamos no Norte, Leste e Sudeste, longe das luzes da cidade. É o melhor cenário possível pra ver as luzes dançarem.</p>
   <div class="mini">
     <div><b>10/09</b><span>lua nova · céu escuro</span></div>
@@ -266,72 +274,53 @@
   </div>
 </div></div></section>
 
-<!-- ===== DESTAQUES (bento) ===== -->
-<section class="pad alt" id="destaques"><div class="wrap">
-  <div class="shead"><h2>Os cartões-postais</h2><div class="kick">clique para ampliar</div></div>
-  <div class="bento">
-    <button class="ph b-big" data-img="kirkjufell" data-cap="Kirkjufell"><span class="bgimg" style="background-image:url('imagens/kirkjufell.jpg')"></span><span class="cap"><span class="r">Oeste · Snæfellsnes</span><h4>Kirkjufell</h4></span></button>
-    <button class="ph b-wide" data-img="jokulsarlon" data-cap="Jökulsárlón"><span class="bgimg" style="background-image:url('imagens/jokulsarlon.jpg')"></span><span class="cap"><span class="r">Sudeste</span><h4>Jökulsárlón</h4></span></button>
-    <button class="ph" data-img="diamond-beach" data-cap="Diamond Beach"><span class="bgimg" style="background-image:url('imagens/diamond-beach.jpg')"></span><span class="cap"><span class="r">Sudeste</span><h4>Diamond Beach</h4></span></button>
-    <button class="ph" data-img="godafoss" data-cap="Goðafoss"><span class="bgimg" style="background-image:url('imagens/godafoss.jpg')"></span><span class="cap"><span class="r">Norte</span><h4>Goðafoss</h4></span></button>
-    <button class="ph" data-img="myvatn" data-cap="Mývatn"><span class="bgimg" style="background-image:url('imagens/myvatn.jpg')"></span><span class="cap"><span class="r">Norte</span><h4>Mývatn</h4></span></button>
-    <button class="ph b-wide" data-img="reynisfjara" data-cap="Reynisfjara"><span class="bgimg" style="background-image:url('imagens/reynisfjara.jpg')"></span><span class="cap"><span class="r">Sul · Vík</span><h4>Reynisfjara</h4></span></button>
-    <button class="ph" data-img="stokksnes" data-cap="Stokksnes / Vestrahorn"><span class="bgimg" style="background-image:url('imagens/stokksnes.jpg')"></span><span class="cap"><span class="r">Sudeste</span><h4>Stokksnes</h4></span></button>
-    <button class="ph" data-img="seydisfjordur" data-cap="Seyðisfjörður"><span class="bgimg" style="background-image:url('imagens/seydisfjordur.jpg')"></span><span class="cap"><span class="r">Leste</span><h4>Seyðisfjörður</h4></span></button>
-    <button class="ph" data-img="seljalandsfoss" data-cap="Seljalandsfoss"><span class="bgimg" style="background-image:url('imagens/seljalandsfoss.jpg')"></span><span class="cap"><span class="r">Sul</span><h4>Seljalandsfoss</h4></span></button>
-    <button class="ph" data-img="gullfoss" data-cap="Gullfoss"><span class="bgimg" style="background-image:url('imagens/gullfoss.jpg')"></span><span class="cap"><span class="r">Círculo Dourado</span><h4>Gullfoss</h4></span></button>
-    <button class="ph b-wide" data-img="blue-lagoon" data-cap="Blue Lagoon"><span class="bgimg" style="background-image:url('imagens/blue-lagoon.jpg')"></span><span class="cap"><span class="r">Reykjavík</span><h4>Blue Lagoon</h4></span></button>
-  </div>
-  <p class="note"><b>Atenção em Reynisfjara:</b> as ondas "sneaker" são perigosas — respeite a distância da água.</p>
-</div></section>
-
 <!-- ===== DIA A DIA ===== -->
 <section class="pad" id="dias"><div class="wrap">
-  <div class="shead"><h2>O passo a passo, dia a dia</h2><div class="kick">porta a porta · São Paulo ⇄ São Paulo</div></div>
+  <div class="shead"><h2>🗓️ O passo a passo, dia a dia</h2><div class="kick">porta a porta · São Paulo ⇄ São Paulo</div></div>
   <div class="days">
-    <div class="day"><div class="n">07<small>set · seg</small></div><div><div class="reg">✈️ São Paulo → Paris</div><h3>A viagem começa</h3><ul class="sched"><li><span class="t">19:35</span> <b>Voo GRU → Paris</b> · Air France, direto, noturno (~11h20)</li><li><span class="t">a bordo</span> Jantar e uma boa noite de sono no avião</li></ul><span class="tag">dia 1</span><span class="tag">voo noturno</span></div></div>
-    <div class="day"><div class="n">08<small>set · ter</small></div><div><div class="reg">✈️ Paris → Keflavík · Reykjavík</div><h3>Chegada à Islândia</h3><ul class="sched"><li><span class="t">11:55</span> Pouso em Paris (CDG) · conexão de ~5h</li><li><span class="t">17:15</span> <b>Voo Icelandair a Keflavík</b> · pouso 18:45</li><li><span class="t">chegada</span> Retirada do carro, direto pra Reykjavík</li><li><span class="t">noite</span> ~50 min até a cidade, check-in e descanso</li></ul><span class="tag">dia 2</span><span class="tag bed">dorme · Reykjavík</span><span class="tag">leve</span></div></div>
-    <div class="day"><div class="n">09<small>set · qua</small></div><div><div class="reg">Reykjavík &amp; Blue Lagoon</div><h3>Cidade de manhã, Blue Lagoon à tarde</h3><ul class="sched"><li><span class="t">manhã</span> Café e cidade sem pressa: Hallgrímskirkja, Harpa, Sun Voyager</li><li><span class="t">13h</span> Almoço e a rua <b>Laugavegur</b></li><li><span class="t">15h30</span> <b>Blue Lagoon</b> (~40 min de carro) · banho geotermal + máscara de sílica <em>(reservar horário)</em></li><li><span class="t">noite</span> Volta a Reykjavík</li></ul><span class="tag">dia 3</span><span class="tag pause">pausa</span><span class="tag bed">dorme · Reykjavík</span><span class="tag">leve</span></div></div>
-    <div class="day"><div class="n">10<small>set · qui</small></div><div><div class="reg">Círculo Dourado</div><h3>Þingvellir, Geysir &amp; Gullfoss</h3><ul class="sched"><li><span class="t">09h30</span> <b>Þingvellir</b> (falha tectônica)</li><li><span class="t">11h30</span> Geysir / Strokkur</li><li><span class="t">12h30</span> <b>Gullfoss</b></li><li><span class="t">14h</span> Brúarárfoss</li><li><span class="t">17h</span> <b>Sky Lagoon</b> <em>(opcional)</em> · fim de tarde, volta a Reykjavík</li></ul><span class="tag">dia 4</span><span class="tag pause">pausa</span><span class="tag bed">dorme · Reykjavík</span><span class="tag">médio</span></div></div>
-    <div class="day"><div class="n">11<small>set · sex</small></div><div><div class="reg">Oeste · Snæfellsnes</div><h3>A península mágica</h3><ul class="sched"><li><span class="t">09h</span> Saída · a caminho <b>Hraunfossar</b> e a cratera Grábrók</li><li><span class="t">13h</span> <b>Kirkjufell</b></li><li><span class="t">15h</span> Arnarstapi e Búðir</li><li><span class="t">17h</span> Praia Djúpalónssandur</li><li><span class="t">noite</span> Grundarfjörður · boa pra aurora</li></ul><span class="tag">dia 5</span><span class="tag bed">dorme · Grundarfjörður</span><span class="tag">aurora</span></div></div>
-    <div class="day"><div class="n">12<small>set · sáb</small></div><div><div class="reg">Travessia ao Norte</div><h3>Dia de estrada → Akureyri</h3><ul class="sched"><li><span class="t">estrada</span> <b>Dia de viagem</b> → Akureyri (~4h de direção)</li><li><span class="t">paradas</span> Conforme o pique, sem pressa</li><li><span class="t">tarde</span> Chegada em Akureyri, jantar tranquilo</li></ul><span class="tag">dia 6</span><span class="tag pause">pausa</span><span class="tag bed">dorme · Akureyri</span><span class="tag">aurora</span></div></div>
-    <div class="day"><div class="n">13<small>set · dom</small></div><div><div class="reg">Norte · Mývatn</div><h3>Goðafoss &amp; o lago Mývatn</h3><ul class="sched"><li><span class="t">10h</span> <b>Goðafoss</b> (cachoeira dos deuses)</li><li><span class="t">12h</span> Lago <b>Mývatn</b></li><li><span class="t">14h</span> Fumarolas de Hverir</li><li><span class="t">15h30</span> Dimmuborgir</li><li><span class="t">16h30</span> <b>Mývatn Nature Baths</b> (termal)</li></ul><span class="tag">dia 7</span><span class="tag pause">pausa</span><span class="tag bed">dorme · Akureyri</span><span class="tag">médio</span></div></div>
-    <div class="day"><div class="n">14<small>set · seg</small></div><div><div class="reg">Leste</div><h3>Fiordes &amp; Stuðlagil</h3><ul class="sched"><li><span class="t">09h30</span> Saída · cânion <b>Stuðlagil</b> a caminho</li><li><span class="t">14h</span> <b>Seyðisfjörður</b> (a ruazinha arco-íris)</li><li><span class="t">16h30</span> <b>Vök Baths</b> (termal flutuante)</li><li><span class="t">noite</span> Egilsstaðir</li></ul><span class="tag">dia 8</span><span class="tag bed">dorme · Egilsstaðir</span><span class="tag">aurora</span></div></div>
-    <div class="day"><div class="n">15<small>set · ter</small></div><div><div class="reg">Sudeste · Höfn</div><h3>Fiordes do Leste → Stokksnes</h3><ul class="sched"><li><span class="t">manhã</span> Estrada cênica pelos fiordes (~3h30)</li><li><span class="t">17h</span> <b>Stokksnes / Vestrahorn</b> ao chegar</li><li><span class="t">noite</span> Höfn</li></ul><span class="tag">dia 9</span><span class="tag bed">dorme · Höfn</span><span class="tag">médio</span></div></div>
-    <div class="day"><div class="n">16<small>set · qua</small></div><div><div class="reg">Sudeste</div><h3>Jökulsárlón — o ápice</h3><ul class="sched"><li><span class="t">10h30</span> <b>Jökulsárlón</b> (laguna glacial)</li><li><span class="t">12h</span> <b>Diamond Beach</b></li><li><span class="t">14h30</span> Skaftafell e a cachoeira Svartifoss</li><li><span class="t">noite</span> Volta a Höfn</li></ul><span class="tag">dia 10</span><span class="tag pause">pausa</span><span class="tag bed">dorme · Höfn</span><span class="tag">médio</span></div></div>
-    <div class="day"><div class="n">17<small>set · qui</small></div><div><div class="reg">Sul · Vík</div><h3>Cânion &amp; praia negra</h3><ul class="sched"><li><span class="t">10h</span> Cânion <b>Fjaðrárgljúfur</b> a caminho</li><li><span class="t">14h</span> <b>Reynisfjara</b> (praia negra — cuidado com as ondas)</li><li><span class="t">16h</span> Dyrhólaey</li><li><span class="t">noite</span> Vík</li></ul><span class="tag">dia 11</span><span class="tag bed">dorme · Vík</span><span class="tag">médio</span></div></div>
-    <div class="day"><div class="n">18<small>set · sex</small></div><div><div class="reg">Sul</div><h3>Cachoeiras &amp; geleira</h3><ul class="sched"><li><span class="t">09h30</span> <b>Skógafoss</b></li><li><span class="t">11h</span> <b>Seljalandsfoss</b> (dá pra passar por trás)</li><li><span class="t">13h</span> Geleira <b>Sólheimajökull</b> · caminhada guiada (~3h)</li><li><span class="t">fim dia</span> Katla Ice Cave (opcional)</li></ul><span class="tag">dia 12</span><span class="tag pause">pausa</span><span class="tag bed">dorme · Vík</span><span class="tag">médio</span></div></div>
-    <div class="day"><div class="n">19<small>set · sáb</small></div><div><div class="reg">Volta ao Oeste</div><h3>De volta a Reykjavík</h3><ul class="sched"><li><span class="t">manhã</span> Retorno sem pressa (~2h30), parando nas favoritas</li><li><span class="t">tarde</span> Livre e compras na <b>Laugavegur</b></li></ul><span class="tag">dia 13</span><span class="tag bed">dorme · Reykjavík</span><span class="tag">leve</span></div></div>
-    <div class="day"><div class="n">20<small>set · dom</small></div><div><div class="reg">Reykjavík</div><h3>Último dia livre</h3><ul class="sched"><li><span class="t">manhã</span> Café e museu</li><li><span class="t">tarde</span> Compras finais e arrumar a mala</li><li><span class="t">noite</span> <b>Jantar de despedida</b></li></ul><span class="tag">dia 14</span><span class="tag pause">pausa</span><span class="tag bed">dorme · Reykjavík</span><span class="tag">leve</span></div></div>
-    <div class="day"><div class="n">21<small>set · seg</small></div><div><div class="reg">✈️ Keflavík → Paris</div><h3>Voo de volta</h3><ul class="sched"><li><span class="t">manhã</span> Devolver o carro em Keflavík</li><li><span class="t">10:50</span> <b>Voo Icelandair a Paris</b> · conexão ~7h</li><li><span class="t">23:35</span> <b>Voo Air France a São Paulo</b> (noturno)</li></ul><span class="tag">dia 15</span><span class="tag">voo</span></div></div>
-    <div class="day"><div class="n">22<small>set · ter</small></div><div><div class="reg">✈️ Chegada em casa</div><h3>De volta a São Paulo</h3><ul class="sched"><li><span class="t">06:15</span> Pouso em Guarulhos</li><li><span class="t">fim</span> A volta acabou — com a mala cheia de aurora</li></ul><span class="tag">dia 16</span><span class="tag">casa</span></div></div>
+    <div class="day"><div class="n">07<small>set · seg</small></div><div><div class="reg">✈️ São Paulo → Montreal</div><h3>A viagem começa</h3><ul class="sched"><li><span class="t">21:00</span> <b>Voo GRU → Montreal</b> · Air Canada (787), noturno (~10h)</li><li><span class="t">a bordo</span> Jantar e dormir no avião</li></ul><span class="tag">dia 1</span><span class="tag">voo noturno</span></div></div>
+    <div class="day"><div class="n">08<small>set · ter</small></div><div><div class="reg">✈️ Escala em Montreal → Keflavík</div><h3>Um dia em Montreal, rumo à Islândia</h3><ul class="sched"><li><span class="t">06:10</span> Pouso em <b>Montreal</b> (YUL)</li><li><span class="t">dia</span> <b>Escala de 16h45</b> — dia livre em Montreal <em>(descanso ou passeio · a definir)</em></li><li><span class="t">22:55</span> <b>Voo Montreal → Keflavík</b> · Air Canada, noturno</li></ul><span class="tag">dia 2</span><span class="tag">escala longa</span></div></div>
+    <div class="day"><div class="n">09<small>set · qua</small></div><div><div class="reg">🛬 Chegada em Reykjavík</div><h3>Enfim, a Islândia</h3><ul class="sched"><li><span class="t">07:55</span> Pouso em <b>Keflavík</b> · retirada do carro</li><li><span class="t">manhã</span> ~50 min até Reykjavík · check-in</li><li><span class="t">tarde</span> Dia leve pra desamassar da viagem</li></ul><span class="tag">dia 3</span><span class="tag bed">dorme · Reykjavík</span><span class="tag">leve</span></div></div>
+    <div class="day"><div class="n">10<small>set · qui</small></div><div><div class="reg">♨️ Reykjavík &amp; Blue Lagoon</div><h3>Cidade de manhã, Blue Lagoon à tarde</h3><ul class="sched"><li><span class="t">manhã</span> Cidade sem pressa: Hallgrímskirkja, Harpa, Sun Voyager, Laugavegur</li><li><span class="t">15h30</span> <b>Blue Lagoon</b> (~40 min) · banho geotermal + máscara de sílica <em>(reservar horário)</em></li><li><span class="t">noite</span> Volta a Reykjavík</li></ul><span class="tag">dia 4</span><span class="tag pause">pausa</span><span class="tag bed">dorme · Reykjavík</span><span class="tag">leve</span></div></div>
+    <div class="day"><div class="n">11<small>set · sex</small></div><div><div class="reg">💦 Círculo Dourado</div><h3>Þingvellir, Geysir &amp; Gullfoss</h3><ul class="sched"><li><span class="t">09h30</span> <b>Þingvellir</b> (falha tectônica)</li><li><span class="t">11h30</span> Geysir / Strokkur</li><li><span class="t">12h30</span> <b>Gullfoss</b></li><li><span class="t">14h</span> Brúarárfoss</li><li><span class="t">17h</span> <b>Sky Lagoon</b> <em>(opcional)</em> · volta a Reykjavík</li></ul><span class="tag">dia 5</span><span class="tag pause">pausa</span><span class="tag bed">dorme · Reykjavík</span><span class="tag">médio</span></div></div>
+    <div class="day"><div class="n">12<small>set · sáb</small></div><div><div class="reg">🏔️ Oeste · Snæfellsnes</div><h3>A península mágica</h3><ul class="sched"><li><span class="t">09h</span> Saída · a caminho <b>Hraunfossar</b> e a cratera Grábrók</li><li><span class="t">13h</span> <b>Kirkjufell</b></li><li><span class="t">15h</span> Arnarstapi e Búðir</li><li><span class="t">17h</span> Praia Djúpalónssandur</li><li><span class="t">noite</span> Grundarfjörður · boa pra aurora</li></ul><span class="tag">dia 6</span><span class="tag bed">dorme · Grundarfjörður</span><span class="tag">aurora</span></div></div>
+    <div class="day"><div class="n">13<small>set · dom</small></div><div><div class="reg">🚗 Travessia ao Norte</div><h3>Dia de estrada → Akureyri</h3><ul class="sched"><li><span class="t">estrada</span> <b>Dia de viagem</b> → Akureyri (~4h de direção)</li><li><span class="t">paradas</span> Conforme o pique, sem pressa</li><li><span class="t">tarde</span> Chegada em Akureyri, jantar tranquilo</li></ul><span class="tag">dia 7</span><span class="tag pause">pausa</span><span class="tag bed">dorme · Akureyri</span><span class="tag">aurora</span></div></div>
+    <div class="day"><div class="n">14<small>set · seg</small></div><div><div class="reg">🌋 Norte · Mývatn</div><h3>Goðafoss &amp; o lago Mývatn</h3><ul class="sched"><li><span class="t">10h</span> <b>Goðafoss</b> (cachoeira dos deuses)</li><li><span class="t">12h</span> Lago <b>Mývatn</b></li><li><span class="t">14h</span> Fumarolas de Hverir</li><li><span class="t">15h30</span> Dimmuborgir</li><li><span class="t">16h30</span> <b>Mývatn Nature Baths</b> (termal)</li></ul><span class="tag">dia 8</span><span class="tag pause">pausa</span><span class="tag bed">dorme · Akureyri</span><span class="tag">médio</span></div></div>
+    <div class="day"><div class="n">15<small>set · ter</small></div><div><div class="reg">🏞️ Leste</div><h3>Fiordes &amp; Stuðlagil</h3><ul class="sched"><li><span class="t">09h30</span> Saída · cânion <b>Stuðlagil</b> a caminho</li><li><span class="t">14h</span> <b>Seyðisfjörður</b> (a ruazinha arco-íris)</li><li><span class="t">16h30</span> <b>Vök Baths</b> (termal flutuante)</li><li><span class="t">noite</span> Egilsstaðir</li></ul><span class="tag">dia 9</span><span class="tag bed">dorme · Egilsstaðir</span><span class="tag">aurora</span></div></div>
+    <div class="day"><div class="n">16<small>set · qua</small></div><div><div class="reg">⛰️ Sudeste · Höfn</div><h3>Fiordes do Leste → Stokksnes</h3><ul class="sched"><li><span class="t">manhã</span> Estrada cênica pelos fiordes (~3h30)</li><li><span class="t">17h</span> <b>Stokksnes / Vestrahorn</b> ao chegar</li><li><span class="t">noite</span> Höfn</li></ul><span class="tag">dia 10</span><span class="tag bed">dorme · Höfn</span><span class="tag">médio</span></div></div>
+    <div class="day"><div class="n">17<small>set · qui</small></div><div><div class="reg">🧊 Sudeste</div><h3>Jökulsárlón — o ápice</h3><ul class="sched"><li><span class="t">10h30</span> <b>Jökulsárlón</b> (laguna glacial)</li><li><span class="t">12h</span> <b>Diamond Beach</b></li><li><span class="t">14h30</span> Skaftafell e a cachoeira Svartifoss</li><li><span class="t">noite</span> Volta a Höfn</li></ul><span class="tag">dia 11</span><span class="tag pause">pausa</span><span class="tag bed">dorme · Höfn</span><span class="tag">médio</span></div></div>
+    <div class="day"><div class="n">18<small>set · sex</small></div><div><div class="reg">🌊 Sul · Vík</div><h3>Cânion &amp; praia negra</h3><ul class="sched"><li><span class="t">10h</span> Cânion <b>Fjaðrárgljúfur</b> a caminho</li><li><span class="t">14h</span> <b>Reynisfjara</b> (praia negra — cuidado com as ondas)</li><li><span class="t">16h</span> Dyrhólaey</li><li><span class="t">noite</span> Vík</li></ul><span class="tag">dia 12</span><span class="tag bed">dorme · Vík</span><span class="tag">médio</span></div></div>
+    <div class="day"><div class="n">19<small>set · sáb</small></div><div><div class="reg">❄️ Sul</div><h3>Cachoeiras &amp; geleira</h3><ul class="sched"><li><span class="t">09h30</span> <b>Skógafoss</b></li><li><span class="t">11h</span> <b>Seljalandsfoss</b> (dá pra passar por trás)</li><li><span class="t">13h</span> Geleira <b>Sólheimajökull</b> · caminhada guiada (~3h)</li><li><span class="t">fim dia</span> Katla Ice Cave (opcional)</li></ul><span class="tag">dia 13</span><span class="tag pause">pausa</span><span class="tag bed">dorme · Vík</span><span class="tag">médio</span></div></div>
+    <div class="day"><div class="n">20<small>set · dom</small></div><div><div class="reg">🥂 Volta a Reykjavík</div><h3>Último dia na ilha</h3><ul class="sched"><li><span class="t">manhã</span> Retorno a Reykjavík (~2h30), parando nas favoritas</li><li><span class="t">tarde</span> Compras finais na Laugavegur, arrumar a mala</li><li><span class="t">noite</span> <b>Jantar de despedida</b> · dormir perto de Keflavík</li></ul><span class="tag">dia 14</span><span class="tag bed">dorme · Reykjavík/KEF</span><span class="tag">leve</span></div></div>
+    <div class="day"><div class="n">21<small>set · seg</small></div><div><div class="reg">✈️ Keflavík → Toronto → São Paulo</div><h3>Começa a volta</h3><ul class="sched"><li><span class="t">manhã</span> Devolver o carro em Keflavík</li><li><span class="t">10:00</span> <b>Voo Keflavík → Toronto</b> (chega 12:00)</li><li><span class="t">dia</span> <b>Escala de 10h05</b> em Toronto <em>(a definir)</em></li><li><span class="t">22:05</span> <b>Voo Toronto → São Paulo</b> (noturno)</li></ul><span class="tag">dia 15</span><span class="tag">voo</span></div></div>
+    <div class="day"><div class="n">22<small>set · ter</small></div><div><div class="reg">🏠 Chegada em casa</div><h3>De volta a São Paulo</h3><ul class="sched"><li><span class="t">09:05</span> Pouso em Guarulhos</li><li><span class="t">fim</span> A volta acabou — com a mala cheia de aurora</li></ul><span class="tag">dia 16</span><span class="tag">casa</span></div></div>
   </div>
 </div></section>
 
 <!-- ===== LUGARES ===== -->
 <section class="pad alt" id="lugares"><div class="wrap">
-  <div class="shead"><h2>Cada parada, com link</h2><div class="kick">site oficial · reserva · mapa</div></div>
+  <div class="shead"><h2>📍 Cada parada, com link</h2><div class="kick">site oficial · reserva · mapa</div></div>
 
-  <div class="reg-block"><div class="rh">Reykjavík &amp; Círculo Dourado</div><div class="plist">
+  <div class="reg-block"><div class="reg-banner" style="background-image:url('imagens/gullfoss.jpg')"><span>Reykjavík &amp; Círculo Dourado</span></div><div class="plist">
     <div class="pl"><h4>Blue Lagoon</h4><p>Spa geotermal azul-leitoso ao lado do aeroporto. Entrada por horário.</p><div class="lk"><a href="https://www.bluelagoon.com/" target="_blank">Site</a><a href="https://www.bluelagoon.com/book" target="_blank">Reservar</a><a href="https://www.google.com/maps/search/?api=1&query=63.8804,-22.4495" target="_blank">Mapa</a></div></div>
     <div class="pl"><h4>Sky Lagoon</h4><p>Termal urbano com borda infinita pro mar.</p><div class="lk"><a href="https://www.skylagoon.com/" target="_blank">Site</a><a href="https://www.google.com/maps/search/?api=1&query=64.1175,-21.9744" target="_blank">Mapa</a></div></div>
     <div class="pl"><h4>Þingvellir</h4><p>Parque na falha tectônica — 1ª parada do Círculo Dourado.</p><div class="lk"><a href="https://www.thingvellir.is/" target="_blank">Site</a><a href="https://www.google.com/maps/search/?api=1&query=64.2559,-21.1295" target="_blank">Mapa</a></div></div>
     <div class="pl"><h4>Geysir, Gullfoss &amp; Brúarárfoss</h4><p>O gêiser Strokkur, a poderosa Gullfoss e a cachoeira azul.</p><div class="lk"><a href="https://geysircenter.is/" target="_blank">Geysir</a><a href="https://www.google.com/maps/search/?api=1&query=64.3271,-20.1199" target="_blank">Gullfoss</a></div></div>
   </div></div>
 
-  <div class="reg-block"><div class="rh">Oeste · Snæfellsnes</div><div class="plist">
+  <div class="reg-block"><div class="reg-banner" style="background-image:url('imagens/kirkjufell.jpg')"><span>Oeste · Snæfellsnes</span></div><div class="plist">
     <div class="pl"><h4>Kirkjufell</h4><p>A montanha mais fotografada da ilha, com a cachoeira ao lado.</p><div class="lk"><a href="https://www.west.is/" target="_blank">Região</a><a href="https://www.google.com/maps/search/?api=1&query=64.9416,-23.3074" target="_blank">Mapa</a></div></div>
     <div class="pl"><h4>Arnarstapi, Búðir &amp; Djúpalónssandur</h4><p>Vilarejo de pescadores, a igrejinha preta e a praia de seixos negros.</p><div class="lk"><a href="https://www.google.com/maps/search/?api=1&query=64.7697,-23.6259" target="_blank">Mapa</a></div></div>
     <div class="pl"><h4>Hraunfossar &amp; Grábrók</h4><p>Cachoeiras que brotam da lava e uma cratera fácil de subir.</p><div class="lk"><a href="https://www.google.com/maps/search/?api=1&query=64.7026,-20.9786" target="_blank">Mapa</a></div></div>
   </div></div>
 
-  <div class="reg-block"><div class="rh">Norte · Akureyri &amp; Mývatn</div><div class="plist">
+  <div class="reg-block"><div class="reg-banner" style="background-image:url('imagens/godafoss.jpg')"><span>Norte · Akureyri &amp; Mývatn</span></div><div class="plist">
     <div class="pl"><h4>Akureyri</h4><p>A "capital do norte" — base para o lago Mývatn.</p><div class="lk"><a href="https://www.visitakureyri.is/en" target="_blank">Site</a><a href="https://www.google.com/maps/search/?api=1&query=65.6885,-18.1262" target="_blank">Mapa</a></div></div>
     <div class="pl"><h4>Goðafoss</h4><p>A "cachoeira dos deuses", larga e curva.</p><div class="lk"><a href="https://www.google.com/maps/search/?api=1&query=65.6829,-17.5503" target="_blank">Mapa</a></div></div>
     <div class="pl"><h4>Mývatn · Hverir · Dimmuborgir</h4><p>Lago vulcânico, fumarolas e formações de lava.</p><div class="lk"><a href="https://www.google.com/maps/search/?api=1&query=65.6039,-16.9963" target="_blank">Mapa</a></div></div>
   </div></div>
 
-  <div class="reg-block"><div class="rh">Leste &amp; Sudeste</div><div class="plist">
+  <div class="reg-block"><div class="reg-banner" style="background-image:url('imagens/jokulsarlon.jpg')"><span>Leste &amp; Sudeste</span></div><div class="plist">
     <div class="pl"><h4>Seyðisfjörður</h4><p>Vila de fiorde com a ruazinha arco-íris e a igreja azul.</p><div class="lk"><a href="https://www.east.is/en" target="_blank">Site</a><a href="https://www.google.com/maps/search/?api=1&query=65.2627,-14.0083" target="_blank">Mapa</a></div></div>
     <div class="pl"><h4>Stuðlagil &amp; Vök Baths</h4><p>Cânion de colunas de basalto e termal flutuante.</p><div class="lk"><a href="https://www.vokbaths.is/" target="_blank">Vök</a><a href="https://www.google.com/maps/search/?api=1&query=65.1453,-15.8480" target="_blank">Mapa</a></div></div>
     <div class="pl"><h4>Stokksnes / Vestrahorn</h4><p>A montanha espelhada na areia preta — dos visuais mais dramáticos.</p><div class="lk"><a href="https://www.google.com/maps/search/?api=1&query=64.2470,-14.9970" target="_blank">Mapa</a></div></div>
@@ -339,7 +328,7 @@
     <div class="pl"><h4>Skaftafell &amp; Svartifoss</h4><p>Reserva no Vatnajökull e a cachoeira de colunas hexagonais.</p><div class="lk"><a href="https://www.vatnajokulsthjodgardur.is/en" target="_blank">Parque</a><a href="https://www.google.com/maps/search/?api=1&query=64.0166,-16.9666" target="_blank">Mapa</a></div></div>
   </div></div>
 
-  <div class="reg-block"><div class="rh">Sul · Vík</div><div class="plist">
+  <div class="reg-block"><div class="reg-banner" style="background-image:url('imagens/reynisfjara.jpg')"><span>Sul · Vík</span></div><div class="plist">
     <div class="pl"><h4>Reynisfjara &amp; Dyrhólaey</h4><p>Praia negra de basalto e o promontório. Atenção às ondas sneaker.</p><div class="lk"><a href="https://safetravel.is/" target="_blank">Segurança</a><a href="https://www.google.com/maps/search/?api=1&query=63.4034,-19.0448" target="_blank">Mapa</a></div></div>
     <div class="pl"><h4>Skógafoss &amp; Seljalandsfoss</h4><p>Duas cachoeiras-cartão-postal; numa dá pra caminhar por trás.</p><div class="lk"><a href="https://www.google.com/maps/search/?api=1&query=63.5320,-19.5114" target="_blank">Skógafoss</a><a href="https://www.google.com/maps/search/?api=1&query=63.6156,-19.9886" target="_blank">Seljalandsfoss</a></div></div>
     <div class="pl"><h4>Sólheimajökull &amp; Katla Ice Cave</h4><p>Caminhada guiada na geleira ou a caverna de gelo, o ano todo.</p><div class="lk"><a href="https://www.guidetoiceland.is/book-trips-holiday/glacier-hiking" target="_blank">Passeio</a><a href="https://www.google.com/maps/search/?api=1&query=63.5300,-19.3686" target="_blank">Mapa</a></div></div>
@@ -348,7 +337,7 @@
 
 <!-- ===== ONDE DORMIR (tabs) ===== -->
 <section class="pad" id="dormir"><div class="wrap">
-  <div class="shead"><h2>Onde dormir</h2><div class="kick">6 bases · guesthouse com cozinha</div></div>
+  <div class="shead"><h2>🛏️ Onde dormir</h2><div class="kick">6 bases · guesthouse com cozinha</div></div>
   <div class="tabs" id="stayTabs">
     <div class="tabnav">
       <button class="active" data-tab="s-rek">Reykjavík</button>
@@ -417,7 +406,7 @@
 
 <!-- ===== PRÁTICO (tabs + accordion) ===== -->
 <section class="pad alt" id="pratico"><div class="wrap">
-  <div class="shead"><h2>O lado prático</h2><div class="kick">voo · carro · seguro · mala</div></div>
+  <div class="shead"><h2>🧳 O lado prático</h2><div class="kick">voo · carro · seguro · mala</div></div>
   <div class="tabs" id="practTabs">
     <div class="tabnav">
       <button class="active" data-tab="p-voo">Voo</button>
@@ -428,21 +417,20 @@
 
     <div class="tabpane active" id="p-voo">
       <div class="ginfo">
-        <div><h4>O plano</h4><ul>
-          <li><b>Air France + Icelandair</b> via Paris (CDG), <b>bilhete único</b>.</li>
-          <li>Ida <b>07/09</b> 19:35 GRU→Paris (noturno) + 5h20 → KEF 18:45.</li>
-          <li>Volta <b>21/09</b> KEF 10:50 → Paris → GRU 06:15 (22/09).</li>
-          <li>Estimativa <b>~R$ 18 mil</b> o casal, com bagagem despachada.</li>
+        <div><h4>✅ Comprado — Air Canada via Canadá</h4><ul>
+          <li><b>Ida 07/09:</b> GRU 21:00 → Montreal 06:10 → <b>Keflavík 07:55</b> (09/09).</li>
+          <li><b>Volta 21/09:</b> KEF 10:00 → Toronto → <b>GRU 09:05</b> (22/09).</li>
+          <li>2 adultos, econômica, <b>com bagagem despachada</b> (tarifa Padrão).</li>
         </ul></div>
-        <div><h4>Por que essa</h4><ul>
-          <li><b>1 conexão só</b> (≤8h), <b>sem passar pelos EUA</b>.</li>
-          <li>Bilhete único = <b>mala protegida</b> na conexão, sem self-connect.</li>
-          <li>Comprar <b>direto no site da cia</b> (remarcação mais fácil).</li>
+        <div><h4>As escalas no Canadá</h4><ul>
+          <li>Ida: Montreal <b>16h45</b> · Volta: Toronto <b>10h05</b> — as duas de dia.</li>
+          <li>eTA canadense dos dois <b>válido</b> → dá pra sair do aeroporto.</li>
+          <li>O que fazer nas escalas: <em>a definir</em>.</li>
         </ul></div>
-        <div><h4>Bom saber</h4><ul>
-          <li>Datas na <b>lua nova (~10/09)</b> pra aurora.</li>
+        <div><h4>Antes de viajar</h4><ul>
+          <li>Adicionar o <b>nº do passaporte</b> na reserva (saiu com CPF).</li>
+          <li><b>Seguro viagem</b> (cartão + apólice avulsa de reforço).</li>
           <li>Levar <b>PID</b> (Detran) além da CNH pra dirigir.</li>
-          <li>Reservar carro e hospedagem cedo — setembro é disputado.</li>
         </ul></div>
       </div>
     </div>
@@ -518,7 +506,7 @@
 
 <!-- ===== PASSEIOS & VALORES ===== -->
 <section class="pad" id="valores"><div class="wrap">
-  <div class="shead"><h2>Passeios &amp; custos</h2><div class="kick">valores estimados · casal</div></div>
+  <div class="shead"><h2>🎟️ Passeios &amp; custos</h2><div class="kick">valores estimados · casal</div></div>
 
   <div class="ginfo" style="margin-bottom:12px">
     <div><h4>Termais (escolher)</h4>
@@ -544,19 +532,19 @@
   </div>
   <p class="note">*Mývatn fecha p/ reforma até ~jun–jul/2026 — <b>confirmar reabertura</b> antes de setembro. Termais têm <b>preço dinâmico</b>: confirmar no site oficial. Conjunto sugerido (~R$ 5.000): Blue Lagoon + Sky Lagoon + geleira guiada + 1–2 termais.</p>
 
-  <div class="shead" style="margin:56px 0 26px"><h2 style="font-size:clamp(24px,4vw,34px)">Estimativa de custos</h2><div class="kick">pesquisa de mercado · casal · 13 noites</div></div>
+  <div class="shead" style="margin:56px 0 26px"><h2 style="font-size:clamp(24px,4vw,34px)">Custos da viagem</h2><div class="kick">casal · 12 noites · voo real, resto estimado</div></div>
   <ul class="legs" style="max-width:640px">
-    <li><span>Passagens aéreas (ida e volta)</span><span>~R$ 18.000</span></li>
-    <li><span>Hospedagem · ~13 noites</span><span>~R$ 12.000</span></li>
-    <li><span>Carro + combustível · ~14 dias</span><span>~R$ 8.000</span></li>
+    <li><span>Passagens · Air Canada ✅ comprado</span><span>R$ 12.667</span></li>
+    <li><span>Hospedagem · ~12 noites</span><span>~R$ 12.000</span></li>
+    <li><span>Carro + combustível · ~13 dias</span><span>~R$ 8.000</span></li>
     <li><span>Alimentação</span><span>~R$ 5.500</span></li>
     <li><span>Passeios &amp; termais</span><span>~R$ 5.000</span></li>
     <li><span>Seguro viagem + câmbio/extras</span><span>~R$ 3.000</span></li>
-    <li style="border-top:2px solid var(--accent);font-weight:700"><span>Total estimado (casal)</span><span>~R$ 51 mil</span></li>
+    <li style="border-top:2px solid var(--accent);font-weight:700"><span>Total (casal)</span><span>~R$ 46 mil</span></li>
   </ul>
   <div class="rhythm" style="margin-top:38px">
-    <div><b>~R$ 25,5k</b><p>por pessoa, viagem completa</p></div>
-    <div><b>~R$ 3,7k</b><p>por dia (casal), tudo incluso</p></div>
+    <div><b>~R$ 23k</b><p>por pessoa, viagem completa</p></div>
+    <div><b>~R$ 3,3k</b><p>por dia (casal), tudo incluso</p></div>
     <div><b>grátis</b><p>a maioria das paisagens-ícone</p></div>
     <div><b>~-30%</b><p>possível cozinhando + termal barato</p></div>
   </div>
@@ -565,7 +553,7 @@
 
 <!-- ===== MAPA ===== -->
 <section class="pad" id="mapa"><div class="wrap">
-  <div class="shead"><h2>A volta no mapa</h2><div class="kick">precisa de internet</div></div>
+  <div class="shead"><h2>🗺️ A volta no mapa</h2><div class="kick">precisa de internet</div></div>
   <div id="map"></div>
   <div class="wlog">
     <h3>As marcações da Isa</h3>
