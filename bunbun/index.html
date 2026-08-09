@@ -19,7 +19,6 @@
     font-weight: 400;
     font-display: swap;
   }
-
   :root {
     --ink: #241C33;
     --ink-soft: #5B5470;
@@ -82,6 +81,12 @@
     --shadow-md: 0 4px 16px -4px rgba(0,0,0,0.5), 0 12px 40px -8px rgba(0,0,0,0.55);
   }
 
+  :root { --cool: #2461A8; --cool-tint: #E7F1FB; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --cool: #7EC8E3; --cool-tint: #172A38; }
+  }
+  :root[data-theme="dark"] { --cool: #7EC8E3; --cool-tint: #172A38; }
+
   * { box-sizing: border-box; }
   html { color-scheme: light dark; scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -98,7 +103,6 @@
   img, svg { display: block; max-width: 100%; }
   .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
   h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: 0.01em; text-wrap: balance; margin: 0; }
-
   /* ---------- nav ---------- */
   header.nav {
     position: sticky; top: 0; z-index: 50;
@@ -133,6 +137,28 @@
     .nav-toggle { display: inline-flex; }
   }
 
+  /* ---------- tabs ---------- */
+  nav.links a { cursor: pointer; padding: 6px 2px; border-bottom: 2px solid transparent; }
+  nav.links a.active { color: var(--ink); border-bottom-color: var(--accent); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .mobile-tab-select-wrap { display: none; padding: 14px 0; border-bottom: 1px solid var(--border); background: var(--paper); }
+  .mobile-tab-select {
+    width: 100%; font-family: var(--font-body); font-size: 15px; font-weight: 700; color: var(--ink);
+    background: var(--surface); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 14px;
+    -webkit-appearance: none; appearance: none;
+  }
+  @media (max-width: 860px) {
+    .mobile-tab-select-wrap { display: block; }
+  }
+  .panel-hero {
+    padding: 48px 0 8px;
+  }
+  .panel-hero .eyebrow { margin-bottom: 16px; }
+  h1.panel-title { font-size: clamp(30px, 4.4vw, 46px); line-height: 1.06; margin-bottom: 14px; }
+  p.panel-lede { font-size: 16.5px; color: var(--ink-soft); max-width: 62ch; margin: 0; line-height: 1.6; }
+
+
   /* ---------- hero ---------- */
   .hero { padding: 56px 0 72px; overflow: hidden; }
   .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
@@ -149,13 +175,13 @@
   .btn-primary {
     background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: 15.5px;
     padding: 14px 26px; border-radius: 999px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-    box-shadow: var(--shadow-sm); transition: transform .15s ease, box-shadow .15s ease;
+    box-shadow: var(--shadow-sm); transition: transform .15s ease, box-shadow .15s ease; border: none; cursor: pointer;
   }
   .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
   .btn-secondary {
     background: transparent; color: var(--ink); font-weight: 700; font-size: 15.5px;
     padding: 14px 26px; border-radius: 999px; text-decoration: none; border: 1.5px solid var(--border);
-    transition: border-color .15s ease, background .15s ease;
+    transition: border-color .15s ease, background .15s ease; cursor: pointer; font-family: var(--font-body);
   }
   .btn-secondary:hover { border-color: var(--accent); background: var(--accent-tint); }
 
@@ -174,7 +200,7 @@
   .potion-dot:hover { transform: scale(1.18); z-index: 5; }
 
   /* ---------- sections ---------- */
-  section { padding: 88px 0; }
+  section { padding: 64px 0; }
   section.tinted { background: var(--surface-2); }
   .section-head { max-width: 640px; margin: 0 0 40px; }
   .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
@@ -202,6 +228,8 @@
   .lore-card h3 { font-family: var(--font-body); font-size: 16px; font-weight: 700; margin: 0 0 8px; }
   .lore-card p { margin: 0; color: var(--ink-soft); font-size: 15px; line-height: 1.6; }
   .lore-card + .lore-card { margin-top: 16px; }
+  .lore-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 700px) { .lore-grid-2 { grid-template-columns: 1fr; } }
 
   /* coelhos grid */
   .coelho-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
@@ -238,31 +266,6 @@
   .dice-table td:first-child { font-family: var(--font-mono); font-weight: 700; color: var(--accent); width: 90px; }
   .dice-table td:last-child { color: var(--ink-soft); }
 
-  /* estética & cores */
-  .principle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  @media (max-width: 860px) { .principle-grid { grid-template-columns: 1fr; } }
-  .principle-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 24px; box-shadow: var(--shadow-sm);
-  }
-  .principle-num {
-    display: block; font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--accent); margin-bottom: 12px;
-  }
-  .principle-card h3 { font-family: var(--font-body); font-size: 16.5px; font-weight: 700; margin: 0 0 8px; }
-  .principle-card p { margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.6; }
-
-  .palette-strip { display: flex; flex-wrap: wrap; gap: 10px; }
-  .palette-chip {
-    display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border);
-    border-radius: 999px; padding: 6px 14px 6px 6px;
-  }
-  .palette-chip .dot {
-    width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
-    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.35), 0 1px 3px rgba(0,0,0,0.15);
-  }
-  .palette-chip span { font-size: 12.5px; font-weight: 600; color: var(--ink-soft); }
-
   /* changelog */
   .changelog { display: flex; flex-direction: column; gap: 0; }
   .change-item { display: grid; grid-template-columns: 110px 1fr; gap: 20px; padding: 18px 0; border-top: 1px solid var(--border); }
@@ -285,11 +288,124 @@
   .foot-inner p { margin: 0; font-size: 13.5px; color: var(--ink-faint); }
   .foot-brand { font-family: var(--font-display); font-size: 17px; color: var(--ink-soft); }
 
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s cubic-bezier(.16,1,.3,1), transform .5s cubic-bezier(.16,1,.3,1); }
   .reveal.in { opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce) {
-    .reveal, .coelho-card { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .reveal, .coelho-card, .persona-card { opacity: 1 !important; transform: none !important; transition: none !important; }
   }
+
+
+  /* bíblia dos personagens */
+  .honesty-note {
+    font-size: 13.5px; color: var(--ink-faint); background: var(--accent-tint); border-radius: 12px;
+    padding: 14px 18px; max-width: 74ch; line-height: 1.6; margin: 0 0 32px;
+  }
+  .persona-deck-grid { display: flex; flex-direction: column; gap: 24px; }
+  .persona-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    box-shadow: var(--shadow-sm); overflow: hidden;
+    opacity: 0; transform: translateY(14px); transition: opacity .4s ease, transform .4s ease;
+  }
+  .persona-card.in { opacity: 1; transform: translateY(0); }
+  .persona-card-head { display: flex; align-items: center; gap: 16px; padding: 22px 26px; border-bottom: 1px solid var(--border); }
+  .persona-card-swatches { display: flex; gap: 6px; flex-shrink: 0; }
+  .persona-card-swatches i {
+    display: block; width: 32px; height: 32px; border-radius: 50%; font-style: normal;
+    box-shadow: inset 0 0 0 3px rgba(255,255,255,0.35), 0 2px 6px rgba(0,0,0,0.18);
+  }
+  .persona-card-id { flex: 1; min-width: 0; }
+  .persona-card-id h3 { font-family: var(--font-body); font-size: 19px; font-weight: 800; margin: 0 0 3px; }
+  .persona-card-tags { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .tag-pill { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); background: var(--surface-2); border-radius: 999px; padding: 3px 9px; }
+  .persona-card-num { font-family: var(--font-mono); font-size: 12.5px; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+  .persona-card-body { padding: 22px 26px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 30px; }
+  @media (max-width: 760px) { .persona-card-body { grid-template-columns: 1fr; } }
+  .persona-field b { display: block; font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); margin-bottom: 5px; }
+  .persona-field p { margin: 0; font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
+  .persona-prompt-wrap { padding: 0 26px 24px; }
+  .persona-prompt-label { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+  .persona-prompt-label b { font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); }
+  .copy-btn {
+    display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-body); font-size: 12px;
+    font-weight: 700; color: var(--accent); background: var(--accent-tint); border: none; border-radius: 999px;
+    padding: 5px 13px; cursor: pointer; transition: background .15s ease, transform .1s ease;
+  }
+  .copy-btn:hover { background: var(--accent-soft); }
+  .copy-btn:active { transform: scale(0.96); }
+  .copy-btn svg { width: 12px; height: 12px; }
+  .copy-btn.copied { color: var(--sage); background: var(--sage-tint); }
+  .persona-prompt {
+    margin: 0; font-family: var(--font-mono); font-size: 12px; line-height: 1.6; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px;
+    white-space: pre-wrap; word-break: break-word;
+  }
+
+
+  /* estética & cores (versão completa) */
+  .group-label {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-faint); margin: 32px 0 12px;
+  }
+  .group-label:first-child { margin-top: 0; }
+  .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+  .swatch { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-sm); }
+  .swatch .chip { height: 72px; width: 100%; }
+  .swatch .info { padding: 11px 13px 13px; }
+  .swatch .name { font-size: 13px; font-weight: 700; margin: 0 0 3px; }
+  .swatch .hex { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums; margin: 0 0 6px; text-transform: uppercase; }
+  .swatch .note { font-size: 11.5px; color: var(--ink-faint); margin: 0; line-height: 1.45; }
+
+  .analysis-item { padding: 20px 0; border-top: 1px solid var(--border); display: grid; grid-template-columns: 150px 1fr; gap: 22px; }
+  .analysis-item:first-child { border-top: none; padding-top: 0; }
+  @media (max-width: 640px) { .analysis-item { grid-template-columns: 1fr; gap: 6px; } }
+  .analysis-item h4 { font-family: var(--font-body); font-size: 15px; font-weight: 700; margin: 0; color: var(--ink); }
+  .analysis-item p { margin: 0; color: var(--ink-soft); font-size: 14.5px; line-height: 1.6; max-width: 62ch; }
+  .analysis-item p + p { margin-top: 8px; }
+
+  .split-tag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 4px; }
+  .tag-warm { color: var(--accent); background: var(--accent-tint); }
+  .tag-cool { color: var(--cool); background: var(--cool-tint); }
+
+  .callout { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 28px; box-shadow: var(--shadow-sm); }
+  .callout h4 { font-family: var(--font-body); font-size: 16.5px; font-weight: 700; margin: 0 0 10px; }
+  .callout p { color: var(--ink-soft); margin: 0 0 12px; max-width: 68ch; font-size: 14.5px; line-height: 1.6; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  .option-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  @media (max-width: 640px) { .option-pair { grid-template-columns: 1fr; } }
+  .option-card { background: var(--surface-2); border-radius: 10px; padding: 15px 17px; }
+  .option-card .label { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin-bottom: 6px; }
+  .option-card p { margin: 0; font-size: 13px; color: var(--ink); }
+
+  .style-diagram { display: grid; grid-template-columns: 220px 1fr; gap: 30px; align-items: center; margin-top: 8px; }
+  @media (max-width: 640px) { .style-diagram { grid-template-columns: 1fr; } }
+  .style-diagram svg { width: 100%; max-width: 220px; height: auto; display: block; margin: 0 auto; }
+  .style-legend { display: flex; flex-direction: column; gap: 13px; }
+  .style-legend-item { display: flex; gap: 12px; align-items: flex-start; }
+  .style-key { width: 15px; height: 15px; border-radius: 4px; flex: none; margin-top: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12); }
+  .style-legend-item h4 { font-family: var(--font-body); font-size: 13.5px; font-weight: 700; margin: 0 0 3px; }
+  .style-legend-item p { margin: 0; font-size: 13px; color: var(--ink-soft); }
+
+  .term-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .term-chip { font-family: var(--font-mono); font-size: 11.5px; padding: 5px 11px; border-radius: 999px; background: var(--surface-2); color: var(--ink-soft); border: 1px solid var(--border); }
+
+  .est-block { padding: 40px 0; border-top: 1px solid var(--border); }
+  .est-block:first-of-type { border-top: none; padding-top: 0; }
+  .est-block h3.est-h { font-size: clamp(21px, 2.4vw, 26px); margin: 0 0 6px; font-family: var(--font-display); font-weight: 400; }
+  .est-block p.est-lede { color: var(--ink-soft); font-size: 15.5px; max-width: 68ch; margin: 0 0 24px; line-height: 1.6; }
+  .est-sub { font-family: var(--font-body); font-size: 15.5px; font-weight: 700; margin: 30px 0 10px; color: var(--ink); }
+  .est-decided { font-size: 10.5px; }
+  .palette-strip { display: flex; flex-wrap: wrap; gap: 10px; }
+  .palette-chip {
+    display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 999px; padding: 6px 14px 6px 6px;
+  }
+  .palette-chip .dot {
+    width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.35), 0 1px 3px rgba(0,0,0,0.15);
+  }
+  .palette-chip span { font-size: 12.5px; font-weight: 600; color: var(--ink-soft); }
+
 </style>
 </head>
 <body>
@@ -308,25 +424,39 @@
 
 <header class="nav">
   <div class="nav-inner">
-    <a href="#top" class="brand logo-mark" aria-label="BunBun, início da página">
+    <a href="#jogo" class="brand logo-mark" data-tab="jogo" aria-label="BunBun, início da página">
       <svg viewBox="0 0 120.99 142.97"><use href="#bunbunLogo"></use></svg>
     </a>
-    <nav class="links">
-      <a href="#sobre">O jogo</a>
-      <a href="#coelhos">Coelhos</a>
-      <a href="personagens.html">Personagens</a>
-      <a href="#como-jogar">Como jogar</a>
-      <a href="#cartas">Cartas</a>
-      <a href="#estetica">Estética</a>
-      <a href="#prd">Produto</a>
-      <a href="#diario">Diário</a>
+    <nav class="links" id="navLinks">
+      <a href="#jogo" data-tab="jogo">O jogo</a>
+      <a href="#coelhos" data-tab="coelhos">Coelhos</a>
+      <a href="#personagens" data-tab="personagens">Personagens</a>
+      <a href="#como-jogar" data-tab="como-jogar">Como jogar</a>
+      <a href="#cartas" data-tab="cartas">Cartas</a>
+      <a href="#estetica" data-tab="estetica">Estética</a>
+      <a href="#produto" data-tab="produto">Produto</a>
+      <a href="#diario" data-tab="diario">Diário</a>
     </nav>
-    <a href="#como-jogar" class="nav-cta">Como jogar</a>
+    <a href="#como-jogar" class="nav-cta" data-tab="como-jogar">Como jogar</a>
+  </div>
+  <div class="mobile-tab-select-wrap">
+    <div class="wrap">
+      <select class="mobile-tab-select" id="mobileTabSelect" aria-label="Escolher seção">
+        <option value="jogo">O jogo</option>
+        <option value="coelhos">Coelhos</option>
+        <option value="personagens">Personagens</option>
+        <option value="como-jogar">Como jogar</option>
+        <option value="cartas">Cartas</option>
+        <option value="estetica">Estética</option>
+        <option value="produto">Produto</option>
+        <option value="diario">Diário</option>
+      </select>
+    </div>
   </div>
 </header>
+<main id="panels">
 
-<main id="top">
-
+<div class="tab-panel" data-panel="jogo" id="panel-jogo">
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
@@ -335,8 +465,8 @@
         <h1 class="headline">Complete sua poção antes dos outros coelhos.</h1>
         <p class="subtext">BunBun é um jogo de cartas sobre alquimia, ingredientes e uma turma de coelhos competindo numa aula de poções.</p>
         <div class="cta-row">
-          <a href="#como-jogar" class="btn-primary">Como jogar</a>
-          <a href="#coelhos" class="btn-secondary">Conhecer os coelhos</a>
+          <button type="button" class="btn-primary" data-tab-go="como-jogar">Como jogar</button>
+          <button type="button" class="btn-secondary" data-tab-go="coelhos">Conhecer os coelhos</button>
         </div>
       </div>
       <div class="potion-wheel" id="potionWheel">
@@ -345,7 +475,7 @@
     </div>
   </section>
 
-  <section id="sobre">
+  <section>
     <div class="wrap">
       <div class="section-head">
         <h2 class="section-title">O jogo, em três passos</h2>
@@ -368,7 +498,7 @@
     </div>
   </section>
 
-  <section id="lore" class="tinted">
+  <section class="tinted">
     <div class="wrap lore-grid">
       <div class="reveal">
         <blockquote class="lore">Os coelhos são os alquimistas, numa aula de poções.</blockquote>
@@ -386,25 +516,50 @@
       </div>
     </div>
   </section>
+</div>
 
-  <section id="coelhos">
+<div class="tab-panel" data-panel="coelhos" id="panel-coelhos">
+  <section class="panel-hero">
     <div class="wrap">
-      <div class="section-head center">
-        <h2 class="section-title">Os alunos da turma</h2>
-        <p class="section-lede">Doze coelhos, doze poções, doze jeitos diferentes de tentar vencer a aula.</p>
-      </div>
-      <div class="coelho-grid" id="coelhoGrid"></div>
-      <p style="text-align:center; margin-top: 28px;"><a href="personagens.html" class="btn-secondary">Ver a bíblia completa dos personagens →</a></p>
+      <span class="eyebrow">O elenco</span>
+      <h1 class="panel-title">Os alunos da turma.</h1>
+      <p class="panel-lede">Doze coelhos, doze poções, doze jeitos diferentes de tentar vencer a aula.</p>
     </div>
   </section>
-
-  <section id="como-jogar" class="tinted">
+  <section>
     <div class="wrap">
-      <div class="section-head">
-        <h2 class="section-title">Como jogar</h2>
-        <p class="section-lede">Objetivo: monte a receita da sua poção e ative todas as runas antes dos outros. Regra em evolução constante, ajustada a cada rodada de playtest.</p>
-      </div>
+      <div class="coelho-grid reveal" id="coelhoGrid"></div>
+      <p style="text-align:center; margin-top: 28px;"><button type="button" class="btn-secondary" data-tab-go="personagens">Ver a bíblia completa dos personagens →</button></p>
+    </div>
+  </section>
+</div>
 
+<div class="tab-panel" data-panel="personagens" id="panel-personagens">
+  <section class="panel-hero">
+    <div class="wrap">
+      <span class="eyebrow">Bíblia dos personagens</span>
+      <h1 class="panel-title">Os 12 alunos da turma, em detalhe.</h1>
+      <p class="panel-lede">Aparência, roupas, personalidade e o cenário de cada carta — e, pra cada um, um prompt de geração de imagem já pronto pra copiar e testar num gerador de IA.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <p class="honesty-note">Cor de pelagem, idade e tipo de corpo são propostas em cima do material original, ainda não fechadas. O resto (cor da cena, papel na turma, personalidade) vem desde o começo do projeto. Os prompts são um primeiro rascunho pra testar se a direção visual funciona — não o texto final de produção. Escritos em inglês, por ser a língua que os geradores de imagem entendem melhor hoje.</p>
+      <div class="persona-deck-grid reveal" id="personaDeck"></div>
+    </div>
+  </section>
+</div>
+
+<div class="tab-panel" data-panel="como-jogar" id="panel-como-jogar">
+  <section class="panel-hero">
+    <div class="wrap">
+      <span class="eyebrow">Regras</span>
+      <h1 class="panel-title">Como jogar.</h1>
+      <p class="panel-lede">Objetivo: monte a receita da sua poção e ative todas as runas antes dos outros. Regra em evolução constante, ajustada a cada rodada de playtest.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
       <div class="steps reveal">
         <div class="step">
           <span class="step-num">↳</span>
@@ -436,54 +591,258 @@
       </table>
     </div>
   </section>
+</div>
 
-  <section id="cartas">
+<div class="tab-panel" data-panel="cartas" id="panel-cartas">
+  <section class="panel-hero">
     <div class="wrap">
-      <div class="section-head">
-        <h2 class="section-title">As cartas de feitiço</h2>
-        <p class="section-lede">Dez tipos de feitiço movem o jogo entre a corrida pelos ingredientes e a fase do dado.</p>
-      </div>
+      <span class="eyebrow">O baralho</span>
+      <h1 class="panel-title">As cartas de feitiço.</h1>
+      <p class="panel-lede">Dez tipos de feitiço movem o jogo entre a corrida pelos ingredientes e a fase do dado.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
       <div class="feitico-grid reveal" id="feiticoGrid"></div>
     </div>
   </section>
+</div>
 
-  <section id="estetica" class="tinted">
+<div class="tab-panel" data-panel="estetica" id="panel-estetica">
+  <section class="panel-hero">
     <div class="wrap">
-      <div class="section-head">
-        <h2 class="section-title">Estética e cores</h2>
-        <p class="section-lede">As regras de composição visual decididas depois de estudar duas referências externas. Valem pra toda ilustração futura do jogo, seja de carta de poção ou de personagem.</p>
-      </div>
-
-      <div class="principle-grid reveal">
-        <div class="principle-card">
-          <span class="principle-num">Cor por carta</span>
-          <h3>Fundo e poção compartilham cor. O coelho não precisa.</h3>
-          <p>Cada poção mantém sua própria cor predominante, e essa cor aparece no fundo da cena e na própria poção. O coelho pode contrastar, desde que fique na mesma temperatura da cena (as duas quentes, ou as duas frias) — o contraste vem de pequenos acentos na temperatura oposta, não de uma cor nova.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-num">Traço</span>
-          <h3>Cel-shading com hierarquia de linha</h3>
-          <p>Três níveis: contorno externo grosso no personagem e na poção, linhas internas finas pra detalhe, e sombra/luz sem contorno nenhum, só blocos de cor chapada.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-num">Cenário</span>
-          <h3>Sempre presente, mínimo, integrado</h3>
-          <p>Toda carta tem um cenário, nunca fundo 100% chapado. Mas com pouquíssimo detalhe, e monocromático: os elementos do cenário não introduzem cores novas, variam só o valor (claro/escuro) da cor predominante da carta.</p>
-        </div>
-      </div>
-
-      <h3 style="font-family: var(--font-body); font-size: 16px; font-weight: 700; margin: 44px 0 4px;">A cor de cada poção</h3>
-      <div class="palette-strip reveal" id="paletteStrip"></div>
+      <span class="eyebrow">Direção de arte</span>
+      <h1 class="panel-title">Estética e cores.</h1>
+      <p class="panel-lede">Base fria pro mundo, calor reservado pra identidade. Duas referências externas, analisadas a fundo, viraram as regras de composição que valem pra toda ilustração futura do jogo — carta de poção ou personagem.</p>
     </div>
   </section>
 
-  <section id="prd">
+  <section>
     <div class="wrap">
-      <div class="section-head">
-        <h2 class="section-title">Visão do produto</h2>
-        <p class="section-lede">A versão enxuta de um PRD para um jogo que ainda está sendo testado à mesa: por que ele existe, pra quem é hoje, o que falta pra chamar de pronto, e o que ainda não foi decidido.</p>
+
+      <div class="est-block">
+        <h3 class="est-h">A paleta da referência #1, por grupo</h3>
+        <p class="est-lede">17 cores extraídas da imagem que serviu de ponto de partida (um personagem tipo réptil saltando de alegria contra um céu azul com trama de pontos, estilo quadrinho/serigrafia) — separadas pelo papel que cada uma cumpre na imagem, não por onde aparecem fisicamente. Valores estimados por leitura visual cuidadosa, não amostrados pixel a pixel.</p>
+
+        <div class="group-label">Céu &amp; ambiente</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="chip" style="background:#4FA3D9"></div><div class="info"><p class="name">Azul-céu</p><p class="hex">#4FA3D9</p><p class="note">O tom dominante da cena — saturado, mas não extremo.</p></div></div>
+          <div class="swatch"><div class="chip" style="background:#BFE3F2"></div><div class="info"><p class="name">Azul-céu claro</p><p class="hex">#BFE3F2</p><p class="note">Transição pro topo, onde o céu clareia.</p></div></div>
+          <div class="swatch"><div class="chip" style="background:#FDF3E3"></div><div class="info"><p class="name">Creme do horizonte</p><p class="hex">#FDF3E3</p><p class="note">Canto superior, um creme quase-branco, único toque quente do fundo.</p></div></div>
+          <div class="swatch"><div class="chip" style="background:#E8F3FA"></div><div class="info"><p class="name">Branco-azulado</p><p class="hex">#E8F3FA</p><p class="note">Nuvens.</p></div></div>
+        </div>
+
+        <div class="group-label">Personagem — base fria</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="chip" style="background:#2FADA6"></div><div class="info"><p class="name">Teal do corpo</p><p class="hex">#2FADA6</p><p class="note">Cor principal do personagem, quase a mesma família do céu.</p></div></div>
+          <div class="swatch"><div class="chip" style="background:#1B6FA0"></div><div class="info"><p class="name">Azul profundo</p><p class="hex">#1B6FA0</p><p class="note">Barriga/parte inferior, sombra do corpo.</p></div></div>
+          <div class="swatch"><div class="chip" style="background:#141820"></div><div class="info"><p class="name">Contorno</p><p class="hex">#141820</p><p class="note">Quase preto com leve tinta azulada, não é preto puro.</p></div></div>
+        </div>
+
+        <div class="group-label">Personagem — acentos quentes</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="chip" style="background:#E14328"></div><div class="info"><p class="name">Vermelho dos espinhos</p><p class="hex">#E14328</p><p class="note">Dorso e cauda. O ponto mais quente de toda a imagem.</p></div></div>
+          <div class="swatch"><div class="chip" style="background:#F2B22E"></div><div class="info"><p class="name">Amarelo-ouro (borda)</p><p class="hex">#F2B22E</p><p class="note">Contorno dos espinhos.</p></div></div>
+          <div class="swatch"><div class="chip" style="background:#F4C43C"></div><div class="info"><p class="name">Faixa do peito</p><p class="hex">#F4C43C</p><p class="note">A marca de identidade do personagem.</p></div></div>
+          <div class="swatch"><div class="chip" style="background:#C97F1E"></div><div class="info"><p class="name">Sombra da faixa</p><p class="hex">#C97F1E</p><p class="note">Tom mais escuro da mesma faixa amarela.</p></div></div>
+          <div class="swatch"><div class="chip" style="background:#E8562A"></div><div class="info"><p class="name">Íris do olho</p><p class="hex">#E8562A</p><p class="note">Laranja-avermelhado, o ponto focal do rosto.</p></div></div>
+          <div class="swatch"><div class="chip" style="background:#F0A199"></div><div class="info"><p class="name">Interior da boca</p><p class="hex">#F0A199</p><p class="note">Rosa-salmão, único quente "suave" da paleta.</p></div></div>
+          <div class="swatch"><div class="chip" style="background:#FBF2DD"></div><div class="info"><p class="name">Dentes/garras</p><p class="hex">#FBF2DD</p><p class="note">Creme quase branco, quente por comparação ao branco-azulado do céu.</p></div></div>
+        </div>
+
+        <div class="group-label">Chão &amp; vegetação</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="chip" style="background:#74C43F"></div><div class="info"><p class="name">Verde-grama</p><p class="hex">#74C43F</p><p class="note">Vibrante, quase tão saturado quanto o personagem.</p></div></div>
+          <div class="swatch"><div class="chip" style="background:#2B6146"></div><div class="info"><p class="name">Verde escuro (moitas)</p><p class="hex">#2B6146</p><p class="note">Linha do horizonte.</p></div></div>
+          <div class="swatch"><div class="chip" style="background:#1A3629"></div><div class="info"><p class="name">Sombra no chão</p><p class="hex">#1A3629</p><p class="note">Marca o salto, quase preto-esverdeado.</p></div></div>
+          <div class="swatch"><div class="chip" style="background:#E8D6A3"></div><div class="info"><p class="name">Caminho de terra</p><p class="hex">#E8D6A3</p><p class="note">Bege claro, respiro neutro no meio do verde.</p></div></div>
+        </div>
       </div>
 
+      <div class="est-block">
+        <h3 class="est-h">Como essa paleta funciona</h3>
+        <p class="est-lede">Cinco eixos pra entender a lógica por trás das cores, não só o resultado.</p>
+
+        <div class="analysis-item">
+          <h4>Tons</h4>
+          <p>Dois grupos em oposição: uma base <span class="split-tag tag-cool">fria</span> que domina o quadro inteiro (céu, corpo, chão) e um bloco <span class="split-tag tag-warm">quente</span> concentrado só nos pontos de identidade do personagem (espinhos, faixa do peito, olho). É contraste complementar clássico (azul↔laranja), mas usado com disciplina: o quente não se espalha pela cena, fica reservado.</p>
+        </div>
+        <div class="analysis-item">
+          <h4>Saturação</h4>
+          <p>O ambiente (céu, chão) está saturado mas suavizado por gradiente e pela trama de pontos, o que o "afasta" visualmente. O personagem é quase todo em saturação máxima, sem suavização nenhuma. É hierarquia por saturação, não só por tamanho ou posição: o olho vai direto pro que está mais "puro" na cena.</p>
+        </div>
+        <div class="analysis-item">
+          <h4>Brilho e valor</h4>
+          <p>Amplitude grande, do quase-branco (nuvens, dentes) ao quase-preto (contorno, sombra da boca). Esse contraste de valor é o que faz o desenho funcionar mesmo pequeno ou de longe, a silhueta continua legível. Relevante direto pra carta de baralho, que vai ser lida a alguns metros de distância na mesa.</p>
+        </div>
+        <div class="analysis-item">
+          <h4>Contraste</h4>
+          <p>Dois tipos rodando ao mesmo tempo. Contraste de valor: contorno quase-preto e grosso contra preenchimentos claros, dá o "estalo" gráfico de quadrinho. Contraste de matiz: frio contra quente, funciona como guia de leitura, o olho pousa primeiro onde tem calor.</p>
+        </div>
+        <div class="analysis-item">
+          <h4>Textura</h4>
+          <p>A trama de pontos no céu é uma referência de impressão (quadrinho, serigrafia), não um degradê vetorial liso. O sombreado do personagem é "cel" (1 a 2 tons por cor, sem gradiente pintado), o que é limpo, reproduzível em tamanho pequeno e converte bem pra impressão de carta física.</p>
+        </div>
+      </div>
+
+      <div class="est-block">
+        <h3 class="est-h">Pra pensar no elenco do BunBun</h3>
+        <p class="est-lede">A estrutura por trás dessa paleta levantou uma pergunta que valeu a pena decidir de propósito, não por padrão.</p>
+
+        <div class="callout">
+          <h4>Base compartilhada + acento único, ou uma cor por personagem?</h4>
+          <p>A receita desta imagem é: <b>uma família fria de base</b> (o mundo inteiro e o corpo do personagem) <b>+ uma família quente reservada só pra identidade</b> (as marcas, o olho, os pontos de ação). É uma estrutura muito replicável pra um elenco com vários personagens: mesmo com 12 bichos diferentes, todos compartilham a mesma lógica de cor, só varia qual tom exato de cada família.</p>
+          <p>Só que os 12 coelhos do BunBun já funcionam diferente: cada um usa a cor inteira da própria poção (vermelho, verde, roxo, azul, e por aí vai), então o elenco inteiro já cobre praticamente o arco-íris. Duas direções possíveis a partir daqui:</p>
+          <div class="option-pair">
+            <div class="option-card">
+              <div class="label">Como está hoje ✅ escolhida</div>
+              <p>Cada poção mantém sua cor predominante. Identificação instantânea de longe, cada carta se reconhece só pela cor.</p>
+            </div>
+            <div class="option-card">
+              <div class="label">Base compartilhada, descartada</div>
+              <p>Todos os coelhos com pelagem parecida, cor da poção só como acento. Ganharia coesão de elenco, mas perde a leitura de cor à distância, que o Lanza quer manter.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="est-block">
+        <h3 class="est-h">Como isso virou regra de composição <span class="split-tag tag-cool est-decided">decidido 08/08</span></h3>
+        <p class="est-lede">A lógica fechou no mesmo dia, olhando de novo pra essa referência: mantém cor predominante por poção, mas com uma regra nova de onde ela precisa aparecer.</p>
+
+        <div class="callout">
+          <h4>Fundo + poção compartilham a cor. O coelho não precisa.</h4>
+          <p>Em cada carta, a cor predominante da poção aparece tanto no <b>fundo da cena</b> quanto na <b>própria poção</b> (o objeto/líquido) — os dois "conversam" no mesmo tom, exatamente como o céu e o corpo do personagem desta referência são o mesmo azul. O <b>coelho não precisa carregar essa cor</b>: pode ter tom próprio, contrastando com o fundo/poção do mesmo jeito que os acentos quentes do personagem o diferenciam do céu ao redor, mesmo os dois sendo "azuis".</p>
+          <p>A poção é o elemento principal da composição, geralmente em primeiro plano, mais perto da câmera que o coelho.</p>
+          <p>O cenário pode variar bastante de humor entre cartas (um campo aberto e claro numa, um ambiente fechado e sombrio noutra, por exemplo a Poção de Sangue) — a única regra fixa é a cor predominante do fundo ecoar a cor da poção, não o clima ou a luz da cena.</p>
+          <p style="font-size:12.5px; color:var(--ink-faint);">Conexão que só ficou clara nessa análise: essa regra já batia com o que estava registrado nos coelhos desde março, onde a pelagem de cada um sempre foi independente da cor da própria poção (o coelho da poção Sangue é branco, não vermelho). O Lanza não mudou os coelhos, só formalizou a regra de composição que faltava.</p>
+        </div>
+      </div>
+
+      <div class="est-block">
+        <h3 class="est-h">Estilo de traço e sombreamento</h3>
+        <p class="est-lede">O nome mais preciso pra essa estética: <b>ilustração vetorial cel-shaded com hierarquia de linha</b>. É a família visual que domina hoje a arte promocional de Pokémon, mascotes de jogo mobile e boa parte da ilustração de personagem "gamer" contemporânea — o efeito "adesivo" (sticker), gráfico e legível de longe.</p>
+
+        <div class="style-diagram">
+          <svg viewBox="0 0 200 180" role="img" aria-label="Diagrama mostrando contorno externo grosso, linha interna fina e sombra sem contorno">
+            <defs>
+              <clipPath id="blobClip">
+                <path d="M100,18 C142,18 168,54 168,96 C168,142 136,162 100,162 C64,162 32,142 32,96 C32,54 58,18 100,18 Z"/>
+              </clipPath>
+            </defs>
+            <path d="M100,18 C142,18 168,54 168,96 C168,142 136,162 100,162 C64,162 32,142 32,96 C32,54 58,18 100,18 Z" fill="#3FAFA8"/>
+            <g clip-path="url(#blobClip)">
+              <ellipse cx="132" cy="128" rx="52" ry="48" fill="#1F6E68"/>
+              <ellipse cx="66" cy="52" rx="34" ry="30" fill="#CFEFE9" opacity="0.85"/>
+            </g>
+            <path d="M48,88 Q100,104 152,86" fill="none" stroke="#14161C" stroke-width="2" stroke-linecap="round"/>
+            <path d="M100,18 C142,18 168,54 168,96 C168,142 136,162 100,162 C64,162 32,142 32,96 C32,54 58,18 100,18 Z" fill="none" stroke="#14161C" stroke-width="7" stroke-linejoin="round"/>
+          </svg>
+          <div class="style-legend">
+            <div class="style-legend-item">
+              <div class="style-key" style="background:#14161C;"></div>
+              <div><h4>1. Contorno externo, grosso</h4><p>Uma linha só, espessura constante, cor quase-preta (nunca preto puro). É a moldura que separa a figura do fundo — a primeira coisa que o olho lê, mesmo de longe.</p></div>
+            </div>
+            <div class="style-legend-item">
+              <div class="style-key" style="background:#14161C; opacity:0.45;"></div>
+              <div><h4>2. Linhas internas, finas</h4><p>Mais finas que o contorno, mesma família de cor, só pra dividir estrutura (braço/corpo, dedos, placas do dorso). Nunca competem em peso com a linha externa.</p></div>
+            </div>
+            <div class="style-legend-item">
+              <div class="style-key" style="background:linear-gradient(135deg,#CFEFE9,#1F6E68);"></div>
+              <div><h4>3. Sombra e luz, sem contorno nenhum</h4><p>Blocos de cor "cel" (1 a 2 tons por área) colados por cima da cor base. A transição é só de cor, nunca ganha uma linha própria em volta.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="est-sub">O fundo roda num sistema diferente do personagem</h3>
+        <p style="color: var(--ink-soft); margin: 0 0 8px; max-width: 68ch; font-size: 14.5px; line-height: 1.6;">Na referência, o céu usa gradiente suave (sem quebra dura de cel-shading) e ganha uma trama de pontos por cima (halftone/screentone, a mesma textura de impressão de quadrinho ou serigrafia). As nuvens têm contorno mínimo ou nenhum. Já o chão tem um tratamento próprio, ainda mais sutil: pequenos traços soltos imitando tufos de grama, uma textura diferente da trama de pontos do céu, não uma repetição dela.</p>
+        <p style="color: var(--ink-soft); margin: 0; max-width: 68ch; font-size: 14.5px; line-height: 1.6;">Esse contraste de tratamento é o mesmo princípio da análise de cor: personagem = gráfico, definido, "duro"; fundo = atmosférico, macio. Não é só a cor que faz o personagem saltar da cena, é o tratamento de linha e textura também.</p>
+
+        <div class="callout" style="margin-top: 26px;">
+          <h4>Como aplicar ao BunBun</h4>
+          <p><b>Todo coelho:</b> contorno externo grosso e uniforme + linhas internas finas nas divisões de estrutura (orelhas, patas, roupas/acessórios) + sombra e luz sempre em blocos de cor, nunca contornadas.</p>
+          <p><b>Toda poção (o objeto/vidro):</b> leva o mesmo tratamento "gráfico" do coelho — contorno grosso, já que também é elemento em primeiro plano e compartilha cor com o fundo.</p>
+          <p><b>Todo fundo de carta:</b> gradiente suave + textura (trama de pontos, ou uma variação própria do BunBun) — nunca contorno duro competindo com o personagem. O cenário (ver seção abaixo) roda dentro dessa mesma lógica "macia".</p>
+        </div>
+
+        <h3 class="est-sub">Termos pra continuar a pesquisa</h3>
+        <p style="color: var(--ink-soft); margin: 0 0 4px; font-size: 14.5px;">Pra achar mais referências parecidas no Pinterest ou Google Imagens, esses termos tendem a puxar a mesma família visual:</p>
+        <div class="term-row">
+          <span class="term-chip">bold line cel shading illustration</span>
+          <span class="term-chip">flat vector character halftone</span>
+          <span class="term-chip">cel shaded game mascot art</span>
+          <span class="term-chip">sticker style illustration bold outline</span>
+          <span class="term-chip">line weight hierarchy character design</span>
+        </div>
+      </div>
+
+      <div class="est-block">
+        <h3 class="est-h">Referência #2 — onde as duas se encontram</h3>
+        <p class="est-lede">A 2ª imagem (um panda-vermelho de óculos, coroa e braço robótico, contra um fundo vermelho chapado, cheio de props e sem cenário nenhum) parece bem diferente da 1ª à primeira vista. Mas por baixo, é a mesma família visual, e ela confirma algumas regras e ensina uma nova.</p>
+
+        <h3 class="est-sub">O que se repete nas duas (a base do estilo)</h3>
+        <div class="lore-grid-2">
+          <div class="lore-card">
+            <h3>Hierarquia de linha, confirmada de novo</h3>
+            <p>Contorno externo grosso e uniforme, linhas internas mais finas (os tufos de pelo, o aro dos óculos, as listras da cauda), sombra sempre em bloco de cor sem contorno próprio (a mancha escura na bochecha, a sombra do queixo). É a mesma regra da 1ª referência, em outro personagem.</p>
+          </div>
+          <div class="lore-card">
+            <h3>Mesma família de temperatura, fundo × personagem</h3>
+            <p>No Totodile, fundo e corpo eram os dois frios (azul). Aqui, os dois são quentes: fundo vermelho, personagem em laranja/marrom. Não é a mesma cor, mas é a mesma <b>lógica</b>: fundo e protagonista compartilham temperatura, e o contraste vem de um grupo pequeno de acentos na temperatura oposta (a bolha de fala, a placa, o braço robótico em branco/cinza, a nuvem preta). É praticamente a mesma regra que fechamos pro BunBun (fundo+poção compartilham cor), só que vista de um ângulo novo: a regra é sobre <b>temperatura</b>, não sobre usar o hex exato igual.</p>
+          </div>
+          <div class="lore-card">
+            <h3>Proporção "cabeça grande", expressão antes de anatomia</h3>
+            <p>Cabeça enorme em relação ao corpo, olhos grandes e semicerrados, boquinha minúscula. A prioridade é a expressão/personalidade, não realismo anatômico. Bate direto com o espírito dos coelhos do BunBun.</p>
+          </div>
+          <div class="lore-card">
+            <h3>Acessório como caracterização, não decoração</h3>
+            <p>Óculos rachados, coroa, braço enfaixado, jaqueta com bótons: cada prop conta um pedaço da personalidade do personagem. É a mesma lógica que já está nas fichas dos 12 coelhos (o Sol tem óculos de solda, o Gelo tem macacão de esquimó) — essa referência é evidência de que essa abordagem "prop-pesada" combina com a família visual escolhida.</p>
+          </div>
+        </div>
+
+        <h3 class="est-sub">O que essa referência ensinou de novo</h3>
+        <div class="callout">
+          <h4>Sem cenário, TUDO na cena ganha o contorno grosso</h4>
+          <p>Na 1ª referência, só o personagem tinha contorno grosso; o fundo (céu, nuvens) era macio, sem linha. Aqui, como não tem cenário (é fundo de cor chapada, não uma paisagem), até os props soltos (aviõezinhos de papel, a nuvem, o passarinho, a placa) recebem o MESMO contorno grosso do personagem principal. A leitura muda: em vez de "personagem gráfico contra fundo atmosférico", vira "tudo na cena é um adesivo, coeso, sobre uma cor chapada".</p>
+          <p style="margin:0;">Isso deixou de ser só argumento: virou a pergunta que a seção de cenário, logo abaixo, respondeu.</p>
+        </div>
+
+        <h3 class="est-sub">O que eu peguei com cuidado</h3>
+        <p style="color: var(--ink-soft); margin: 0; max-width: 68ch; font-size: 14.5px; line-height: 1.6;">A 2ª referência mistura tipografia e texto direto na ilustração (onomatopeias, caracteres, placas, bolhas de fala). É ótimo pra mood e energia, mas numa carta de jogo o texto de regra precisa ficar num espaço dedicado e sempre legível, não espalhado pela ilustração. Vale absorver a energia gráfica dessa referência, não a literalidade de misturar texto com arte.</p>
+      </div>
+
+      <div class="est-block">
+        <h3 class="est-h">Cenário: sempre presente, mínimo, integrado <span class="split-tag tag-cool est-decided">decidido 08/08</span></h3>
+        <p class="est-lede">A pergunta que ficou em aberto se resolveu indo além das duas referências: nem paisagem cheia (referência #1) nem fundo 100% chapado (referência #2) — um meio-termo autoral.</p>
+
+        <div class="callout">
+          <h4>Toda carta tem cenário. Mas quase invisível.</h4>
+          <p>A regra fechada: <b>sempre existe um lugar</b> por trás do coelho e da poção, o suficiente pra contextualizar (uma sugestão de ambiente, não uma paisagem completa como a do Totodile). Mas com <b>pouquíssimos detalhes</b>, e o cenário fica <b>muito integrado à cor predominante de fundo</b> — ou seja, os elementos do lugar não introduzem cores novas e destacadas, ficam dentro da mesma família de tom da cor da poção, diferenciados só por valor (mais claro/mais escuro), quase como uma variação tonal do próprio fundo, não um elemento à parte competindo por atenção.</p>
+          <p><b>O que isso resolve:</b> como cenário SEMPRE existe (nunca é fundo 100% chapado como a referência #2), a poção e o coelho ficam do lado "gráfico" da composição (contorno grosso, cel-shading definido) e o cenário fica do lado "macio" (poucos detalhes, sem contorno duro, dentro da mesma cor). É a lógica da referência #1, só que com o cenário ainda mais minimalista e ainda mais monocromático do que o próprio Totodile mostra (lá, céu e grama já eram cores bem distintas entre si; aqui, a ideia é o cenário inteiro respirar dentro de uma família de cor só).</p>
+          <p style="font-size:12.5px; color:var(--ink-faint);">Na prática, por poção: a carta de Vida, por exemplo, tende a um cenário todo em tons de verde (só variando claro/escuro pra sugerir vegetação), não um verde de grama contra um azul de céu.</p>
+        </div>
+      </div>
+
+      <div class="est-block">
+        <h3 class="est-h">A cor de cada poção, hoje</h3>
+        <p class="est-lede">O resultado prático das regras acima: 12 cores predominantes, uma por poção, que valem pro fundo e pro objeto da poção em toda ilustração futura.</p>
+        <div class="palette-strip reveal" id="paletteStrip"></div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<div class="tab-panel" data-panel="produto" id="panel-produto">
+  <section class="panel-hero">
+    <div class="wrap">
+      <span class="eyebrow">PRD-lite</span>
+      <h1 class="panel-title">Visão do produto.</h1>
+      <p class="panel-lede">A versão enxuta de um PRD para um jogo que ainda está sendo testado à mesa: por que ele existe, pra quem é hoje, o que falta pra chamar de pronto, e o que ainda não foi decidido.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
       <blockquote class="lore" style="max-width: 26ch; font-size: clamp(20px, 2.6vw, 28px);">Um jogo de palavras rápido, competitivo e engraçado o suficiente pra pedir uma revanche.</blockquote>
       <p class="lore-attr" style="margin-bottom: 32px;">A visão em uma frase</p>
 
@@ -519,14 +878,18 @@
       </div>
     </div>
   </section>
+</div>
 
-  <section id="diario" class="tinted">
+<div class="tab-panel" data-panel="diario" id="panel-diario">
+  <section class="panel-hero">
     <div class="wrap">
-      <div class="section-head">
-        <h2 class="section-title">Diário de desenvolvimento</h2>
-        <p class="section-lede">BunBun nasceu como "O Grimório das Poções" e virou o que é hoje depois de muitas partidas jogadas com os amigos. Um resumo do que já mudou e do que ainda está sendo decidido.</p>
-      </div>
-
+      <span class="eyebrow">Changelog</span>
+      <h1 class="panel-title">Diário de desenvolvimento.</h1>
+      <p class="panel-lede">BunBun nasceu como "O Grimório das Poções" e virou o que é hoje depois de muitas partidas jogadas com os amigos. Um resumo do que já mudou e do que ainda está sendo decidido.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
       <div class="changelog reveal">
         <div class="change-item">
           <span class="change-date">2026</span>
@@ -561,6 +924,7 @@
       </div>
     </div>
   </section>
+</div>
 
 </main>
 
@@ -573,48 +937,11 @@
 
 <script>
 (function () {
-  var POTIONS = [
-    { name: "Prisma", color: "#B45CD9" },
-    { name: "Aurora", color: "#E8944A" },
-    { name: "Cura", color: "#F2A0B8" },
-    { name: "Fogo", color: "#D9481C" },
-    { name: "Vida", color: "#4F8B4F" },
-    { name: "Força", color: "#B5442E" },
-    { name: "Gelo", color: "#7EC8E3" },
-    { name: "Sol", color: "#D4A017" },
-    { name: "Seda", color: "#C9A0DC" },
-    { name: "Lua", color: "#4A5FA5" },
-    { name: "Sangue", color: "#8B1A1A" },
-    { name: "Brisa", color: "#BFD8E8" }
-  ];
-
-  var COELHOS = [
-    { potion: "Sangue", color: "#8B1A1A", sex: "macho", desc: "Meio lebre, orelhas caídas. Hemomancia, mãos sempre esticadas." },
-    { potion: "Sol", color: "#D4A017", sex: "macho", desc: "Baixinho e gordinho. Ferreiro de óculos de solda e macacão." },
-    { potion: "Aurora", color: "#E8944A", sex: "fêmea", desc: "Manchada, novinha. Roupas com joias e muito babado." },
-    { potion: "Seda", color: "#C9A0DC", sex: "macho", desc: "Enrolado na própria seda, sempre tentando fugir da poção." },
-    { potion: "Lua", color: "#4A5FA5", sex: "macho", desc: "Luneta e compasso na mão. Meio astronauta, meio sonhador." },
-    { potion: "Vida", color: "#4F8B4F", sex: "fêmea", desc: "Óculos de corrente, mais velha. Vive cercada de vinhas e folhas." },
-    { potion: "Cura", color: "#F2A0B8", sex: "fêmea", desc: "Rosa clarinho, manchada. A enfermeira oficial da turma." },
-    { potion: "Brisa", color: "#BFD8E8", sex: "fêmea", desc: "A carta mais branca do baralho. Sempre voando com o vento." },
-    { potion: "Gelo", color: "#7EC8E3", sex: "macho", desc: "Esquimó de coração. Macacão de neve e óculos de snowboard." },
-    { potion: "Força", color: "#B5442E", sex: "macho", desc: "Peludo, estufado, alto. Wrestling é a única linguagem que fala." },
-    { potion: "Fogo", color: "#D9481C", sex: "macho", desc: "Orelha chamuscada, meio doido por pirotecnia." },
-    { potion: "Prisma", color: "#B45CD9", sex: "fêmea", desc: "Camuflada na própria luz, sempre saindo de algum portal." }
-  ];
-
-  var FEITICOS = [
-    { name: "Sabotagem", qty: "6", desc: "Obriga um adversário a descartar um ingrediente, da mão ou da poção." },
-    { name: "Roubo", qty: "12", desc: "Rouba um ingrediente de qualquer jogador, mesmo já na fase do dado." },
-    { name: "Escudo", qty: "5", desc: "Protege contra Roubo ou Sabotagem no momento exato da tentativa." },
-    { name: "Cancelamento", qty: "3", desc: "Anula qualquer feitiço ativo em jogo, não só o último jogado." },
-    { name: "Essência Arcana", qty: "2", desc: "Substitui qualquer ingrediente. Não pode ser roubada." },
-    { name: "Extração Mágica", qty: "5", desc: "Puxa 3 cartas do baralho principal e fica com 1." },
-    { name: "Destruição", qty: "5", desc: "Destrói o resultado do dado de alguém, seu ou de outro jogador." },
-    { name: "Escudo com troco", qty: "2", desc: "Além de bloquear Roubo ou Sabotagem, devolve o golpe." },
-    { name: "Jogue o dado pra mim", qty: "4", desc: "Escolha alguém pra rolar por você e decida quem fica com o resultado." },
-    { name: "Novo Feitiço", qty: "12", desc: "Carta do baralho principal que dá acesso a um feitiço novo." }
-  ];
+  var POTIONS = [{"name": "Prisma", "color": "#B45CD9"}, {"name": "Aurora", "color": "#E8944A"}, {"name": "Cura", "color": "#F2A0B8"}, {"name": "Fogo", "color": "#D9481C"}, {"name": "Vida", "color": "#4F8B4F"}, {"name": "Força", "color": "#B5442E"}, {"name": "Gelo", "color": "#7EC8E3"}, {"name": "Sol", "color": "#D4A017"}, {"name": "Seda", "color": "#C9A0DC"}, {"name": "Lua", "color": "#4A5FA5"}, {"name": "Sangue", "color": "#8B1A1A"}, {"name": "Brisa", "color": "#BFD8E8"}];
+  var COELHOS_LIGHT = [{"potion": "Sangue", "color": "#8B1A1A", "sex": "macho", "desc": "Meio lebre, orelhas caídas. Hemomancia, mãos sempre esticadas."}, {"potion": "Sol", "color": "#D4A017", "sex": "macho", "desc": "Baixinho e gordinho. Ferreiro de óculos de solda e macacão."}, {"potion": "Aurora", "color": "#E8944A", "sex": "fêmea", "desc": "Manchada, novinha. Roupas com joias e muito babado."}, {"potion": "Seda", "color": "#C9A0DC", "sex": "macho", "desc": "Enrolado na própria seda, sempre tentando fugir da poção."}, {"potion": "Lua", "color": "#4A5FA5", "sex": "macho", "desc": "Luneta e compasso na mão. Meio astronauta, meio sonhador."}, {"potion": "Vida", "color": "#4F8B4F", "sex": "fêmea", "desc": "Óculos de corrente, mais velha. Vive cercada de vinhas e folhas."}, {"potion": "Cura", "color": "#F2A0B8", "sex": "fêmea", "desc": "Rosa clarinho, manchada. A enfermeira oficial da turma."}, {"potion": "Brisa", "color": "#BFD8E8", "sex": "fêmea", "desc": "A carta mais branca do baralho. Sempre voando com o vento."}, {"potion": "Gelo", "color": "#7EC8E3", "sex": "macho", "desc": "Esquimó de coração. Macacão de neve e óculos de snowboard."}, {"potion": "Força", "color": "#B5442E", "sex": "macho", "desc": "Peludo, estufado, alto. Wrestling é a única linguagem que fala."}, {"potion": "Fogo", "color": "#D9481C", "sex": "macho", "desc": "Orelha chamuscada, meio doido por pirotecnia."}, {"potion": "Prisma", "color": "#B45CD9", "sex": "fêmea", "desc": "Camuflada na própria luz, sempre saindo de algum portal."}];
+  var COELHOS_FULL = [{"potion": "Sangue", "color": "#8B1A1A", "fur": "#F7F3EC", "sex": "macho", "idade": "≈17 anos", "aparencia": "Esguio, ombros estreitos, orelhas compridas e caídas. Olhos vermelho-rubi, mancha escura sutil ao redor de um olho.", "roupas": "Sem roupa pesada; luvas curtas escuras, um pingente simples em gota.", "personalidade": "Quieto, um pouco sombrio, fala pouco. O mais fascinado por magia “de verdade” da turma.", "cenario": "Canto mais escuro da sala, meia-luz, só a silhueta de uma estante ao fundo.", "prompt": "Vector illustration of a slender teenage anthropomorphic rabbit character, cream-white fur (#F7F3EC), long floppy ears drooping down, narrow shoulders, deep ruby-red eyes with a subtle dark smudge shadow around one eye, quiet and intense expression, hands slightly outstretched. Wears no heavy clothing, only short dark fingerless gloves and a simple teardrop-shaped pendant necklace. Cel-shaded cartoon style: bold thick black outer contour line, thinner clean inner linework for details, flat solid shadow blocks with no outline (no gradients). Scene and background in a single dominant deep dark ruby-red hue (#8B1A1A), minimal scenery: a dim, shadowy corner of a classroom, only the faint silhouette of a bookshelf suggested in the background, everything in that same red family varying just in value, no new hues introduced. Character can contrast the background within the same warm color temperature. Square trading-card composition, character centered as the clear focal subject, three-quarter view. No text, no logos, no watermarks, no other franchise references."}, {"potion": "Sol", "color": "#D4A017", "fur": "#B97A45", "sex": "macho", "idade": "≈38 anos", "aparencia": "Baixo e atarracado, ombros largos, um pouco curvado de tanto debruçar sobre a bancada. Óculos de solda erguidos na testa, bigode desalinhado.", "roupas": "Macacão de trabalho puido, luvas de couro grossas, óculos de proteção.", "personalidade": "O mais velho em espírito, paciente, adora explicar processo passo a passo.", "cenario": "Bancada de forja improvisada, calor sugerido só pela cor, sem chamas desenhadas.", "prompt": "Vector illustration of a short, stocky, middle-aged anthropomorphic rabbit character with warm terracotta-brown fur (#B97A45), broad shoulders, slightly hunched posture from years leaning over a workbench, a messy uncombed mustache, welding goggles pushed up on his forehead. Wears a worn work coverall, thick leather work gloves, and protective goggles. Patient, warm, mentor-like expression. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant warm amber-gold hue (#D4A017), minimal detail: an improvised blacksmith workbench silhouette, heat suggested only through the warm color itself, no flames drawn. Character can contrast within the same warm color temperature family. Square trading-card composition, character centered, three-quarter view. No text, no logos, no watermarks, no other franchise references."}, {"potion": "Aurora", "color": "#E8944A", "fur": "#FDF8F0", "sex": "fêmea", "idade": "≈9 anos", "aparencia": "Pequena, postura ereta e de exibição, adora rodopiar. Cílios longos, pintinha decorativa perto do olho.", "roupas": "Gola com babados, um broche pequeno no peito.", "personalidade": "Vaidosa no bom sentido, ama se arrumar, fala rápido e animada.", "cenario": "Perto de uma janela, luz difusa entrando, sem paisagem além da cor quente.", "prompt": "Vector illustration of a small young anthropomorphic rabbit character with child-like proportions and a big expressive head, pearl-white fur (#FDF8F0) with soft dusty-pink patches (#E3A9BB), long eyelashes, a small decorative beauty mark near one eye, upright showy posture as if mid-twirl. Wears a ruffled collar and a small brooch on her chest. Cheerful, vain-in-a-cute-way expression, fast and animated energy. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant warm dawn-orange hue (#E8944A), minimal detail: soft diffuse light suggesting a window nearby, no landscape beyond the warm color field. Character can contrast within the same warm color temperature family. Square trading-card composition, character centered, three-quarter view, mid-twirl pose. No text, no logos, no watermarks, no other franchise references."}, {"potion": "Seda", "color": "#C9A0DC", "fur": "#2B2830", "sex": "macho", "idade": "≈11 anos", "aparencia": "Baixo, magro, meio desengonçado. Bigodes finos, sobrancelhas erguidas de pânico gentil.", "roupas": "Enrolado numa faixa de tecido de seda, tropecando nela.", "personalidade": "O atrapalhado do grupo, sempre correndo atrás do próprio rabo, coração bom.", "cenario": "Um tecido pendurado ao fundo, sugerido só por uma faixa mais clara.", "prompt": "Vector illustration of a short, skinny, slightly clumsy anthropomorphic rabbit character with jet-black onyx fur (#2B2830), thin whiskers, eyebrows raised in gentle panic, tangled up in a length of silk fabric he's tripping over. No formal clothing besides the silk fabric wrapped around him. Warm-hearted, bumbling expression. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant soft lavender hue (#C9A0DC), minimal detail: a hanging fabric drape suggested only as a lighter-value streak, no other elements. Character can contrast within the same cool-to-neutral color temperature family. Square trading-card composition, character centered, three-quarter view, off-balance pose. No text, no logos, no watermarks, no other franchise references."}, {"potion": "Lua", "color": "#4A5FA5", "fur": "#A8ABB4", "sex": "macho", "idade": "≈33 anos", "aparencia": "Médio, postura ereta de observador, pescoço um pouco esticado pra cima. Olhos grandes e atentos, olheira leve de quem passa noites acordado.", "roupas": "Luneta pendurada no peito, compasso na pata.", "personalidade": "Sonhador, curioso, sempre catalogando alguma coisa.", "cenario": "Teto sugerindo céu noturno, degradê escuro, sem estrelas desenhadas.", "prompt": "Vector illustration of a medium-built anthropomorphic rabbit character with slate-grey fur (#A8ABB4), upright observant posture, neck slightly craned upward, large attentive eyes with a faint trace of tiredness underneath from late nights awake, dreamy and curious expression. Wears a telescope hanging around his neck and holds a compass in one paw. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant deep indigo-blue hue (#4A5FA5), minimal detail: a dark gradient suggesting a night sky ceiling, no stars drawn. Character can contrast within the same cool color temperature family. Square trading-card composition, character centered, three-quarter view. No text, no logos, no watermarks, no other franchise references."}, {"potion": "Vida", "color": "#4F8B4F", "fur": "#8C6239", "sex": "fêmea", "idade": "≈47 anos", "aparencia": "Robusta, postura confortável e estável, quase maternal. Óculos de leitura pendurados numa corrente.", "roupas": "Corrente de óculos, avental leve.", "personalidade": "Calma, cuidadosa, a mais velha e sábia do grupo.", "cenario": "Sugestão leve de vinhas e folhas ao fundo, tudo em variação de verde.", "prompt": "Vector illustration of a sturdy, warm, motherly-looking anthropomorphic rabbit character, the eldest of the group, with warm brown fur (#8C6239), a comfortable stable posture, reading glasses hanging from a chain around her neck, wearing a light apron. Calm, wise, caring expression. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant moss-green hue (#4F8B4F), minimal detail: a light suggestion of vines and leaves in the background, only in tonal variations of the same green, no new hues. Character can contrast within the same cool-to-neutral color temperature family. Square trading-card composition, character centered, three-quarter view. No text, no logos, no watermarks, no other franchise references."}, {"potion": "Cura", "color": "#F2A0B8", "fur": "#F6D6DE", "sex": "fêmea", "idade": "≈29 anos", "aparencia": "Média, postura atenta e gentil, sempre inclinada pra ajudar. Bochechas rosadas, expressão doce.", "roupas": "Touca/avental de enfermaria simples, pequeno emblema de coração no peito.", "personalidade": "Cuidadosa, é quem todo mundo procura quando algo dá errado na aula.", "cenario": "Sugestão leve de prateleira de frascos ao fundo, tudo em tons de rosa.", "prompt": "Vector illustration of a medium-built anthropomorphic rabbit character with soft light-pink fur (#F6D6DE) and gentle pastel spots, rosy cheeks, a sweet caring expression, leaning slightly forward as if ready to help someone. Wears a simple nurse-style apron and cap with a small heart emblem on her chest. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant warm-pink hue (#F2A0B8), minimal detail: a soft silhouette of a shelf with small bottles in the background, all in tonal variations of pink, no new hues. Character can contrast within the same warm color temperature family. Square trading-card composition, character centered, three-quarter view. No text, no logos, no watermarks, no other franchise references."}, {"potion": "Brisa", "color": "#BFD8E8", "fur": "#E4E7EC", "sex": "fêmea", "idade": "≈10 anos", "aparencia": "Pequena, leve, orelhas meio levantadas como se sentisse o vento. Expressão de “ops”, sempre meio desequilibrada.", "roupas": "Um lenço leve que voa com ela.", "personalidade": "Distraída, sempre levada pelo vento, risonha.", "cenario": "Sugestão de nuvens e movimento de ar, tudo em azul muito claro.", "prompt": "Vector illustration of a small, light, near-white-grey anthropomorphic rabbit character with fur color #E4E7EC, ears half-raised as if catching the wind, an off-balance windswept pose with a surprised 'oops' expression, cheerful and scatterbrained. Wears a light scarf that flows behind her as if caught mid-breeze. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant pale sky-blue hue (#BFD8E8), minimal detail: faint cloud shapes and subtle air-motion lines, all in tonal variations of the same pale blue, no new hues. Character can contrast within the same cool color temperature family. Square trading-card composition, character centered, three-quarter view, mid-windswept motion. No text, no logos, no watermarks, no other franchise references."}, {"potion": "Gelo", "color": "#7EC8E3", "fur": "#F0F6FA", "sex": "macho", "idade": "≈26 anos", "aparencia": "Atarracado, estofado pelo casaco grosso. Bochechas coradas de frio.", "roupas": "Macacão de neve azul, óculos de snowboard na testa, capuz com pelo.", "personalidade": "Caseiro, gosta de conforto, fala devagar.", "cenario": "Sugestão leve de neblina fria, tudo em tons de azul-gelo.", "prompt": "Vector illustration of a stocky anthropomorphic rabbit character bundled up in a thick winter coat, white fur with icy-blue shading (#F0F6FA base, #BFDCEA shadow), rosy cold-flushed cheeks, calm and homebody expression. Wears a blue snowsuit, snowboard goggles pushed up on his forehead, and a fur-trimmed hood. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant icy sky-blue hue (#7EC8E3), minimal detail: a light cold mist suggested, all in tonal variations of the same icy blue, no new hues. Character can contrast within the same cool color temperature family. Square trading-card composition, character centered, three-quarter view. No text, no logos, no watermarks, no other franchise references."}, {"potion": "Força", "color": "#B5442E", "fur": "#F5F1E8", "sex": "macho", "idade": "≈30 anos", "aparencia": "Alto, largo, muito muscoloso e estufado. Sobrancelha franzida permanente, uma cicatriz de treino.", "roupas": "Macacão de luta simples, faixa de campeão improvisada.", "personalidade": "Competitivo, bravo por fora, leal por dentro.", "cenario": "Sugestão leve de tatame/arena, tudo em tons terrosos.", "prompt": "Vector illustration of a tall, broad, heavily muscled anthropomorphic rabbit character with thick fluffy ivory-white fur (#F5F1E8), a puffed-out confident chest, a permanently furrowed brow, and a small training scar. Wears a simple wrestling singlet and an improvised champion sash. Competitive, tough-looking but warm-hearted expression. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant strong earthy terracotta-red hue (#B5442E), minimal detail: a faint suggestion of a wrestling mat or arena floor, all in tonal variations of the same earthy red, no new hues. Character can contrast within the same warm color temperature family. Square trading-card composition, character centered, three-quarter view, confident stance. No text, no logos, no watermarks, no other franchise references."}, {"potion": "Fogo", "color": "#D9481C", "fur": "#F7F0E6", "sex": "macho", "idade": "≈20 anos", "aparencia": "Médio, ágil, sempre em movimento, uma orelha visivelmente chamuscada.", "roupas": "Óculos escuros descolados, jaqueta jeans, luvas resistentes ao calor.", "personalidade": "Impulsivo, adora explosão (literal), o hiperativo do grupo.", "cenario": "Sugestão leve de fumaça e faíscas, tudo em laranja e vermelho.", "prompt": "Vector illustration of a medium-built, agile, energetic anthropomorphic rabbit character with white fur (#F7F0E6) marked with rust-brown patches (#A8623A), one visibly singed ear, always mid-motion. Wears cool sunglasses, a denim jacket, and heat-resistant gloves. Impulsive, hyperactive, thrill-seeking expression. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant ember-orange hue (#D9481C), minimal detail: faint smoke wisps and sparks suggested, all in tonal variations of orange and red, no new hues. Character can contrast within the same warm color temperature family. Square trading-card composition, character centered, three-quarter view, dynamic pose. No text, no logos, no watermarks, no other franchise references."}, {"potion": "Prisma", "color": "#B45CD9", "fur": "#211D2B", "sex": "fêmea", "idade": "sem idade definida", "aparencia": "Esguia, orelhas compridas, postura furtiva. Olhos com reflexo multicolor sutil, sempre parecendo entre lugares.", "roupas": "Nenhum acessório fixo, prefere ficar camuflada na própria cor.", "personalidade": "Enigmática, aparece e desaparece, fala pouco e sempre em enigmas.", "cenario": "Sugestão leve de fenda de luz ou portal, tudo em tons de violeta.", "prompt": "Vector illustration of a slender, elusive anthropomorphic rabbit character with deep black-violet fur (#211D2B), long ears, a stealthy half-hidden posture as if caught between appearing and vanishing, eyes with a subtle iridescent multicolor glint. No fixed clothing or accessories, blending into her own deep violet color. Enigmatic, mysterious expression. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant violet hue (#B45CD9), minimal detail: a faint crack of light or portal-like glow suggested, all in tonal variations of violet, no new hues. Character can contrast subtly only through the iridescent eye glint. Square trading-card composition, character centered, three-quarter view, partially shadowed. No text, no logos, no watermarks, no other franchise references."}];
+  var FEITICOS = [{"name": "Sabotagem", "qty": "6", "desc": "Obriga um adversário a descartar um ingrediente, da mão ou da poção."}, {"name": "Roubo", "qty": "12", "desc": "Rouba um ingrediente de qualquer jogador, mesmo já na fase do dado."}, {"name": "Escudo", "qty": "5", "desc": "Protege contra Roubo ou Sabotagem no momento exato da tentativa."}, {"name": "Cancelamento", "qty": "3", "desc": "Anula qualquer feitiço ativo em jogo, não só o último jogado."}, {"name": "Essência Arcana", "qty": "2", "desc": "Substitui qualquer ingrediente. Não pode ser roubada."}, {"name": "Extração Mágica", "qty": "5", "desc": "Puxa 3 cartas do baralho principal e fica com 1."}, {"name": "Destruição", "qty": "5", "desc": "Destrói o resultado do dado de alguém, seu ou de outro jogador."}, {"name": "Escudo com troco", "qty": "2", "desc": "Além de bloquear Roubo ou Sabotagem, devolve o golpe."}, {"name": "Jogue o dado pra mim", "qty": "4", "desc": "Escolha alguém pra rolar por você e decida quem fica com o resultado."}, {"name": "Novo Feitiço", "qty": "12", "desc": "Carta do baralho principal que dá acesso a um feitiço novo."}];
+  var TABS = [["jogo", "O jogo"], ["coelhos", "Coelhos"], ["personagens", "Personagens"], ["como-jogar", "Como jogar"], ["cartas", "Cartas"], ["estetica", "Estética"], ["produto", "Produto"], ["diario", "Diário"]];
 
   function renderWheel() {
     var wheel = document.getElementById("potionWheel");
@@ -634,9 +961,9 @@
     });
   }
 
-  function renderCoelhos() {
+  function renderCoelhosLight() {
     var grid = document.getElementById("coelhoGrid");
-    COELHOS.forEach(function (c) {
+    COELHOS_LIGHT.forEach(function (c) {
       var card = document.createElement("div");
       card.className = "coelho-card";
       card.innerHTML =
@@ -671,25 +998,122 @@
     });
   }
 
+  function renderPersonaDeck() {
+    var deck = document.getElementById("personaDeck");
+    COELHOS_FULL.forEach(function (c, i) {
+      var card = document.createElement("article");
+      card.className = "persona-card";
+      var num = String(i + 1).padStart(2, "0");
+      card.innerHTML =
+        '<div class="persona-card-head">' +
+          '<span class="persona-card-num">' + num + '</span>' +
+          '<span class="persona-card-swatches"><i style="background:' + c.fur + '" title="Pelagem"></i><i style="background:' + c.color + '" title="Cor da cena/poção"></i></span>' +
+          '<div class="persona-card-id"><h3>' + c.potion + '</h3><div class="persona-card-tags"><span class="tag-pill">' + c.sex + '</span><span class="tag-pill">' + c.idade + '</span><span class="tag-pill">pelagem ' + c.fur + '</span><span class="tag-pill">cena ' + c.color + '</span></div></div>' +
+        '</div>' +
+        '<div class="persona-card-body">' +
+          '<div class="persona-field"><b>Aparência</b><p>' + c.aparencia + '</p></div>' +
+          '<div class="persona-field"><b>Roupas e acessórios</b><p>' + c.roupas + '</p></div>' +
+          '<div class="persona-field"><b>Personalidade</b><p>' + c.personalidade + '</p></div>' +
+          '<div class="persona-field"><b>Cenário da carta</b><p>' + c.cenario + '</p></div>' +
+        '</div>' +
+        '<div class="persona-prompt-wrap">' +
+          '<div class="persona-prompt-label"><b>Prompt de geração de imagem (rascunho)</b><button class="copy-btn" type="button" data-idx="' + i + '"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M4 13V4.5A1.5 1.5 0 0 1 5.5 3H13"/></svg><span>Copiar</span></button></div>' +
+          '<pre class="persona-prompt">' + c.prompt + '</pre>' +
+        '</div>';
+      deck.appendChild(card);
+    });
+
+    deck.addEventListener("click", function (ev) {
+      var btn = ev.target.closest(".copy-btn");
+      if (!btn) return;
+      var idx = Number(btn.getAttribute("data-idx"));
+      var text = COELHOS_FULL[idx].prompt;
+      var done = function () {
+        btn.classList.add("copied");
+        btn.querySelector("span").textContent = "Copiado!";
+        setTimeout(function () {
+          btn.classList.remove("copied");
+          btn.querySelector("span").textContent = "Copiar";
+        }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); });
+      } else {
+        fallbackCopy(text, done);
+      }
+    });
+  }
+
+  function fallbackCopy(text, done) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  // ---------------- tabs ----------------
+  var validKeys = TABS.map(function (t) { return t[0]; });
+
+  function revealPanel(panel) {
+    var els = panel.querySelectorAll(".reveal, .coelho-card, .persona-card");
+    els.forEach(function (el) { el.classList.add("in"); });
+  }
+
+  function openTab(key, opts) {
+    opts = opts || {};
+    if (validKeys.indexOf(key) === -1) key = "jogo";
+    document.querySelectorAll(".tab-panel").forEach(function (p) {
+      p.classList.toggle("active", p.getAttribute("data-panel") === key);
+    });
+    document.querySelectorAll("nav.links a[data-tab]").forEach(function (a) {
+      a.classList.toggle("active", a.getAttribute("data-tab") === key);
+    });
+    var select = document.getElementById("mobileTabSelect");
+    if (select) select.value = key;
+    var activePanel = document.querySelector('.tab-panel[data-panel="' + key + '"]');
+    if (activePanel) revealPanel(activePanel);
+    if (!opts.silent && location.hash.slice(1) !== key) {
+      history.replaceState(null, "", "#" + key);
+    }
+    if (!opts.noScroll) {
+      window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+    }
+  }
+
+  document.addEventListener("click", function (ev) {
+    var el = ev.target.closest("[data-tab], [data-tab-go]");
+    if (!el) return;
+    var key = el.getAttribute("data-tab") || el.getAttribute("data-tab-go");
+    if (!key) return;
+    ev.preventDefault();
+    openTab(key);
+  });
+
+  var mobileSelect = document.getElementById("mobileTabSelect");
+  if (mobileSelect) {
+    mobileSelect.addEventListener("change", function () { openTab(mobileSelect.value); });
+  }
+
+  window.addEventListener("hashchange", function () {
+    openTab(location.hash.slice(1), { silent: true });
+  });
+
   renderWheel();
-  renderCoelhos();
+  renderCoelhosLight();
   renderFeiticos();
   renderPaletteEstetica();
+  renderPersonaDeck();
+
+  var initialKey = location.hash.slice(1) || "jogo";
+  openTab(initialKey, { noScroll: true });
 
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var targets = document.querySelectorAll(".reveal, .coelho-card");
-  if (prefersReduced || !("IntersectionObserver" in window)) {
-    targets.forEach(function (el) { el.classList.add("in"); });
-  } else {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in");
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    targets.forEach(function (el) { io.observe(el); });
+  if (prefersReduced) {
+    document.querySelectorAll(".reveal, .coelho-card, .persona-card").forEach(function (el) { el.classList.add("in"); });
   }
 })();
 </script>
