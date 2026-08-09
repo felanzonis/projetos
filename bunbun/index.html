@@ -238,6 +238,63 @@
   .dice-table td:first-child { font-family: var(--font-mono); font-weight: 700; color: var(--accent); width: 90px; }
   .dice-table td:last-child { color: var(--ink-soft); }
 
+  /* bíblia dos personagens (accordion) */
+  .persona-note {
+    font-size: 13px; color: var(--ink-faint); background: var(--accent-tint); border-radius: 12px;
+    padding: 12px 16px; margin: 0 0 28px; max-width: 70ch;
+  }
+  .persona-list { display: flex; flex-direction: column; gap: 0; }
+  .persona-item { border-top: 1px solid var(--border); }
+  .persona-item:last-child { border-bottom: 1px solid var(--border); }
+  .persona-item summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center; gap: 16px;
+    padding: 18px 0; -webkit-tap-highlight-color: transparent;
+  }
+  .persona-item summary::-webkit-details-marker { display: none; }
+  .persona-item summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
+  .persona-swatches { display: flex; gap: 4px; flex-shrink: 0; }
+  .persona-swatches i {
+    display: block; width: 22px; height: 22px; border-radius: 50%; font-style: normal;
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.35), 0 1px 3px rgba(0,0,0,0.15);
+  }
+  .persona-name { font-family: var(--font-body); font-weight: 700; font-size: 15.5px; min-width: 78px; }
+  .persona-age { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); white-space: nowrap; }
+  .persona-hint { color: var(--ink-soft); font-size: 13.5px; flex: 1; }
+  .persona-chev { color: var(--ink-faint); flex-shrink: 0; transition: transform .2s ease; }
+  .persona-item[open] .persona-chev { transform: rotate(90deg); }
+  .persona-body { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 28px; padding: 2px 0 26px 38px; }
+  @media (max-width: 680px) { .persona-body { grid-template-columns: 1fr; padding-left: 0; } }
+  .persona-field b {
+    display: block; font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--ink-faint); margin-bottom: 5px;
+  }
+  .persona-field p { margin: 0; font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
+
+  /* estética & cores */
+  .principle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 860px) { .principle-grid { grid-template-columns: 1fr; } }
+  .principle-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 24px; box-shadow: var(--shadow-sm);
+  }
+  .principle-num {
+    display: block; font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--accent); margin-bottom: 12px;
+  }
+  .principle-card h3 { font-family: var(--font-body); font-size: 16.5px; font-weight: 700; margin: 0 0 8px; }
+  .principle-card p { margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.6; }
+
+  .palette-strip { display: flex; flex-wrap: wrap; gap: 10px; }
+  .palette-chip {
+    display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 999px; padding: 6px 14px 6px 6px;
+  }
+  .palette-chip .dot {
+    width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.35), 0 1px 3px rgba(0,0,0,0.15);
+  }
+  .palette-chip span { font-size: 12.5px; font-weight: 600; color: var(--ink-soft); }
+
   /* changelog */
   .changelog { display: flex; flex-direction: column; gap: 0; }
   .change-item { display: grid; grid-template-columns: 110px 1fr; gap: 20px; padding: 18px 0; border-top: 1px solid var(--border); }
@@ -288,11 +345,12 @@
     </a>
     <nav class="links">
       <a href="#sobre">O jogo</a>
-      <a href="#lore">A aula</a>
       <a href="#coelhos">Coelhos</a>
+      <a href="#personagens">Personagens</a>
       <a href="#como-jogar">Como jogar</a>
       <a href="#cartas">Cartas</a>
-      <a href="#prd">Visão do produto</a>
+      <a href="#estetica">Estética</a>
+      <a href="#prd">Produto</a>
       <a href="#diario">Diário</a>
     </nav>
     <a href="#como-jogar" class="nav-cta">Como jogar</a>
@@ -371,6 +429,17 @@
     </div>
   </section>
 
+  <section id="personagens">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="section-title">A bíblia dos personagens</h2>
+        <p class="section-lede">A ficha completa de cada coelho: aparência, roupas, personalidade e o cenário que a carta dele sugere. Base pra qualquer ilustração futura, feita ou não por IA.</p>
+      </div>
+      <p class="persona-note">Cor de pelagem, idade e tipo de corpo são propostas em cima do material original, ainda não fechadas. O resto (cor da cena, papel na turma, personalidade) vem desde o começo do projeto.</p>
+      <div class="persona-list reveal" id="personaList"></div>
+    </div>
+  </section>
+
   <section id="como-jogar" class="tinted">
     <div class="wrap">
       <div class="section-head">
@@ -417,6 +486,36 @@
         <p class="section-lede">Dez tipos de feitiço movem o jogo entre a corrida pelos ingredientes e a fase do dado.</p>
       </div>
       <div class="feitico-grid reveal" id="feiticoGrid"></div>
+    </div>
+  </section>
+
+  <section id="estetica" class="tinted">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="section-title">Estética e cores</h2>
+        <p class="section-lede">As regras de composição visual decididas depois de estudar duas referências externas. Valem pra toda ilustração futura do jogo, seja de carta de poção ou de personagem.</p>
+      </div>
+
+      <div class="principle-grid reveal">
+        <div class="principle-card">
+          <span class="principle-num">Cor por carta</span>
+          <h3>Fundo e poção compartilham cor. O coelho não precisa.</h3>
+          <p>Cada poção mantém sua própria cor predominante, e essa cor aparece no fundo da cena e na própria poção. O coelho pode contrastar, desde que fique na mesma temperatura da cena (as duas quentes, ou as duas frias) — o contraste vem de pequenos acentos na temperatura oposta, não de uma cor nova.</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">Traço</span>
+          <h3>Cel-shading com hierarquia de linha</h3>
+          <p>Três níveis: contorno externo grosso no personagem e na poção, linhas internas finas pra detalhe, e sombra/luz sem contorno nenhum, só blocos de cor chapada.</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">Cenário</span>
+          <h3>Sempre presente, mínimo, integrado</h3>
+          <p>Toda carta tem um cenário, nunca fundo 100% chapado. Mas com pouquíssimo detalhe, e monocromático: os elementos do cenário não introduzem cores novas, variam só o valor (claro/escuro) da cor predominante da carta.</p>
+        </div>
+      </div>
+
+      <h3 style="font-family: var(--font-body); font-size: 16px; font-weight: 700; margin: 44px 0 4px;">A cor de cada poção</h3>
+      <div class="palette-strip reveal" id="paletteStrip"></div>
     </div>
   </section>
 
@@ -532,18 +631,66 @@
   ];
 
   var COELHOS = [
-    { potion: "Sangue", color: "#8B1A1A", sex: "macho", desc: "Meio lebre, orelhas caídas. Hemomancia, mãos sempre esticadas." },
-    { potion: "Sol", color: "#D4A017", sex: "macho", desc: "Baixinho e gordinho. Ferreiro de óculos de solda e macacão." },
-    { potion: "Aurora", color: "#E8944A", sex: "fêmea", desc: "Manchada, novinha. Roupas com joias e muito babado." },
-    { potion: "Seda", color: "#C9A0DC", sex: "macho", desc: "Enrolado na própria seda, sempre tentando fugir da poção." },
-    { potion: "Lua", color: "#4A5FA5", sex: "macho", desc: "Luneta e compasso na mão. Meio astronauta, meio sonhador." },
-    { potion: "Vida", color: "#4F8B4F", sex: "fêmea", desc: "Óculos de corrente, mais velha. Vive cercada de vinhas e folhas." },
-    { potion: "Cura", color: "#F2A0B8", sex: "fêmea", desc: "Rosa clarinho, manchada. A enfermeira oficial da turma." },
-    { potion: "Brisa", color: "#BFD8E8", sex: "fêmea", desc: "A carta mais branca do baralho. Sempre voando com o vento." },
-    { potion: "Gelo", color: "#7EC8E3", sex: "macho", desc: "Esquimó de coração. Macacão de neve e óculos de snowboard." },
-    { potion: "Força", color: "#B5442E", sex: "macho", desc: "Peludo, estufado, alto. Wrestling é a única linguagem que fala." },
-    { potion: "Fogo", color: "#D9481C", sex: "macho", desc: "Orelha chamuscada, meio doido por pirotecnia." },
-    { potion: "Prisma", color: "#B45CD9", sex: "fêmea", desc: "Camuflada na própria luz, sempre saindo de algum portal." }
+    { potion: "Sangue", color: "#8B1A1A", sex: "macho", desc: "Meio lebre, orelhas caídas. Hemomancia, mãos sempre esticadas.",
+      fur: "#F7F3EC", idade: "≈17 anos", aparencia: "Esguio, ombros estreitos, orelhas compridas e caídas. Olhos vermelho-rubi, mancha escura sutil ao redor de um olho.",
+      roupas: "Sem roupa pesada; luvas curtas escuras, um pingente simples em gota.",
+      personalidade: "Quieto, um pouco sombrio, fala pouco. O mais fascinado por magia \"de verdade\" da turma.",
+      cenario: "Canto mais escuro da sala, meia-luz, só a silhueta de uma estante ao fundo." },
+    { potion: "Sol", color: "#D4A017", sex: "macho", desc: "Baixinho e gordinho. Ferreiro de óculos de solda e macacão.",
+      fur: "#B97A45", idade: "≈38 anos", aparencia: "Baixo e atarracado, ombros largos, um pouco curvado de tanto debruçar sobre a bancada. Óculos de solda erguidos na testa, bigode desalinhado.",
+      roupas: "Macacão de trabalho puído, luvas de couro grossas, óculos de proteção.",
+      personalidade: "O mais velho em espírito, paciente, adora explicar processo passo a passo.",
+      cenario: "Bancada de forja improvisada, calor sugerido só pela cor, sem chamas desenhadas." },
+    { potion: "Aurora", color: "#E8944A", sex: "fêmea", desc: "Manchada, novinha. Roupas com joias e muito babado.",
+      fur: "#FDF8F0", idade: "≈9 anos", aparencia: "Pequena, postura ereta e de exibição, adora rodopiar. Cílios longos, pintinha decorativa perto do olho.",
+      roupas: "Gola com babados, um broche pequeno no peito.",
+      personalidade: "Vaidosa no bom sentido, ama se arrumar, fala rápido e animada.",
+      cenario: "Perto de uma janela, luz difusa entrando, sem paisagem além da cor quente." },
+    { potion: "Seda", color: "#C9A0DC", sex: "macho", desc: "Enrolado na própria seda, sempre tentando fugir da poção.",
+      fur: "#2B2830", idade: "≈11 anos", aparencia: "Baixo, magro, meio desengonçado. Bigodes finos, sobrancelhas erguidas de pânico gentil.",
+      roupas: "Enrolado numa faixa de tecido de seda, tropeçando nela.",
+      personalidade: "O atrapalhado do grupo, sempre correndo atrás do próprio rabo, coração bom.",
+      cenario: "Um tecido pendurado ao fundo, sugerido só por uma faixa mais clara." },
+    { potion: "Lua", color: "#4A5FA5", sex: "macho", desc: "Luneta e compasso na mão. Meio astronauta, meio sonhador.",
+      fur: "#A8ABB4", idade: "≈33 anos", aparencia: "Médio, postura ereta de observador, pescoço um pouco esticado pra cima. Olhos grandes e atentos, olheira leve de quem passa noites acordado.",
+      roupas: "Luneta pendurada no peito, compasso na pata.",
+      personalidade: "Sonhador, curioso, sempre catalogando alguma coisa.",
+      cenario: "Teto sugerindo céu noturno, degradê escuro, sem estrelas desenhadas." },
+    { potion: "Vida", color: "#4F8B4F", sex: "fêmea", desc: "Óculos de corrente, mais velha. Vive cercada de vinhas e folhas.",
+      fur: "#8C6239", idade: "≈47 anos", aparencia: "Robusta, postura confortável e estável, quase maternal. Óculos de leitura pendurados numa corrente.",
+      roupas: "Corrente de óculos, avental leve.",
+      personalidade: "Calma, cuidadosa, a mais velha e sábia do grupo.",
+      cenario: "Sugestão leve de vinhas e folhas ao fundo, tudo em variação de verde." },
+    { potion: "Cura", color: "#F2A0B8", sex: "fêmea", desc: "Rosa clarinho, manchada. A enfermeira oficial da turma.",
+      fur: "#F6D6DE", idade: "≈29 anos", aparencia: "Média, postura atenta e gentil, sempre inclinada pra ajudar. Bochechas rosadas, expressão doce.",
+      roupas: "Touca/avental de enfermaria simples, pequeno emblema de coração no peito.",
+      personalidade: "Cuidadosa, é quem todo mundo procura quando algo dá errado na aula.",
+      cenario: "Sugestão leve de prateleira de frascos ao fundo, tudo em tons de rosa." },
+    { potion: "Brisa", color: "#BFD8E8", sex: "fêmea", desc: "A carta mais branca do baralho. Sempre voando com o vento.",
+      fur: "#E4E7EC", idade: "≈10 anos", aparencia: "Pequena, leve, orelhas meio levantadas como se sentisse o vento. Expressão de \"ops\", sempre meio desequilibrada.",
+      roupas: "Um lenço leve que voa com ela.",
+      personalidade: "Distraída, sempre levada pelo vento, risonha.",
+      cenario: "Sugestão de nuvens e movimento de ar, tudo em azul muito claro." },
+    { potion: "Gelo", color: "#7EC8E3", sex: "macho", desc: "Esquimó de coração. Macacão de neve e óculos de snowboard.",
+      fur: "#F0F6FA", idade: "≈26 anos", aparencia: "Atarracado, estofado pelo casaco grosso. Bochechas coradas de frio.",
+      roupas: "Macacão de neve azul, óculos de snowboard na testa, capuz com pelo.",
+      personalidade: "Caseiro, gosta de conforto, fala devagar.",
+      cenario: "Sugestão leve de neblina fria, tudo em tons de azul-gelo." },
+    { potion: "Força", color: "#B5442E", sex: "macho", desc: "Peludo, estufado, alto. Wrestling é a única linguagem que fala.",
+      fur: "#F5F1E8", idade: "≈30 anos", aparencia: "Alto, largo, muito musculoso e estufado. Sobrancelha franzida permanente, uma cicatriz de treino.",
+      roupas: "Macacão de luta simples, faixa de campeão improvisada.",
+      personalidade: "Competitivo, bravo por fora, leal por dentro.",
+      cenario: "Sugestão leve de tatame/arena, tudo em tons terrosos." },
+    { potion: "Fogo", color: "#D9481C", sex: "macho", desc: "Orelha chamuscada, meio doido por pirotecnia.",
+      fur: "#F7F0E6", idade: "≈20 anos", aparencia: "Médio, ágil, sempre em movimento, uma orelha visivelmente chamuscada.",
+      roupas: "Óculos escuros descolados, jaqueta jeans, luvas resistentes ao calor.",
+      personalidade: "Impulsivo, adora explosão (literal), o hiperativo do grupo.",
+      cenario: "Sugestão leve de fumaça e faíscas, tudo em laranja e vermelho." },
+    { potion: "Prisma", color: "#B45CD9", sex: "fêmea", desc: "Camuflada na própria luz, sempre saindo de algum portal.",
+      fur: "#211D2B", idade: "sem idade definida", aparencia: "Esguia, orelhas compridas, postura furtiva. Olhos com reflexo multicolor sutil, sempre parecendo entre lugares.",
+      roupas: "Nenhum acessório fixo, prefere ficar camuflada na própria cor.",
+      personalidade: "Enigmática, aparece e desaparece, fala pouco e sempre em enigmas.",
+      cenario: "Sugestão leve de fenda de luz ou portal, tudo em tons de violeta." }
   ];
 
   var FEITICOS = [
@@ -603,9 +750,45 @@
     });
   }
 
+  function renderPersonas() {
+    var list = document.getElementById("personaList");
+    COELHOS.forEach(function (c) {
+      var item = document.createElement("details");
+      item.className = "persona-item";
+      item.innerHTML =
+        "<summary>" +
+          '<span class="persona-swatches"><i style="background:' + c.fur + '" title="Pelagem"></i><i style="background:' + c.color + '" title="Cor da cena"></i></span>' +
+          '<span class="persona-name">' + c.potion + "</span>" +
+          '<span class="persona-age">' + c.sex + " · " + c.idade + "</span>" +
+          '<span class="persona-hint">' + c.personalidade + "</span>" +
+          '<svg class="persona-chev" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 4l6 6-6 6"/></svg>' +
+        "</summary>" +
+        '<div class="persona-body">' +
+          '<div class="persona-field"><b>Aparência</b><p>' + c.aparencia + "</p></div>" +
+          '<div class="persona-field"><b>Roupas e acessórios</b><p>' + c.roupas + "</p></div>" +
+          '<div class="persona-field"><b>Cenário da carta</b><p>' + c.cenario + "</p></div>" +
+          '<div class="persona-field"><b>Cores</b><p>Pelagem ' + c.fur + " · Cena/poção " + c.color + "</p></div>" +
+        "</div>";
+      list.appendChild(item);
+    });
+  }
+
+  function renderPaletteEstetica() {
+    var strip = document.getElementById("paletteStrip");
+    if (!strip) return;
+    POTIONS.forEach(function (p) {
+      var chip = document.createElement("span");
+      chip.className = "palette-chip";
+      chip.innerHTML = '<span class="dot" style="background:' + p.color + '"></span><span>' + p.name + "</span>";
+      strip.appendChild(chip);
+    });
+  }
+
   renderWheel();
   renderCoelhos();
   renderFeiticos();
+  renderPersonas();
+  renderPaletteEstetica();
 
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var targets = document.querySelectorAll(".reveal, .coelho-card");
