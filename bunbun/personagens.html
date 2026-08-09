@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex, nofollow" />
-<title>BunBun, o jogo de cartas</title>
-<meta name="description" content="BunBun: um jogo de cartas sobre coelhos, poções e uma corrida de ingredientes. Em construção." />
+<title>Personagens — BunBun</title>
+<meta name="description" content="A bíblia completa dos 12 coelhos do BunBun: aparência, roupas, personalidade, cenário e o prompt de geração de imagem por IA pronto pra copiar." />
 <style>
   @font-face {
     font-family: "Boink";
@@ -19,7 +19,6 @@
     font-weight: 400;
     font-display: swap;
   }
-
   :root {
     --ink: #241C33;
     --ink-soft: #5B5470;
@@ -81,7 +80,6 @@
     --shadow-sm: 0 1px 2px rgba(0,0,0,0.3), 0 2px 8px -2px rgba(0,0,0,0.4);
     --shadow-md: 0 4px 16px -4px rgba(0,0,0,0.5), 0 12px 40px -8px rgba(0,0,0,0.55);
   }
-
   * { box-sizing: border-box; }
   html { color-scheme: light dark; scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -98,7 +96,6 @@
   img, svg { display: block; max-width: 100%; }
   .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
   h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: 0.01em; text-wrap: balance; margin: 0; }
-
   /* ---------- nav ---------- */
   header.nav {
     position: sticky; top: 0; z-index: 50;
@@ -133,163 +130,88 @@
     .nav-toggle { display: inline-flex; }
   }
 
-  /* ---------- hero ---------- */
-  .hero { padding: 56px 0 72px; overflow: hidden; }
-  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
-  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
-  .eyebrow {
+  /* ---------- page hero ---------- */
+  .page-hero { padding: 56px 0 40px; }
+  .page-eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
     font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--accent); background: var(--accent-tint); border-radius: 999px; padding: 6px 12px;
     margin-bottom: 18px;
   }
-  h1.headline { font-size: clamp(38px, 5.6vw, 64px); line-height: 1.04; margin-bottom: 18px; }
-  p.subtext { font-size: 18px; color: var(--ink-soft); max-width: 46ch; margin: 0 0 28px; line-height: 1.55; }
-  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: 15.5px;
-    padding: 14px 26px; border-radius: 999px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-    box-shadow: var(--shadow-sm); transition: transform .15s ease, box-shadow .15s ease;
+  .back-link {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600;
+    color: var(--ink-soft); text-decoration: none; margin-bottom: 20px;
   }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-  .btn-secondary {
-    background: transparent; color: var(--ink); font-weight: 700; font-size: 15.5px;
-    padding: 14px 26px; border-radius: 999px; text-decoration: none; border: 1.5px solid var(--border);
-    transition: border-color .15s ease, background .15s ease;
+  .back-link:hover { color: var(--accent); }
+  h1.page-title { font-size: clamp(34px, 5vw, 54px); line-height: 1.05; margin-bottom: 16px; }
+  p.page-lede { font-size: 17px; color: var(--ink-soft); max-width: 62ch; line-height: 1.6; margin: 0 0 20px; }
+  .honesty-note {
+    font-size: 13.5px; color: var(--ink-faint); background: var(--accent-tint); border-radius: 12px;
+    padding: 14px 18px; max-width: 74ch; line-height: 1.6;
   }
-  .btn-secondary:hover { border-color: var(--accent); background: var(--accent-tint); }
 
-  .potion-wheel { position: relative; aspect-ratio: 1; max-width: 420px; margin: 0 auto; }
-  .potion-wheel .center {
-    position: absolute; inset: 32%; border-radius: 50%; background: var(--surface);
-    box-shadow: var(--shadow-md); border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px;
-  }
-  .potion-wheel .center span { font-family: var(--font-accent); font-size: 15px; color: var(--ink-soft); line-height: 1.3; }
-  .potion-dot {
-    position: absolute; width: 15%; aspect-ratio: 1; border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.18), inset 0 0 0 3px color-mix(in srgb, var(--paper) 70%, transparent);
-    transition: transform .2s ease;
-  }
-  .potion-dot:hover { transform: scale(1.18); z-index: 5; }
-
-  /* ---------- sections ---------- */
-  section { padding: 88px 0; }
-  section.tinted { background: var(--surface-2); }
-  .section-head { max-width: 640px; margin: 0 0 40px; }
-  .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
-  h2.section-title { font-size: clamp(28px, 3.6vw, 42px); margin-bottom: 12px; }
-  p.section-lede { color: var(--ink-soft); font-size: 17px; line-height: 1.6; margin: 0; }
-
-  .steps { display: flex; flex-direction: column; gap: 0; counter-reset: step; margin-top: 8px; }
-  .step { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 22px 0; border-top: 1px solid var(--border); }
-  .step:last-child { border-bottom: 1px solid var(--border); }
-  .step-num { font-family: var(--font-mono); font-size: 20px; color: var(--accent); font-weight: 700; }
-  .step h3 { font-size: 19px; font-family: var(--font-body); font-weight: 700; margin-bottom: 4px; }
-  .step p { margin: 0; color: var(--ink-soft); font-size: 15.5px; max-width: 60ch; }
-
-  blockquote.lore {
-    font-family: var(--font-display); font-size: clamp(24px, 3.2vw, 34px); line-height: 1.35;
-    color: var(--ink); margin: 0 0 20px; max-width: 20ch;
-  }
-  .lore-attr { font-family: var(--font-mono); font-size: 13px; color: var(--ink-faint); }
-  .lore-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: start; }
-  @media (max-width: 860px) { .lore-grid { grid-template-columns: 1fr; } }
-  .lore-card {
+  /* ---------- character deep cards ---------- */
+  section.persona-deck { padding: 24px 0 96px; }
+  .persona-deck-grid { display: flex; flex-direction: column; gap: 28px; }
+  .persona-card {
     background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 26px 28px; box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-sm); overflow: hidden;
+    opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease;
   }
-  .lore-card h3 { font-family: var(--font-body); font-size: 16px; font-weight: 700; margin: 0 0 8px; }
-  .lore-card p { margin: 0; color: var(--ink-soft); font-size: 15px; line-height: 1.6; }
-  .lore-card + .lore-card { margin-top: 16px; }
-
-  /* coelhos grid */
-  .coelho-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-  @media (max-width: 980px) { .coelho-grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 680px) { .coelho-grid { grid-template-columns: repeat(2, 1fr); } }
-  .coelho-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
-    padding: 18px; box-shadow: var(--shadow-sm); transition: transform .18s ease, box-shadow .18s ease;
-    opacity: 0; transform: translateY(16px);
+  .persona-card.in { opacity: 1; transform: translateY(0); }
+  .persona-card-head {
+    display: flex; align-items: center; gap: 18px; padding: 24px 28px;
+    border-bottom: 1px solid var(--border);
   }
-  .coelho-card.in { opacity: 1; transform: translateY(0); }
-  .coelho-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-  .coelho-swatch { width: 40px; height: 40px; border-radius: 50%; margin-bottom: 14px; box-shadow: inset 0 0 0 3px rgba(255,255,255,0.35), 0 2px 6px rgba(0,0,0,0.15); }
-  .coelho-card h3 { font-family: var(--font-body); font-size: 16.5px; font-weight: 700; margin: 0 0 2px; }
-  .coelho-tag { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; display: block; }
-  .coelho-card p { margin: 0; font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; }
-
-  /* feitiços grid */
-  .feitico-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
-  @media (max-width: 980px) { .feitico-grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 620px) { .feitico-grid { grid-template-columns: repeat(2, 1fr); } }
-  .feitico-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px;
-    display: flex; flex-direction: column; gap: 8px; box-shadow: var(--shadow-sm);
+  .persona-card-swatches { display: flex; gap: 6px; flex-shrink: 0; }
+  .persona-card-swatches i {
+    display: block; width: 34px; height: 34px; border-radius: 50%; font-style: normal;
+    box-shadow: inset 0 0 0 3px rgba(255,255,255,0.35), 0 2px 6px rgba(0,0,0,0.18);
   }
-  .feitico-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
-  .feitico-card h4 { font-family: var(--font-body); font-size: 14.5px; font-weight: 700; margin: 0; line-height: 1.25; }
-  .feitico-qty { font-family: var(--font-mono); font-size: 12px; color: var(--accent); font-weight: 700; white-space: nowrap; }
-  .feitico-card p { margin: 0; font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
-
-  .dice-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14.5px; }
-  .dice-table th { text-align: left; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); padding: 0 0 10px; }
-  .dice-table td { padding: 14px 0; border-top: 1px solid var(--border); vertical-align: top; }
-  .dice-table td:first-child { font-family: var(--font-mono); font-weight: 700; color: var(--accent); width: 90px; }
-  .dice-table td:last-child { color: var(--ink-soft); }
-
-  /* estética & cores */
-  .principle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  @media (max-width: 860px) { .principle-grid { grid-template-columns: 1fr; } }
-  .principle-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 24px; box-shadow: var(--shadow-sm);
+  .persona-card-id { flex: 1; min-width: 0; }
+  .persona-card-id h2 { font-family: var(--font-body); font-size: 21px; font-weight: 800; margin: 0 0 3px; }
+  .persona-card-tags { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .tag-pill {
+    font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-faint);
+    background: var(--surface-2); border-radius: 999px; padding: 3px 10px;
   }
-  .principle-num {
-    display: block; font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--accent); margin-bottom: 12px;
+  .persona-card-num { font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+  .persona-card-body { padding: 24px 28px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 32px; }
+  @media (max-width: 760px) { .persona-card-body { grid-template-columns: 1fr; } }
+  .persona-field b {
+    display: block; font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--ink-faint); margin-bottom: 6px;
   }
-  .principle-card h3 { font-family: var(--font-body); font-size: 16.5px; font-weight: 700; margin: 0 0 8px; }
-  .principle-card p { margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.6; }
+  .persona-field p { margin: 0; font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
 
-  .palette-strip { display: flex; flex-wrap: wrap; gap: 10px; }
-  .palette-chip {
-    display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border);
-    border-radius: 999px; padding: 6px 14px 6px 6px;
+  .persona-prompt-wrap { padding: 0 28px 26px; }
+  .persona-prompt-label {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px;
   }
-  .palette-chip .dot {
-    width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
-    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.35), 0 1px 3px rgba(0,0,0,0.15);
+  .persona-prompt-label b {
+    font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--ink-faint);
   }
-  .palette-chip span { font-size: 12.5px; font-weight: 600; color: var(--ink-soft); }
-
-  /* changelog */
-  .changelog { display: flex; flex-direction: column; gap: 0; }
-  .change-item { display: grid; grid-template-columns: 110px 1fr; gap: 20px; padding: 18px 0; border-top: 1px solid var(--border); }
-  .change-item:last-child { border-bottom: 1px solid var(--border); }
-  .change-date { font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-faint); padding-top: 2px; }
-  .change-body b { font-weight: 700; }
-  .change-body p { margin: 4px 0 0; color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; }
-
-  .pill { display: inline-flex; align-items: center; font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
-  .pill-open { background: var(--accent-tint); color: var(--accent); }
-  .pill-done { background: var(--sage-tint); color: var(--sage); }
-
-  .open-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; margin-top: 8px; }
-  @media (max-width: 700px) { .open-list { grid-template-columns: 1fr; } }
-  .open-item { display: flex; gap: 10px; align-items: baseline; font-size: 14.5px; color: var(--ink-soft); }
-  .open-item svg { flex: none; width: 14px; height: 14px; color: var(--accent); margin-top: 3px; }
-
-  footer.site-foot { border-top: 1px solid var(--border); padding: 40px 0; }
-  .foot-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-  .foot-inner p { margin: 0; font-size: 13.5px; color: var(--ink-faint); }
-  .foot-brand { font-family: var(--font-display); font-size: 17px; color: var(--ink-soft); }
-
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
-  .reveal.in { opacity: 1; transform: translateY(0); }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal, .coelho-card { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .copy-btn {
+    display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-body); font-size: 12.5px;
+    font-weight: 700; color: var(--accent); background: var(--accent-tint); border: none; border-radius: 999px;
+    padding: 6px 14px; cursor: pointer; transition: background .15s ease, transform .1s ease;
   }
+  .copy-btn:hover { background: var(--accent-soft); }
+  .copy-btn:active { transform: scale(0.96); }
+  .copy-btn svg { width: 13px; height: 13px; }
+  .copy-btn.copied { color: var(--sage); background: var(--sage-tint); }
+  .persona-prompt {
+    margin: 0; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.65; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px;
+    white-space: pre-wrap; word-break: break-word;
+  }
+
+  .page-foot-note {
+    max-width: 70ch; margin: 40px auto 0; text-align: center; color: var(--ink-faint); font-size: 13.5px; line-height: 1.6;
+  }
+
 </style>
 </head>
 <body>
@@ -308,376 +230,263 @@
 
 <header class="nav">
   <div class="nav-inner">
-    <a href="#top" class="brand logo-mark" aria-label="BunBun, início da página">
+    <a href="index.html#top" class="brand logo-mark" aria-label="BunBun, início da página">
       <svg viewBox="0 0 120.99 142.97"><use href="#bunbunLogo"></use></svg>
     </a>
     <nav class="links">
-      <a href="#sobre">O jogo</a>
-      <a href="#coelhos">Coelhos</a>
-      <a href="personagens.html">Personagens</a>
-      <a href="#como-jogar">Como jogar</a>
-      <a href="#cartas">Cartas</a>
-      <a href="#estetica">Estética</a>
-      <a href="#prd">Produto</a>
-      <a href="#diario">Diário</a>
+      <a href="index.html#sobre">O jogo</a>
+      <a href="index.html#coelhos">Coelhos</a>
+      <a href="personagens.html" style="color:var(--accent)">Personagens</a>
+      <a href="index.html#como-jogar">Como jogar</a>
+      <a href="index.html#cartas">Cartas</a>
+      <a href="index.html#estetica">Estética</a>
+      <a href="index.html#prd">Produto</a>
+      <a href="index.html#diario">Diário</a>
     </nav>
-    <a href="#como-jogar" class="nav-cta">Como jogar</a>
+    <a href="index.html#top" class="nav-cta">Voltar ao site</a>
   </div>
 </header>
 
-<main id="top">
-
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <svg class="hero-logo" viewBox="0 0 120.99 142.97" aria-label="BunBun"><use href="#bunbunLogo"></use></svg>
-        <span class="eyebrow">Em construção, um playtest de cada vez</span>
-        <h1 class="headline">Complete sua poção antes dos outros coelhos.</h1>
-        <p class="subtext">BunBun é um jogo de cartas sobre alquimia, ingredientes e uma turma de coelhos competindo numa aula de poções.</p>
-        <div class="cta-row">
-          <a href="#como-jogar" class="btn-primary">Como jogar</a>
-          <a href="#coelhos" class="btn-secondary">Conhecer os coelhos</a>
-        </div>
-      </div>
-      <div class="potion-wheel" id="potionWheel">
-        <div class="center"><span>12 poções.<br>12 coelhos.<br>1 aula.</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="sobre">
+<main>
+  <section class="page-hero">
     <div class="wrap">
-      <div class="section-head">
-        <h2 class="section-title">O jogo, em três passos</h2>
-        <p class="section-lede">A mecânica central é simples de explicar e funda para jogar de novo.</p>
-      </div>
-      <div class="steps reveal">
-        <div class="step">
-          <span class="step-num">01</span>
-          <div><h3>Reúna os ingredientes</h3><p>Cada jogador recebe uma poção secreta e corre atrás das cartas de letra que formam a própria receita.</p></div>
-        </div>
-        <div class="step">
-          <span class="step-num">02</span>
-          <div><h3>Use os feitiços</h3><p>Roube, sabote, proteja ou transforme. As cartas de feitiço criam a tensão entre os jogadores.</p></div>
-        </div>
-        <div class="step">
-          <span class="step-num">03</span>
-          <div><h3>Ative as runas no dado</h3><p>Poção completa não é vitória ainda. É preciso acertar o dado de 8 lados até marcar todas as runas.</p></div>
-        </div>
-      </div>
+      <a href="index.html#coelhos" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4l-6 6 6 6"/></svg>
+        Voltar pros coelhos
+      </a>
+      <span class="page-eyebrow">Bíblia dos personagens</span>
+      <h1 class="page-title">Os 12 alunos da turma, em detalhe.</h1>
+      <p class="page-lede">Aparência, roupas, personalidade e o cenário de cada carta — e, pra cada um, um prompt de geração de imagem já pronto pra copiar e testar num gerador de IA.</p>
+      <p class="honesty-note">Cor de pelagem, idade e tipo de corpo são propostas em cima do material original, ainda não fechadas. O resto (cor da cena, papel na turma, personalidade) vem desde o começo do projeto. Os prompts são um primeiro rascunho pra testar se a direção visual funciona — não o texto final de produção.</p>
     </div>
   </section>
 
-  <section id="lore" class="tinted">
-    <div class="wrap lore-grid">
-      <div class="reveal">
-        <blockquote class="lore">Os coelhos são os alquimistas, numa aula de poções.</blockquote>
-        <p class="lore-attr">A premissa oficial do jogo</p>
-      </div>
-      <div class="reveal">
-        <div class="lore-card">
-          <h3>O prêmio da turma</h3>
-          <p>Quem termina a própria poção primeiro leva a Poção do Pulo, o item mais cobiçado da aula. Quem a segura começa a próxima partida já com uma pequena vantagem, e passa a coroa adiante para o próximo campeão.</p>
-        </div>
-        <div class="lore-card">
-          <h3>Quem dá a aula</h3>
-          <p>Não existe um professor à parte. A autoridade da turma é o próprio coelho estampado na carta da Poção do Pulo.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="coelhos">
+  <section class="persona-deck">
     <div class="wrap">
-      <div class="section-head center">
-        <h2 class="section-title">Os alunos da turma</h2>
-        <p class="section-lede">Doze coelhos, doze poções, doze jeitos diferentes de tentar vencer a aula.</p>
-      </div>
-      <div class="coelho-grid" id="coelhoGrid"></div>
-      <p style="text-align:center; margin-top: 28px;"><a href="personagens.html" class="btn-secondary">Ver a bíblia completa dos personagens →</a></p>
+      <div class="persona-deck-grid" id="personaDeck"></div>
     </div>
   </section>
 
-  <section id="como-jogar" class="tinted">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 class="section-title">Como jogar</h2>
-        <p class="section-lede">Objetivo: monte a receita da sua poção e ative todas as runas antes dos outros. Regra em evolução constante, ajustada a cada rodada de playtest.</p>
-      </div>
-
-      <div class="steps reveal">
-        <div class="step">
-          <span class="step-num">↳</span>
-          <div><h3>Preparo</h3><p>Cada jogador recebe 1 carta de poção, 3 cartas de ingrediente e 4 cartas de feitiço. A mesa de descarte começa vazia.</p></div>
-        </div>
-        <div class="step">
-          <span class="step-num">↳</span>
-          <div><h3>No seu turno</h3><p>Escolha uma ação: comprar do baralho principal, pegar da mesa de descarte, ou usar um feitiço. Mão máxima: 2 ingredientes, 6 feitiços.</p></div>
-        </div>
-        <div class="step">
-          <span class="step-num">↳</span>
-          <div><h3>Poção completa</h3><p>Ao reunir todos os ingredientes, revele sua poção. Todos os outros jogadores recebem, na hora, uma nova carta de feitiço.</p></div>
-        </div>
-        <div class="step">
-          <span class="step-num">↳</span>
-          <div><h3>Fase do dado</h3><p>Jogue o dado de 8 lados para marcar as runas da sua poção. Nesta fase, dá pra jogar o dado e usar um feitiço no mesmo turno.</p></div>
-        </div>
-      </div>
-
-      <table class="dice-table reveal">
-        <thead><tr><th>Resultado</th><th>O que acontece</th></tr></thead>
-        <tbody>
-          <tr><td>2 a 5</td><td>Marca a runa correspondente na carta de poção.</td></tr>
-          <tr><td>6</td><td>Coringa: marca a runa que você escolher, exceto a última. Máximo de 2 coringas por carta.</td></tr>
-          <tr><td>1</td><td>Perde uma runa marcada, mas ganha uma ficha que ajusta seu próprio resultado em +1 no futuro. Joga de novo.</td></tr>
-          <tr><td>7</td><td>Perde uma runa marcada, ganha uma ficha de ajuste -1. A vez passa para o próximo jogador.</td></tr>
-          <tr><td>8</td><td>Em teste: jogar de novo ou ganhar uma nova carta de feitiço.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section id="cartas">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 class="section-title">As cartas de feitiço</h2>
-        <p class="section-lede">Dez tipos de feitiço movem o jogo entre a corrida pelos ingredientes e a fase do dado.</p>
-      </div>
-      <div class="feitico-grid reveal" id="feiticoGrid"></div>
-    </div>
-  </section>
-
-  <section id="estetica" class="tinted">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 class="section-title">Estética e cores</h2>
-        <p class="section-lede">As regras de composição visual decididas depois de estudar duas referências externas. Valem pra toda ilustração futura do jogo, seja de carta de poção ou de personagem.</p>
-      </div>
-
-      <div class="principle-grid reveal">
-        <div class="principle-card">
-          <span class="principle-num">Cor por carta</span>
-          <h3>Fundo e poção compartilham cor. O coelho não precisa.</h3>
-          <p>Cada poção mantém sua própria cor predominante, e essa cor aparece no fundo da cena e na própria poção. O coelho pode contrastar, desde que fique na mesma temperatura da cena (as duas quentes, ou as duas frias) — o contraste vem de pequenos acentos na temperatura oposta, não de uma cor nova.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-num">Traço</span>
-          <h3>Cel-shading com hierarquia de linha</h3>
-          <p>Três níveis: contorno externo grosso no personagem e na poção, linhas internas finas pra detalhe, e sombra/luz sem contorno nenhum, só blocos de cor chapada.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-num">Cenário</span>
-          <h3>Sempre presente, mínimo, integrado</h3>
-          <p>Toda carta tem um cenário, nunca fundo 100% chapado. Mas com pouquíssimo detalhe, e monocromático: os elementos do cenário não introduzem cores novas, variam só o valor (claro/escuro) da cor predominante da carta.</p>
-        </div>
-      </div>
-
-      <h3 style="font-family: var(--font-body); font-size: 16px; font-weight: 700; margin: 44px 0 4px;">A cor de cada poção</h3>
-      <div class="palette-strip reveal" id="paletteStrip"></div>
-    </div>
-  </section>
-
-  <section id="prd">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 class="section-title">Visão do produto</h2>
-        <p class="section-lede">A versão enxuta de um PRD para um jogo que ainda está sendo testado à mesa: por que ele existe, pra quem é hoje, o que falta pra chamar de pronto, e o que ainda não foi decidido.</p>
-      </div>
-
-      <blockquote class="lore" style="max-width: 26ch; font-size: clamp(20px, 2.6vw, 28px);">Um jogo de palavras rápido, competitivo e engraçado o suficiente pra pedir uma revanche.</blockquote>
-      <p class="lore-attr" style="margin-bottom: 32px;">A visão em uma frase</p>
-
-      <div class="lore-grid">
-        <div class="lore-card">
-          <h3>Escopo de hoje (v1, dentro de casa)</h3>
-          <p>Mecânica central, 12 poções, 12 coelhos, manual de regras jogável, protótipo físico impresso, identidade visual em construção (logo, fontes, este site).</p>
-        </div>
-        <div class="lore-card">
-          <h3>Escopo de depois (a decidir quando fizer sentido)</h3>
-          <p>Produção em escala, venda, arte final da caixa e das cartas, expansão da lore, qualquer forma de distribuição além do círculo de amigos.</p>
-        </div>
-      </div>
-
-      <div class="lore-grid" style="margin-top: 16px;">
-        <div class="lore-card">
-          <h3>Para quem é, hoje</h3>
-          <p>O grupo de amigos que já testou várias partidas. Um público maior (crianças, lojas, venda) ainda não está definido.</p>
-        </div>
-        <div class="lore-card">
-          <h3>O que significa "pronto" agora</h3>
-          <p>Regras estáveis o bastante pra jogar sem parar pra decidir no meio, um manual que um amigo novo consegue ler sozinho, e uma versão de arte de carta fechada.</p>
-        </div>
-      </div>
-
-      <h3 style="font-family: var(--font-body); font-size: 16px; font-weight: 700; margin: 44px 0 4px;">Riscos e perguntas em aberto</h3>
-      <div class="open-list reveal">
-        <div class="open-item"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10M11 5l5 5-5 5"/></svg>Hobby só entre amigos ou avaliar produção em escala. Ainda sem resposta, de propósito.</div>
-        <div class="open-item"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10M11 5l5 5-5 5"/></svg>Público-alvo real (idade, tamanho de grupo) segue indefinido.</div>
-        <div class="open-item"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10M11 5l5 5-5 5"/></svg>Regras ainda mudam a cada rodada de playtest, o que atrasa qualquer arte final.</div>
-        <div class="open-item"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10M11 5l5 5-5 5"/></svg>Verso da carta e arte da caixa sem direção fechada.</div>
-        <div class="open-item"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10M11 5l5 5-5 5"/></svg>Custo de produção física (gráfica, tiragem) ainda não foi levantado.</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="diario" class="tinted">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 class="section-title">Diário de desenvolvimento</h2>
-        <p class="section-lede">BunBun nasceu como "O Grimório das Poções" e virou o que é hoje depois de muitas partidas jogadas com os amigos. Um resumo do que já mudou e do que ainda está sendo decidido.</p>
-      </div>
-
-      <div class="changelog reveal">
-        <div class="change-item">
-          <span class="change-date">2026</span>
-          <div class="change-body"><b>Nome oficial: BunBun.</b><p>O jogo deixa de se chamar "O Grimório das Poções" de vez, e os coelhos viram os protagonistas da história.</p></div>
-        </div>
-        <div class="change-item">
-          <span class="change-date">2026</span>
-          <div class="change-body"><b>Lore reescrita.</b><p>Sai a mitologia do Mestre do Éter, entra a aula de poções e a Poção do Pulo como prêmio da turma.</p></div>
-        </div>
-        <div class="change-item">
-          <span class="change-date">2026</span>
-          <div class="change-body"><b>Fragmentos de pedra filosofal, removidos.</b><p>A mecânica de reservar carta soava divertida no papel, mas quase não acontecia na mesa, e competia com o próprio objetivo de fazer os jogadores interagirem entre si.</p></div>
-        </div>
-        <div class="change-item">
-          <span class="change-date">2026</span>
-          <div class="change-body"><b>Mesa de descarte começa vazia.</b><p>Junto com o limite de 2 cartas de ingrediente na mão, isso força decisão real desde o início da partida.</p></div>
-        </div>
-        <div class="change-item">
-          <span class="change-date">2026</span>
-          <div class="change-body"><b>Completar a poção passou a valer para todo mundo.</b><p>Quem revela a própria poção primeiro dá uma carta de feitiço nova para cada um dos outros jogadores.</p></div>
-        </div>
-      </div>
-
-      <h3 style="font-family: var(--font-body); font-size: 16px; font-weight: 700; margin: 44px 0 4px;">O que ainda está em aberto</h3>
-      <div class="open-list reveal">
-        <div class="open-item"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10M11 5l5 5-5 5"/></svg>Verso final das cartas: ícone único ou ilustração por baralho.</div>
-        <div class="open-item"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10M11 5l5 5-5 5"/></svg>Nomes definitivos das cartas de feitiço, temáticos ao universo dos coelhos.</div>
-        <div class="open-item"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10M11 5l5 5-5 5"/></svg>Texto final da vantagem de segurar a Poção do Pulo.</div>
-        <div class="open-item"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10M11 5l5 5-5 5"/></svg>Se o resultado 8 do dado vira "jogar de novo ou ganhar feitiço" de vez.</div>
-        <div class="open-item"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10M11 5l5 5-5 5"/></svg>Arte final da caixa e produção gráfica.</div>
-        <div class="open-item"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10M11 5l5 5-5 5"/></svg>Se o jogo fica só entre amigos ou vira algo maior.</div>
-      </div>
-    </div>
-  </section>
-
+  <p class="wrap page-foot-note">Prompts pensados pra geradores de imagem por IA em geral (ex. ChatGPT/GPT Image). Cole no chat, gere, e compare o resultado com a regra de cor e traço que o jogo já fechou — se algo não bater, ajuste o prompt na hora, ele é só o ponto de partida.</p>
 </main>
 
-<footer class="site-foot">
-  <div class="wrap foot-inner">
-    <span class="foot-brand">BunBun</span>
-    <p>Feito à mão, testado à mesa, em evolução constante.</p>
+<footer class="site-foot" style="border-top:1px solid var(--border); padding: 32px 0; margin-top: 40px;">
+  <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+    <span style="font-family:var(--font-display); font-size:20px;">BunBun</span>
+    <p style="margin:0; color:var(--ink-faint); font-size:13.5px;">Feito à mão, testado à mesa, em evolução constante.</p>
   </div>
 </footer>
 
 <script>
 (function () {
-  var POTIONS = [
-    { name: "Prisma", color: "#B45CD9" },
-    { name: "Aurora", color: "#E8944A" },
-    { name: "Cura", color: "#F2A0B8" },
-    { name: "Fogo", color: "#D9481C" },
-    { name: "Vida", color: "#4F8B4F" },
-    { name: "Força", color: "#B5442E" },
-    { name: "Gelo", color: "#7EC8E3" },
-    { name: "Sol", color: "#D4A017" },
-    { name: "Seda", color: "#C9A0DC" },
-    { name: "Lua", color: "#4A5FA5" },
-    { name: "Sangue", color: "#8B1A1A" },
-    { name: "Brisa", color: "#BFD8E8" }
-  ];
-
   var COELHOS = [
-    { potion: "Sangue", color: "#8B1A1A", sex: "macho", desc: "Meio lebre, orelhas caídas. Hemomancia, mãos sempre esticadas." },
-    { potion: "Sol", color: "#D4A017", sex: "macho", desc: "Baixinho e gordinho. Ferreiro de óculos de solda e macacão." },
-    { potion: "Aurora", color: "#E8944A", sex: "fêmea", desc: "Manchada, novinha. Roupas com joias e muito babado." },
-    { potion: "Seda", color: "#C9A0DC", sex: "macho", desc: "Enrolado na própria seda, sempre tentando fugir da poção." },
-    { potion: "Lua", color: "#4A5FA5", sex: "macho", desc: "Luneta e compasso na mão. Meio astronauta, meio sonhador." },
-    { potion: "Vida", color: "#4F8B4F", sex: "fêmea", desc: "Óculos de corrente, mais velha. Vive cercada de vinhas e folhas." },
-    { potion: "Cura", color: "#F2A0B8", sex: "fêmea", desc: "Rosa clarinho, manchada. A enfermeira oficial da turma." },
-    { potion: "Brisa", color: "#BFD8E8", sex: "fêmea", desc: "A carta mais branca do baralho. Sempre voando com o vento." },
-    { potion: "Gelo", color: "#7EC8E3", sex: "macho", desc: "Esquimó de coração. Macacão de neve e óculos de snowboard." },
-    { potion: "Força", color: "#B5442E", sex: "macho", desc: "Peludo, estufado, alto. Wrestling é a única linguagem que fala." },
-    { potion: "Fogo", color: "#D9481C", sex: "macho", desc: "Orelha chamuscada, meio doido por pirotecnia." },
-    { potion: "Prisma", color: "#B45CD9", sex: "fêmea", desc: "Camuflada na própria luz, sempre saindo de algum portal." }
-  ];
-
-  var FEITICOS = [
-    { name: "Sabotagem", qty: "6", desc: "Obriga um adversário a descartar um ingrediente, da mão ou da poção." },
-    { name: "Roubo", qty: "12", desc: "Rouba um ingrediente de qualquer jogador, mesmo já na fase do dado." },
-    { name: "Escudo", qty: "5", desc: "Protege contra Roubo ou Sabotagem no momento exato da tentativa." },
-    { name: "Cancelamento", qty: "3", desc: "Anula qualquer feitiço ativo em jogo, não só o último jogado." },
-    { name: "Essência Arcana", qty: "2", desc: "Substitui qualquer ingrediente. Não pode ser roubada." },
-    { name: "Extração Mágica", qty: "5", desc: "Puxa 3 cartas do baralho principal e fica com 1." },
-    { name: "Destruição", qty: "5", desc: "Destrói o resultado do dado de alguém, seu ou de outro jogador." },
-    { name: "Escudo com troco", qty: "2", desc: "Além de bloquear Roubo ou Sabotagem, devolve o golpe." },
-    { name: "Jogue o dado pra mim", qty: "4", desc: "Escolha alguém pra rolar por você e decida quem fica com o resultado." },
-    { name: "Novo Feitiço", qty: "12", desc: "Carta do baralho principal que dá acesso a um feitiço novo." }
-  ];
-
-  function renderWheel() {
-    var wheel = document.getElementById("potionWheel");
-    var n = POTIONS.length, r = 42;
-    POTIONS.forEach(function (p, i) {
-      var angle = (i / n) * Math.PI * 2 - Math.PI / 2;
-      var x = 50 + r * Math.cos(angle);
-      var y = 50 + r * Math.sin(angle);
-      var dot = document.createElement("div");
-      dot.className = "potion-dot";
-      dot.style.left = x + "%";
-      dot.style.top = y + "%";
-      dot.style.transform = "translate(-50%,-50%)";
-      dot.style.background = p.color;
-      dot.title = p.name;
-      wheel.appendChild(dot);
-    });
+  {
+    "potion": "Sangue",
+    "color": "#8B1A1A",
+    "fur": "#F7F3EC",
+    "sex": "macho",
+    "idade": "≈17 anos",
+    "aparencia": "Esguio, ombros estreitos, orelhas compridas e caídas. Olhos vermelho-rubi, mancha escura sutil ao redor de um olho.",
+    "roupas": "Sem roupa pesada; luvas curtas escuras, um pingente simples em gota.",
+    "personalidade": "Quieto, um pouco sombrio, fala pouco. O mais fascinado por magia “de verdade” da turma.",
+    "cenario": "Canto mais escuro da sala, meia-luz, só a silhueta de uma estante ao fundo.",
+    "prompt": "Vector illustration of a slender teenage anthropomorphic rabbit character, cream-white fur (#F7F3EC), long floppy ears drooping down, narrow shoulders, deep ruby-red eyes with a subtle dark smudge shadow around one eye, quiet and intense expression, hands slightly outstretched. Wears no heavy clothing, only short dark fingerless gloves and a simple teardrop-shaped pendant necklace. Cel-shaded cartoon style: bold thick black outer contour line, thinner clean inner linework for details, flat solid shadow blocks with no outline (no gradients). Scene and background in a single dominant deep dark ruby-red hue (#8B1A1A), minimal scenery: a dim, shadowy corner of a classroom, only the faint silhouette of a bookshelf suggested in the background, everything in that same red family varying just in value, no new hues introduced. Character can contrast the background within the same warm color temperature. Square trading-card composition, character centered as the clear focal subject, three-quarter view. No text, no logos, no watermarks, no other franchise references."
+  },
+  {
+    "potion": "Sol",
+    "color": "#D4A017",
+    "fur": "#B97A45",
+    "sex": "macho",
+    "idade": "≈38 anos",
+    "aparencia": "Baixo e atarracado, ombros largos, um pouco curvado de tanto debruçar sobre a bancada. Óculos de solda erguidos na testa, bigode desalinhado.",
+    "roupas": "Macacão de trabalho puido, luvas de couro grossas, óculos de proteção.",
+    "personalidade": "O mais velho em espírito, paciente, adora explicar processo passo a passo.",
+    "cenario": "Bancada de forja improvisada, calor sugerido só pela cor, sem chamas desenhadas.",
+    "prompt": "Vector illustration of a short, stocky, middle-aged anthropomorphic rabbit character with warm terracotta-brown fur (#B97A45), broad shoulders, slightly hunched posture from years leaning over a workbench, a messy uncombed mustache, welding goggles pushed up on his forehead. Wears a worn work coverall, thick leather work gloves, and protective goggles. Patient, warm, mentor-like expression. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant warm amber-gold hue (#D4A017), minimal detail: an improvised blacksmith workbench silhouette, heat suggested only through the warm color itself, no flames drawn. Character can contrast within the same warm color temperature family. Square trading-card composition, character centered, three-quarter view. No text, no logos, no watermarks, no other franchise references."
+  },
+  {
+    "potion": "Aurora",
+    "color": "#E8944A",
+    "fur": "#FDF8F0",
+    "sex": "fêmea",
+    "idade": "≈9 anos",
+    "aparencia": "Pequena, postura ereta e de exibição, adora rodopiar. Cílios longos, pintinha decorativa perto do olho.",
+    "roupas": "Gola com babados, um broche pequeno no peito.",
+    "personalidade": "Vaidosa no bom sentido, ama se arrumar, fala rápido e animada.",
+    "cenario": "Perto de uma janela, luz difusa entrando, sem paisagem além da cor quente.",
+    "prompt": "Vector illustration of a small young anthropomorphic rabbit character with child-like proportions and a big expressive head, pearl-white fur (#FDF8F0) with soft dusty-pink patches (#E3A9BB), long eyelashes, a small decorative beauty mark near one eye, upright showy posture as if mid-twirl. Wears a ruffled collar and a small brooch on her chest. Cheerful, vain-in-a-cute-way expression, fast and animated energy. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant warm dawn-orange hue (#E8944A), minimal detail: soft diffuse light suggesting a window nearby, no landscape beyond the warm color field. Character can contrast within the same warm color temperature family. Square trading-card composition, character centered, three-quarter view, mid-twirl pose. No text, no logos, no watermarks, no other franchise references."
+  },
+  {
+    "potion": "Seda",
+    "color": "#C9A0DC",
+    "fur": "#2B2830",
+    "sex": "macho",
+    "idade": "≈11 anos",
+    "aparencia": "Baixo, magro, meio desengonçado. Bigodes finos, sobrancelhas erguidas de pânico gentil.",
+    "roupas": "Enrolado numa faixa de tecido de seda, tropecando nela.",
+    "personalidade": "O atrapalhado do grupo, sempre correndo atrás do próprio rabo, coração bom.",
+    "cenario": "Um tecido pendurado ao fundo, sugerido só por uma faixa mais clara.",
+    "prompt": "Vector illustration of a short, skinny, slightly clumsy anthropomorphic rabbit character with jet-black onyx fur (#2B2830), thin whiskers, eyebrows raised in gentle panic, tangled up in a length of silk fabric he's tripping over. No formal clothing besides the silk fabric wrapped around him. Warm-hearted, bumbling expression. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant soft lavender hue (#C9A0DC), minimal detail: a hanging fabric drape suggested only as a lighter-value streak, no other elements. Character can contrast within the same cool-to-neutral color temperature family. Square trading-card composition, character centered, three-quarter view, off-balance pose. No text, no logos, no watermarks, no other franchise references."
+  },
+  {
+    "potion": "Lua",
+    "color": "#4A5FA5",
+    "fur": "#A8ABB4",
+    "sex": "macho",
+    "idade": "≈33 anos",
+    "aparencia": "Médio, postura ereta de observador, pescoço um pouco esticado pra cima. Olhos grandes e atentos, olheira leve de quem passa noites acordado.",
+    "roupas": "Luneta pendurada no peito, compasso na pata.",
+    "personalidade": "Sonhador, curioso, sempre catalogando alguma coisa.",
+    "cenario": "Teto sugerindo céu noturno, degradê escuro, sem estrelas desenhadas.",
+    "prompt": "Vector illustration of a medium-built anthropomorphic rabbit character with slate-grey fur (#A8ABB4), upright observant posture, neck slightly craned upward, large attentive eyes with a faint trace of tiredness underneath from late nights awake, dreamy and curious expression. Wears a telescope hanging around his neck and holds a compass in one paw. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant deep indigo-blue hue (#4A5FA5), minimal detail: a dark gradient suggesting a night sky ceiling, no stars drawn. Character can contrast within the same cool color temperature family. Square trading-card composition, character centered, three-quarter view. No text, no logos, no watermarks, no other franchise references."
+  },
+  {
+    "potion": "Vida",
+    "color": "#4F8B4F",
+    "fur": "#8C6239",
+    "sex": "fêmea",
+    "idade": "≈47 anos",
+    "aparencia": "Robusta, postura confortável e estável, quase maternal. Óculos de leitura pendurados numa corrente.",
+    "roupas": "Corrente de óculos, avental leve.",
+    "personalidade": "Calma, cuidadosa, a mais velha e sábia do grupo.",
+    "cenario": "Sugestão leve de vinhas e folhas ao fundo, tudo em variação de verde.",
+    "prompt": "Vector illustration of a sturdy, warm, motherly-looking anthropomorphic rabbit character, the eldest of the group, with warm brown fur (#8C6239), a comfortable stable posture, reading glasses hanging from a chain around her neck, wearing a light apron. Calm, wise, caring expression. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant moss-green hue (#4F8B4F), minimal detail: a light suggestion of vines and leaves in the background, only in tonal variations of the same green, no new hues. Character can contrast within the same cool-to-neutral color temperature family. Square trading-card composition, character centered, three-quarter view. No text, no logos, no watermarks, no other franchise references."
+  },
+  {
+    "potion": "Cura",
+    "color": "#F2A0B8",
+    "fur": "#F6D6DE",
+    "sex": "fêmea",
+    "idade": "≈29 anos",
+    "aparencia": "Média, postura atenta e gentil, sempre inclinada pra ajudar. Bochechas rosadas, expressão doce.",
+    "roupas": "Touca/avental de enfermaria simples, pequeno emblema de coração no peito.",
+    "personalidade": "Cuidadosa, é quem todo mundo procura quando algo dá errado na aula.",
+    "cenario": "Sugestão leve de prateleira de frascos ao fundo, tudo em tons de rosa.",
+    "prompt": "Vector illustration of a medium-built anthropomorphic rabbit character with soft light-pink fur (#F6D6DE) and gentle pastel spots, rosy cheeks, a sweet caring expression, leaning slightly forward as if ready to help someone. Wears a simple nurse-style apron and cap with a small heart emblem on her chest. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant warm-pink hue (#F2A0B8), minimal detail: a soft silhouette of a shelf with small bottles in the background, all in tonal variations of pink, no new hues. Character can contrast within the same warm color temperature family. Square trading-card composition, character centered, three-quarter view. No text, no logos, no watermarks, no other franchise references."
+  },
+  {
+    "potion": "Brisa",
+    "color": "#BFD8E8",
+    "fur": "#E4E7EC",
+    "sex": "fêmea",
+    "idade": "≈10 anos",
+    "aparencia": "Pequena, leve, orelhas meio levantadas como se sentisse o vento. Expressão de “ops”, sempre meio desequilibrada.",
+    "roupas": "Um lenço leve que voa com ela.",
+    "personalidade": "Distraída, sempre levada pelo vento, risonha.",
+    "cenario": "Sugestão de nuvens e movimento de ar, tudo em azul muito claro.",
+    "prompt": "Vector illustration of a small, light, near-white-grey anthropomorphic rabbit character with fur color #E4E7EC, ears half-raised as if catching the wind, an off-balance windswept pose with a surprised 'oops' expression, cheerful and scatterbrained. Wears a light scarf that flows behind her as if caught mid-breeze. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant pale sky-blue hue (#BFD8E8), minimal detail: faint cloud shapes and subtle air-motion lines, all in tonal variations of the same pale blue, no new hues. Character can contrast within the same cool color temperature family. Square trading-card composition, character centered, three-quarter view, mid-windswept motion. No text, no logos, no watermarks, no other franchise references."
+  },
+  {
+    "potion": "Gelo",
+    "color": "#7EC8E3",
+    "fur": "#F0F6FA",
+    "sex": "macho",
+    "idade": "≈26 anos",
+    "aparencia": "Atarracado, estofado pelo casaco grosso. Bochechas coradas de frio.",
+    "roupas": "Macacão de neve azul, óculos de snowboard na testa, capuz com pelo.",
+    "personalidade": "Caseiro, gosta de conforto, fala devagar.",
+    "cenario": "Sugestão leve de neblina fria, tudo em tons de azul-gelo.",
+    "prompt": "Vector illustration of a stocky anthropomorphic rabbit character bundled up in a thick winter coat, white fur with icy-blue shading (#F0F6FA base, #BFDCEA shadow), rosy cold-flushed cheeks, calm and homebody expression. Wears a blue snowsuit, snowboard goggles pushed up on his forehead, and a fur-trimmed hood. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant icy sky-blue hue (#7EC8E3), minimal detail: a light cold mist suggested, all in tonal variations of the same icy blue, no new hues. Character can contrast within the same cool color temperature family. Square trading-card composition, character centered, three-quarter view. No text, no logos, no watermarks, no other franchise references."
+  },
+  {
+    "potion": "Força",
+    "color": "#B5442E",
+    "fur": "#F5F1E8",
+    "sex": "macho",
+    "idade": "≈30 anos",
+    "aparencia": "Alto, largo, muito muscoloso e estufado. Sobrancelha franzida permanente, uma cicatriz de treino.",
+    "roupas": "Macacão de luta simples, faixa de campeão improvisada.",
+    "personalidade": "Competitivo, bravo por fora, leal por dentro.",
+    "cenario": "Sugestão leve de tatame/arena, tudo em tons terrosos.",
+    "prompt": "Vector illustration of a tall, broad, heavily muscled anthropomorphic rabbit character with thick fluffy ivory-white fur (#F5F1E8), a puffed-out confident chest, a permanently furrowed brow, and a small training scar. Wears a simple wrestling singlet and an improvised champion sash. Competitive, tough-looking but warm-hearted expression. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant strong earthy terracotta-red hue (#B5442E), minimal detail: a faint suggestion of a wrestling mat or arena floor, all in tonal variations of the same earthy red, no new hues. Character can contrast within the same warm color temperature family. Square trading-card composition, character centered, three-quarter view, confident stance. No text, no logos, no watermarks, no other franchise references."
+  },
+  {
+    "potion": "Fogo",
+    "color": "#D9481C",
+    "fur": "#F7F0E6",
+    "sex": "macho",
+    "idade": "≈20 anos",
+    "aparencia": "Médio, ágil, sempre em movimento, uma orelha visivelmente chamuscada.",
+    "roupas": "Óculos escuros descolados, jaqueta jeans, luvas resistentes ao calor.",
+    "personalidade": "Impulsivo, adora explosão (literal), o hiperativo do grupo.",
+    "cenario": "Sugestão leve de fumaça e faíscas, tudo em laranja e vermelho.",
+    "prompt": "Vector illustration of a medium-built, agile, energetic anthropomorphic rabbit character with white fur (#F7F0E6) marked with rust-brown patches (#A8623A), one visibly singed ear, always mid-motion. Wears cool sunglasses, a denim jacket, and heat-resistant gloves. Impulsive, hyperactive, thrill-seeking expression. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant ember-orange hue (#D9481C), minimal detail: faint smoke wisps and sparks suggested, all in tonal variations of orange and red, no new hues. Character can contrast within the same warm color temperature family. Square trading-card composition, character centered, three-quarter view, dynamic pose. No text, no logos, no watermarks, no other franchise references."
+  },
+  {
+    "potion": "Prisma",
+    "color": "#B45CD9",
+    "fur": "#211D2B",
+    "sex": "fêmea",
+    "idade": "sem idade definida",
+    "aparencia": "Esguia, orelhas compridas, postura furtiva. Olhos com reflexo multicolor sutil, sempre parecendo entre lugares.",
+    "roupas": "Nenhum acessório fixo, prefere ficar camuflada na própria cor.",
+    "personalidade": "Enigmática, aparece e desaparece, fala pouco e sempre em enigmas.",
+    "cenario": "Sugestão leve de fenda de luz ou portal, tudo em tons de violeta.",
+    "prompt": "Vector illustration of a slender, elusive anthropomorphic rabbit character with deep black-violet fur (#211D2B), long ears, a stealthy half-hidden posture as if caught between appearing and vanishing, eyes with a subtle iridescent multicolor glint. No fixed clothing or accessories, blending into her own deep violet color. Enigmatic, mysterious expression. Cel-shaded cartoon style: bold thick black outer contour, thin clean inner linework, flat solid shadow blocks with no outline, no gradients. Background and scene in a single dominant violet hue (#B45CD9), minimal detail: a faint crack of light or portal-like glow suggested, all in tonal variations of violet, no new hues. Character can contrast subtly only through the iridescent eye glint. Square trading-card composition, character centered, three-quarter view, partially shadowed. No text, no logos, no watermarks, no other franchise references."
   }
+];
 
-  function renderCoelhos() {
-    var grid = document.getElementById("coelhoGrid");
-    COELHOS.forEach(function (c) {
-      var card = document.createElement("div");
-      card.className = "coelho-card";
+  function renderDeck() {
+    var deck = document.getElementById("personaDeck");
+    COELHOS.forEach(function (c, i) {
+      var card = document.createElement("article");
+      card.className = "persona-card";
+      var num = String(i + 1).padStart(2, "0");
       card.innerHTML =
-        '<div class="coelho-swatch" style="background:' + c.color + '"></div>' +
-        '<span class="coelho-tag">' + c.sex + "</span>" +
-        "<h3>" + c.potion + "</h3>" +
-        "<p>" + c.desc + "</p>";
-      grid.appendChild(card);
+        '<div class="persona-card-head">' +
+          '<span class="persona-card-num">' + num + '</span>' +
+          '<span class="persona-card-swatches"><i style="background:' + c.fur + '" title="Pelagem"></i><i style="background:' + c.color + '" title="Cor da cena/poção"></i></span>' +
+          '<div class="persona-card-id"><h2>' + c.potion + '</h2><div class="persona-card-tags"><span class="tag-pill">' + c.sex + '</span><span class="tag-pill">' + c.idade + '</span><span class="tag-pill">pelagem ' + c.fur + '</span><span class="tag-pill">cena ' + c.color + '</span></div></div>' +
+        '</div>' +
+        '<div class="persona-card-body">' +
+          '<div class="persona-field"><b>Aparência</b><p>' + c.aparencia + '</p></div>' +
+          '<div class="persona-field"><b>Roupas e acessórios</b><p>' + c.roupas + '</p></div>' +
+          '<div class="persona-field"><b>Personalidade</b><p>' + c.personalidade + '</p></div>' +
+          '<div class="persona-field"><b>Cenário da carta</b><p>' + c.cenario + '</p></div>' +
+        '</div>' +
+        '<div class="persona-prompt-wrap">' +
+          '<div class="persona-prompt-label"><b>Prompt de geração de imagem (rascunho)</b><button class="copy-btn" type="button" data-idx="' + i + '"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M4 13V4.5A1.5 1.5 0 0 1 5.5 3H13"/></svg><span>Copiar</span></button></div>' +
+          '<pre class="persona-prompt">' + c.prompt + '</pre>' +
+        '</div>';
+      deck.appendChild(card);
+    });
+
+    deck.addEventListener("click", function (ev) {
+      var btn = ev.target.closest(".copy-btn");
+      if (!btn) return;
+      var idx = Number(btn.getAttribute("data-idx"));
+      var text = COELHOS[idx].prompt;
+      var done = function () {
+        btn.classList.add("copied");
+        btn.querySelector("span").textContent = "Copiado!";
+        setTimeout(function () {
+          btn.classList.remove("copied");
+          btn.querySelector("span").textContent = "Copiar";
+        }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); });
+      } else {
+        fallbackCopy(text, done);
+      }
     });
   }
 
-  function renderFeiticos() {
-    var grid = document.getElementById("feiticoGrid");
-    FEITICOS.forEach(function (f) {
-      var card = document.createElement("div");
-      card.className = "feitico-card";
-      card.innerHTML =
-        '<div class="feitico-top"><h4>' + f.name + "</h4><span class=\"feitico-qty\">×" + f.qty + "</span></div>" +
-        "<p>" + f.desc + "</p>";
-      grid.appendChild(card);
-    });
+  function fallbackCopy(text, done) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); done(); } catch (e) {}
+    document.body.removeChild(ta);
   }
 
-  function renderPaletteEstetica() {
-    var strip = document.getElementById("paletteStrip");
-    if (!strip) return;
-    POTIONS.forEach(function (p) {
-      var chip = document.createElement("span");
-      chip.className = "palette-chip";
-      chip.innerHTML = '<span class="dot" style="background:' + p.color + '"></span><span>' + p.name + "</span>";
-      strip.appendChild(chip);
-    });
-  }
-
-  renderWheel();
-  renderCoelhos();
-  renderFeiticos();
-  renderPaletteEstetica();
+  renderDeck();
 
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var targets = document.querySelectorAll(".reveal, .coelho-card");
+  var targets = document.querySelectorAll(".persona-card");
   if (prefersReduced || !("IntersectionObserver" in window)) {
     targets.forEach(function (el) { el.classList.add("in"); });
   } else {
@@ -688,7 +497,7 @@
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.08 });
     targets.forEach(function (el) { io.observe(el); });
   }
 })();
