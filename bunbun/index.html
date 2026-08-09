@@ -389,6 +389,34 @@
   .term-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
   .term-chip { font-family: var(--font-mono); font-size: 11.5px; padding: 5px 11px; border-radius: 999px; background: var(--surface-2); color: var(--ink-soft); border: 1px solid var(--border); }
 
+  /* manual de regras (como jogar) */
+  .rules-toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 8px; }
+  .toc-chip {
+    font-family: var(--font-body); font-size: 12.5px; font-weight: 600; padding: 6px 13px; border-radius: 999px;
+    background: var(--surface); color: var(--ink-soft); border: 1px solid var(--border); text-decoration: none;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .toc-chip:hover { border-color: var(--accent); color: var(--accent); }
+  .rules-table { width: 100%; border-collapse: collapse; margin-top: 4px; font-size: 14px; }
+  .rules-table th { text-align: left; font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); padding: 0 12px 10px 0; }
+  .rules-table td { padding: 13px 12px 13px 0; border-top: 1px solid var(--border); vertical-align: top; }
+  .rules-table tr:last-child td { border-bottom: 1px solid var(--border); }
+  .rules-table td:first-child { font-weight: 700; color: var(--ink); white-space: nowrap; }
+  .rules-table td.num { font-family: var(--font-mono); color: var(--accent); font-weight: 700; white-space: nowrap; }
+  .rules-table td:last-child { color: var(--ink-soft); }
+  .component-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; margin: 0; padding: 0; list-style: none; }
+  @media (max-width: 700px) { .component-list { grid-template-columns: 1fr; } }
+  .component-list li { display: flex; gap: 10px; padding: 10px 0; border-top: 1px solid var(--border); font-size: 14.5px; color: var(--ink-soft); }
+  .component-list li b { color: var(--ink); flex-shrink: 0; }
+  .action-list { display: flex; flex-direction: column; gap: 14px; margin: 12px 0 0; }
+  .action-item { display: grid; grid-template-columns: 34px 1fr; gap: 14px; }
+  .action-letter {
+    width: 34px; height: 34px; border-radius: 10px; background: var(--accent-tint); color: var(--accent);
+    font-family: var(--font-mono); font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center;
+  }
+  .action-item p { margin: 0; font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; }
+  .action-item p b { color: var(--ink); }
+
   .est-block { padding: 40px 0; border-top: 1px solid var(--border); }
   .est-block:first-of-type { border-top: none; padding-top: 0; }
   .est-block h3.est-h { font-size: clamp(21px, 2.4vw, 26px); margin: 0 0 6px; font-family: var(--font-display); font-weight: 400; }
@@ -553,42 +581,146 @@
 <div class="tab-panel" data-panel="como-jogar" id="panel-como-jogar">
   <section class="panel-hero">
     <div class="wrap">
-      <span class="eyebrow">Regras</span>
+      <span class="eyebrow">Manual completo</span>
       <h1 class="panel-title">Como jogar.</h1>
-      <p class="panel-lede">Objetivo: monte a receita da sua poção e ative todas as runas antes dos outros. Regra em evolução constante, ajustada a cada rodada de playtest.</p>
+      <p class="panel-lede">O manual de regras do BunBun, do jeito que ele está pronto pra jogar hoje: componentes, preparação, o turno, o dado e o baralho de feitiços completo, em sequência. Os dois ou três pontos que ainda não têm redação final de carta ficam marcados com <span class="pill pill-open">proposta</span> — o resto já é regra fechada.</p>
     </div>
   </section>
+
   <section>
     <div class="wrap">
-      <div class="steps reveal">
-        <div class="step">
-          <span class="step-num">↳</span>
-          <div><h3>Preparo</h3><p>Cada jogador recebe 1 carta de poção, 3 cartas de ingrediente e 4 cartas de feitiço. A mesa de descarte começa vazia.</p></div>
-        </div>
-        <div class="step">
-          <span class="step-num">↳</span>
-          <div><h3>No seu turno</h3><p>Escolha uma ação: comprar do baralho principal, pegar da mesa de descarte, ou usar um feitiço. Mão máxima: 2 ingredientes, 6 feitiços.</p></div>
-        </div>
-        <div class="step">
-          <span class="step-num">↳</span>
-          <div><h3>Poção completa</h3><p>Ao reunir todos os ingredientes, revele sua poção. Todos os outros jogadores recebem, na hora, uma nova carta de feitiço.</p></div>
-        </div>
-        <div class="step">
-          <span class="step-num">↳</span>
-          <div><h3>Fase do dado</h3><p>Jogue o dado de 8 lados para marcar as runas da sua poção. Nesta fase, dá pra jogar o dado e usar um feitiço no mesmo turno.</p></div>
+      <div class="rules-toc reveal">
+        <a class="toc-chip" href="#cj-componentes">Componentes</a>
+        <a class="toc-chip" href="#cj-objetivo">Objetivo</a>
+        <a class="toc-chip" href="#cj-preparacao">Preparação</a>
+        <a class="toc-chip" href="#cj-turno">O turno</a>
+        <a class="toc-chip" href="#cj-completar">Completar a poção</a>
+        <a class="toc-chip" href="#cj-dado">A fase do dado</a>
+        <a class="toc-chip" href="#cj-vencendo">Vencendo o jogo</a>
+        <a class="toc-chip" href="#cj-feiticos">Baralho de feitiços</a>
+        <a class="toc-chip" href="#cj-pulo">A Poção do Pulo</a>
+      </div>
+
+      <blockquote class="lore reveal" style="max-width: 34ch; font-size: clamp(18px, 2.2vw, 23px); margin: 32px 0 8px;">Numa aula de poções como nenhuma outra, um grupo de coelhos-alquimistas disputa quem decifra a própria receita mais rápido.</blockquote>
+      <p class="lore-attr">A premissa, em uma frase</p>
+
+      <div class="est-block" id="cj-componentes" style="margin-top:40px;">
+        <h3 class="est-h">Componentes</h3>
+        <p class="est-lede">O que vem na caixa (ou na versão de protótipo de hoje).</p>
+        <ul class="component-list reveal">
+          <li><b>Baralho de Poções</b> — 12 cartas, uma por coelho: Prisma, Aurora, Cura, Fogo, Vida, Força, Gelo, Sol, Seda, Lua, Sangue, Brisa.</li>
+          <li><b>Baralho Principal</b> — 45 cartas de ingrediente (3 letras cada) + 12 cartas "Novo Feitiço".</li>
+          <li><b>Baralho de Feitiços</b> — 44 cartas, 9 tipos de efeito (tabela completa mais abaixo).</li>
+          <li><b>Marcadores de runa</b> — fichas pra marcar runas conquistadas na carta de poção.</li>
+          <li><b>Fichas de ajuste "+1" / "-1"</b> — ganhas no dado, ajustam o próprio resultado futuro. <span class="pill pill-open">nome provisório</span></li>
+          <li><b>1 dado de 8 lados.</b></li>
+        </ul>
+      </div>
+
+      <div class="est-block" id="cj-objetivo">
+        <h3 class="est-h">Objetivo</h3>
+        <p class="est-lede" style="margin-bottom:0;">Reúna os ingredientes (letras) que formam a receita da sua poção — depois ative todas as runas mágicas da carta, jogando o dado, antes dos outros jogadores.</p>
+      </div>
+
+      <div class="est-block" id="cj-preparacao">
+        <h3 class="est-h">Preparação</h3>
+        <div class="steps reveal">
+          <div class="step">
+            <span class="step-num">01</span>
+            <div><h3>Distribua as cartas</h3><p>Embaralhe os três baralhos separadamente. Cada jogador recebe 1 carta de Poção (secreta), 3 cartas de Ingrediente e 4 cartas de Feitiço.</p></div>
+          </div>
+          <div class="step">
+            <span class="step-num">02</span>
+            <div><h3>Monte a mesa</h3><p>Coloque os três baralhos no centro, separados, com espaço pra uma mesa de descarte (máx. 6 cartas de ingrediente visíveis) e um monte de lixo. A mesa de descarte começa vazia.</p></div>
+          </div>
+          <div class="step">
+            <span class="step-num">03</span>
+            <div><h3>Primeiro olhar</h3><p>Cada jogador esconde a própria poção e analisa os ingredientes recebidos, colocando na mesa qualquer carta já útil. Não há descarte obrigatório nesta etapa.</p></div>
+          </div>
         </div>
       </div>
 
-      <table class="dice-table reveal">
-        <thead><tr><th>Resultado</th><th>O que acontece</th></tr></thead>
-        <tbody>
-          <tr><td>2 a 5</td><td>Marca a runa correspondente na carta de poção.</td></tr>
-          <tr><td>6</td><td>Coringa: marca a runa que você escolher, exceto a última. Máximo de 2 coringas por carta.</td></tr>
-          <tr><td>1</td><td>Perde uma runa marcada, mas ganha uma ficha que ajusta seu próprio resultado em +1 no futuro. Joga de novo.</td></tr>
-          <tr><td>7</td><td>Perde uma runa marcada, ganha uma ficha de ajuste -1. A vez passa para o próximo jogador.</td></tr>
-          <tr><td>8</td><td>Em teste: jogar de novo ou ganhar uma nova carta de feitiço.</td></tr>
-        </tbody>
-      </table>
+      <div class="est-block" id="cj-turno">
+        <h3 class="est-h">O turno — fase de coleta de ingredientes</h3>
+        <p class="est-lede">Começa pelo jogador mais velho. No seu turno, escolha uma e somente uma das três ações abaixo — feita a escolha, o turno termina e passa pro próximo jogador.</p>
+        <div class="action-list reveal">
+          <div class="action-item">
+            <span class="action-letter">A</span>
+            <p><b>Comprar do Baralho Principal.</b> Uma carta de ingrediente vai pra mesa/poção (se for útil), pra mão (limite de 2) ou pro descarte. Uma carta "Novo Feitiço" vai pro lixo e você compra uma carta nova do Baralho de Feitiços (limite de 6 na mão).</p>
+          </div>
+          <div class="action-item">
+            <span class="action-letter">B</span>
+            <p><b>Pegar da mesa de descarte.</b> Pegue qualquer carta visível, pra mão ou direto pra poção. Se isso passar do limite de 2 ingredientes na mão, descarte até voltar ao limite; se a mesa de descarte já tem 6 cartas, a mais antiga vai pro lixo antes de você adicionar a sua.</p>
+          </div>
+          <div class="action-item">
+            <span class="action-letter">C</span>
+            <p><b>Usar uma carta de feitiço.</b> Ativa o efeito da carta na hora (baralho completo mais abaixo). Usar um feitiço também conta como a ação do turno.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="est-block" id="cj-completar">
+        <h3 class="est-h">Completar a poção e revelar</h3>
+        <p class="est-lede" style="margin-bottom:20px;">Assim que você reúne, na mesa, todos os ingredientes da própria receita, na ordem correta da palavra, revele a carta de poção.</p>
+        <div class="callout">
+          <h4>O momento em que todo mundo ganha alguma coisa</h4>
+          <p>No instante em que você revela, <b>todos os outros jogadores recebem, na hora, 1 nova carta do Baralho de Feitiços</b> (respeitando o limite de 6 na mão cada um). Você entra na fase de ativação (o dado) a partir do seu próprio próximo turno.</p>
+        </div>
+      </div>
+
+      <div class="est-block" id="cj-dado">
+        <h3 class="est-h">A fase de ativação — o dado</h3>
+        <p class="est-lede">Só entra nesta fase quem já revelou a própria poção. A partir daqui, a dinâmica muda: no seu turno, você pode <b>jogar o dado E usar uma carta de feitiço</b> — não é mais uma ação só, como na fase de coleta.</p>
+
+        <table class="rules-table reveal">
+          <thead><tr><th>Resultado</th><th>O que acontece</th></tr></thead>
+          <tbody>
+            <tr><td class="num">2 – 5</td><td>Marca a runa correspondente na carta de poção.</td></tr>
+            <tr><td class="num">6</td><td>Coringa: marca a runa que você escolher, exceto a última — não fecha o jogo com coringa. Máximo de 2 coringas por carta.</td></tr>
+            <tr><td class="num">1</td><td>Perde 1 marcador de runa já colocado. Ganha 1 ficha de ajuste "+1", usável só no <b>próprio</b> resultado futuro do dado. Joga de novo, no mesmo turno.</td></tr>
+            <tr><td class="num">7</td><td>Perde 1 marcador de runa já colocado. Ganha 1 ficha de ajuste "-1" (mesma regra: só no próprio resultado). Não joga de novo — passa a vez.</td></tr>
+            <tr><td class="num">8 <span class="pill pill-open" style="margin-left:6px;">proposta</span></td><td>Jogar de novo <b>ou</b> ganhar uma nova carta de feitiço (respeitando o limite de 6 na mão) — à escolha de quem tirou. Direção proposta pelo Lanza, ainda não validada em mesa como regra final.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout" style="margin-top:24px;">
+          <h4>Se você perder um ingrediente já na fase do dado</h4>
+          <p>Um Roubo ou uma Sabotagem podem tirar um ingrediente seu mesmo depois de você já ter marcadores de runa na carta. Nesse caso, você precisa recuperar o ingrediente perdido antes de voltar a jogar o dado — mas os marcadores de runa já conquistados <b>não se perdem</b>; a ativação retoma de onde parou assim que a receita estiver completa de novo.</p>
+        </div>
+      </div>
+
+      <div class="est-block" id="cj-vencendo">
+        <h3 class="est-h">Vencendo o jogo</h3>
+        <p class="est-lede" style="margin-bottom:0;">O primeiro jogador a marcar todas as runas da própria carta de poção vence a partida.</p>
+      </div>
+
+      <div class="est-block" id="cj-feiticos">
+        <h3 class="est-h">Baralho de feitiços — as 44 cartas</h3>
+        <p class="est-lede">Nove tipos de efeito, do saque disfarçado à sabotagem direta. As 12 cartas "Novo Feitiço" ficam no Baralho Principal, não neste baralho — por isso não entram nesta contagem.</p>
+        <table class="rules-table reveal">
+          <thead><tr><th>Carta</th><th>Qtd.</th><th>Efeito</th></tr></thead>
+          <tbody>
+            <tr><td>Sabotagem</td><td class="num">6</td><td>Obriga um adversário a descartar 1 ingrediente — da mão ou da poção em andamento na mesa. Se não tiver carta na mão, é obrigado a descartar da poção. Quando as duas opções existem, quem escolhe é o jogador atacado.</td></tr>
+            <tr><td>Roubo</td><td class="num">12</td><td>Rouba qualquer ingrediente de outro jogador, mesmo que ele já tenha completado a poção e esteja na fase de ativação.</td></tr>
+            <tr><td>Escudo</td><td class="num">5</td><td>Protege contra Roubo ou Sabotagem — usado no momento exato da tentativa.</td></tr>
+            <tr><td>Cancelamento</td><td class="num">3</td><td>Anula qualquer feitiço <b>ativo</b> em jogo, não só o último jogado. Ex.: pode cancelar uma Essência Arcana que já está em uso de outro jogador.</td></tr>
+            <tr><td>Essência Arcana</td><td class="num">2</td><td>Substitui qualquer ingrediente pra completar a poção. Conta como feitiço "ativo" (pode ser alvo de Cancelamento). Não pode ser roubada. Só 1 carta ativa por jogador.</td></tr>
+            <tr><td>Extração Mágica</td><td class="num">5</td><td>Pega 3 cartas do Baralho Principal, escolhe 1 pra manter — as outras voltam e o baralho é embaralhado.</td></tr>
+            <tr><td>Destruição</td><td class="num">5</td><td>Destrói o resultado do dado de alguém na fase de ativação (o seu próprio ou o de outro jogador), forçando a pessoa a jogar de novo.</td></tr>
+            <tr><td>Escudo com troco</td><td class="num">2</td><td>Variante do Escudo: além de bloquear um Roubo ou Sabotagem, devolve o golpe em quem tentou.</td></tr>
+            <tr><td>Jogue o dado pra mim</td><td class="num">4</td><td>Escolhe outro jogador pra rolar o dado no seu lugar; você decide se o resultado vale pra você ou pra quem rolou.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="est-block" id="cj-pulo">
+        <h3 class="est-h">Apêndice — a Poção do Pulo</h3>
+        <p class="est-lede">A mecânica de legado que liga uma partida à seguinte, dentro do mesmo encontro.</p>
+        <div class="callout">
+          <h4>O cinturão de campeão da turma</h4>
+          <p>A Poção do Pulo é sorteada normalmente como qualquer outra na 1ª partida de uma sequência de jogo. Quem vence essa partida fica com ela e leva uma pequena vantagem pra próxima — <span class="pill pill-open">proposta</span> esquivar de 1 feitiço adversário, 1 vez, texto final da carta ainda não fechado. A posse migra pro vencedor a cada partida seguinte, e vale <b>só dentro da mesma sequência de partidas</b> — não atravessa encontros em dias diferentes.</p>
+        </div>
+      </div>
     </div>
   </section>
 </div>
@@ -1099,7 +1231,9 @@
   }
 
   window.addEventListener("hashchange", function () {
-    openTab(location.hash.slice(1), { silent: true });
+    var key = location.hash.slice(1);
+    if (validKeys.indexOf(key) === -1) return; // anchor inside a panel (e.g. rules TOC) — let it scroll, don't switch tabs
+    openTab(key, { silent: true });
   });
 
   renderWheel();
@@ -1108,8 +1242,20 @@
   renderPaletteEstetica();
   renderPersonaDeck();
 
-  var initialKey = location.hash.slice(1) || "jogo";
-  openTab(initialKey, { noScroll: true });
+  var initialHash = location.hash.slice(1);
+  if (initialHash && validKeys.indexOf(initialHash) === -1) {
+    // deep link to an anchor inside a panel (e.g. a rules TOC target) rather than a tab itself
+    var target = document.getElementById(initialHash);
+    var hostPanel = target ? target.closest(".tab-panel") : null;
+    if (hostPanel) {
+      openTab(hostPanel.getAttribute("data-panel"), { noScroll: true, silent: true });
+      requestAnimationFrame(function () { target.scrollIntoView(); });
+    } else {
+      openTab("jogo", { noScroll: true });
+    }
+  } else {
+    openTab(initialHash || "jogo", { noScroll: true });
+  }
 
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (prefersReduced) {
